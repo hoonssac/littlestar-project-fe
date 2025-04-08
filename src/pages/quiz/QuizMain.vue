@@ -66,7 +66,6 @@ onMounted(() => {
   background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
 }
@@ -110,17 +109,21 @@ onMounted(() => {
 /* 기타 스타일 */
 .quiz-title {
   font-size: 33px;
-  margin: 1rem 0;
+  margin: 0;
 }
 .pikachu {
   width: 4rem;
 }
+.quiz-desc {
+  margin: 0 1rem;
+}
 .quiz-desc-1 {
-  font-size: 23px;
+  font-size: 22px;
 }
 .quiz-desc-2 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
+  margin-bottom: 0;
 }
 .question-box {
   width: 300px;
@@ -132,7 +135,6 @@ onMounted(() => {
   border: none;
   border-radius: 13px;
   padding: 0.1rem 2rem;
-  margin-top: 20px;
   box-shadow: 4px 4px 0px rgba(74, 72, 63, 0.1);
   transition: transform 0.2s;
   width: 80%;
