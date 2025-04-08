@@ -23,12 +23,13 @@
       <ul class="pokemon-list">
         <li
           class="pokemon-container"
-          v-for="pokemon in pokedex"
-          :key="pokemon.id">
+          v-for="pokemon in displayPokedex"
+          :key="pokemon.id + pokemon.name">
           No. {{ pokemon.id }}
           <img
             :src="pokemon.image_url"
-            alt="Pokemon Image" />
+            alt="Pokemon Image"
+            :class="pokemon.isOwned ? 'pokemon-image' : 'pokeball-image'" />
           {{ pokemon.name }}
         </li>
       </ul>
@@ -47,6 +48,7 @@ const isLoading = computed(() => pokedexStore.isLoading);
 const fetchUser = pokedexStore.fetchUser;
 const fetchPokedex = pokedexStore.fetchPokedex;
 const mainPokemon = computed(() => pokedexStore.mainPokemon);
+const displayPokedex = computed(() => pokedexStore.displayPokedex);
 
 onMounted(async () => {
   await fetchUser();
@@ -68,6 +70,7 @@ onMounted(async () => {
 .main-pokemon-image {
   width: 200px;
   height: auto;
+  object-fit: contain;
   margin-top: 16px;
 }
 .pokemon-list {
@@ -86,4 +89,18 @@ onMounted(async () => {
   border: 1px solid #ccc;
   border-radius: 8px;
 }
+
+.pokemon-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.pokeball-image {
+  width: 60px; /* 👈 요걸로 살짝 작게 조절! */
+  height: 60px;
+  object-fit: contain;
+  opacity: 0.7; /* 흐릿하게도 가능! */
+}
+
 </style>

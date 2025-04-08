@@ -1,6 +1,7 @@
 import { ref, reactive, computed } from 'vue';
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import monsterBallImage from '@/assets/images/monster-ball.png';
 
 export const usePokedexStore = defineStore('pokedex', () => {
   const pokedex = ref([]);
@@ -53,6 +54,32 @@ export const usePokedexStore = defineStore('pokedex', () => {
     return;
   };
 
+  // 보유/미보유 포켓몬 display 처리
+  const displayPokedex = computed(() => {
+    const ownedIds = user.pokemon_ids || [];
+
+    // 보유 포켓몬: 원래 정보 유지 + isOwned: true
+    const owned = pokedex.value
+      .filter((p) => ownedIds.includes(Number(p.id)))
+      .map((p) => ({
+        ...p,
+        isOwned: true,
+      }));
+
+    // 미보유 포켓몬: 이름, ID, 이미지 가리기 + isOwned: false
+    const notOwned = pokedex.value
+      .filter((p) => !ownedIds.includes(Number(p.id)))
+      .map((p) => ({
+        ...p,
+        id: '?',
+        name: '???',
+        image_url: monsterBallImage,
+        isOwned: false,
+      }));
+
+    return [...owned, ...notOwned];
+  });
+
   const calculateMainPokemon = () => {
     console.log('✅ calculateMainPokemon 실행');
     const mainId = Number(user.main_pokemon_id);
@@ -83,5 +110,6 @@ export const usePokedexStore = defineStore('pokedex', () => {
     fetchPokedex,
     mainPokemon,
     calculateMainPokemon,
+    displayPokedex,
   };
 });

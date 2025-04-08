@@ -1,13 +1,13 @@
 <template>
   <div class="main-container">
-    <div class="hello">
-      <p>hello vue!!</p>
-      <p>hi hi</p>
-    </div>
+    <div class="hello"></div>
+    <PokedexPage />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import PokedexPage from './pages/pokemon/PokedexPage.vue';
+</script>
 
 <style scoped>
 .hello {
