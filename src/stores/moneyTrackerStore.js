@@ -9,7 +9,7 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
 
   const isAddCategoryModalOpen = ref(false);
 
-  const url = 'http://localhost:3001/categories';
+  const url = 'http://localhost:3000/categories';
 
   const fetchCategories = async () => {
     try {
