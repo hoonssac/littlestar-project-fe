@@ -15,4 +15,9 @@ import TopBar from './components/common/TopBar.vue';
 .app-container {
   padding: 70px 0 95px 0;
 }
+
+.navbar {
+  display: flex;
+  justify-content: end;
+}
 </style>
