@@ -4,6 +4,7 @@
       <p>hello vue!!</p>
       <p>hi hi</p>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
