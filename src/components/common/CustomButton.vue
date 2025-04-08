@@ -19,6 +19,9 @@ const props = defineProps({
     default: 'medium',
     validator: (val) => ['small', 'medium', 'large'].includes(val),
   },
+  onPress: {
+    type: Function,
+  },
 });
 </script>
 
