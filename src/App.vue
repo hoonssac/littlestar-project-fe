@@ -3,6 +3,7 @@
     <div class="hello">
       <MoneyTrackPage />
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
