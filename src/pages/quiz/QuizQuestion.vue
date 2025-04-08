@@ -1,18 +1,25 @@
 <template>
   <div class="quiz-question">
-    <!-- 퀴즈 타이틀 -->
     <h2 class="quiz-title">퀴즈</h2>
 
-    <!-- 말풍선 -->
     <QuizProfessorTalk
       v-if="questionText"
       :text="questionText"
       :isLast="false"
       :dialogIndex="0"
       :showNextHint="false"
+      @typingEnd="onTypingEnd"
     />
 
-    <!-- 오박사 -->
+    <!-- 보기 프롬프트는 typing 끝나고 나서만 표시 -->
+    <Transition name="fade-up">
+      <QuizOptionPrompt
+        v-if="showOptions"
+        :options="pickedQuestion?.options"
+        @select="handleSelect"
+      />
+    </Transition>
+
     <img src="@/assets/images/dr-oh.png" class="professor" alt="오박사" />
   </div>
 </template>
@@ -21,23 +28,29 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import QuizProfessorTalk from '@/components/quiz/QuizProfessorTalk.vue';
+import QuizOptionPrompt from '@/components/quiz/QuizOptionPrompt.vue';
 
 const questionText = ref('');
 const pickedQuestion = ref(null);
+const showOptions = ref(false);
 
 onMounted(async () => {
   const res = await axios.get('http://localhost:3001/questions');
   const questions = res.data;
   const randomIndex = Math.floor(Math.random() * questions.length);
   pickedQuestion.value = questions[randomIndex];
-  console.log(pickedQuestion.value);
-
   questionText.value = pickedQuestion.value.question;
 });
 
-const skipTyping = () => {
-  // 선택적으로 말풍선 타이핑 스킵 구현 가능
+const onTypingEnd = () => {
+  showOptions.value = true;
 };
+
+function handleSelect(index) {
+  const correct = pickedQuestion.value.answer_index;
+  if (index === correct) console.log('정답!');
+  else console.log('오답!');
+}
 </script>
 
 <style scoped>
@@ -82,5 +95,22 @@ const skipTyping = () => {
   right: -3rem;
   width: 300px;
   z-index: 1;
+}
+
+.fade-up-enter-active {
+  animation: fadeUp 0.5s ease-out;
+}
+.fade-up-leave-active {
+  display: none;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

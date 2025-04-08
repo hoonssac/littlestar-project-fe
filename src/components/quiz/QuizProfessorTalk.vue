@@ -9,6 +9,7 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+const emit = defineEmits(['typingEnd']);
 
 const props = defineProps({
   text: String,
@@ -52,9 +53,10 @@ function typeText(fullText) {
       displayedText.value = plainText.slice(0, typingIndex.value + 1);
       typingIndex.value++;
     } else {
-      displayedText.value = fullText; // HTML 복원
+      displayedText.value = fullText;
       clearInterval(typingTimer);
-      isTypingFinished.value = true; // ✅ 타이핑 완료 후 표시
+      isTypingFinished.value = true;
+      emit('typingEnd'); // 🎯 타이핑 완료 알림 보내기
     }
   }, 30);
 }
