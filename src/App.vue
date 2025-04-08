@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <div class="hello">
-      <MoneyTrackPage />
+      <!-- <MoneyTrackPage /> -->
     </div>
     <router-view></router-view>
   </div>

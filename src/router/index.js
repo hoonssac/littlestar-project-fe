@@ -2,6 +2,7 @@ import App from '@/App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import QuizMainPage from '@/pages/quiz/QuizMain.vue';
 import QuizIntroPage from '@/pages/quiz/QuizIntro.vue';
+import QuizQuestion from '@/pages/quiz/QuizQuestion.vue';
 import MoneyTrackPage from '@/pages/money-tracker/MoneyTrackPage.vue';
 import IncomeCategoryPage from '@/pages/money-tracker/IncomeCategory.vue';
 import ExpenseCategoryPage from '@/pages/money-tracker/ExpenseCategory.vue';
@@ -24,6 +25,11 @@ const router = createRouter({
       path: '/quiz/intro',
       name: 'QuizIntro',
       component: QuizIntroPage,
+    },
+    {
+      path: '/quiz/question',
+      name: 'QuizQuestion',
+      component: QuizQuestion,
     },
     {
       path: '/money-tracker',

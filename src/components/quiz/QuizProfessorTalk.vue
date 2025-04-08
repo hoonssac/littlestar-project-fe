@@ -1,7 +1,7 @@
 <template>
   <div class="speech-bubble">
     <p class="dialog-text" v-html="displayedText"></p>
-    <div class="next-hint" v-if="!isLast && isTypingFinished">
+    <div class="next-hint" v-if="!isLast && isTypingFinished && showNextHint">
       아무곳이나 누르면 다음으로 이동합니다
     </div>
   </div>
@@ -14,6 +14,10 @@ const props = defineProps({
   text: String,
   isLast: Boolean,
   dialogIndex: Number,
+  showNextHint: {
+    type: Boolean,
+    default: true, // 기본값은 true (기존 인트로 흐름 유지)
+  },
 });
 
 const displayedText = ref('');

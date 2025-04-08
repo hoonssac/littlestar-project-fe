@@ -82,7 +82,6 @@ const goBack = () => {
   background-repeat: no-repeat;
   background-position: center;
   transform: translate(-50%, -50%);
-
   z-index: 0;
 }
 
