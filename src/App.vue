@@ -1,7 +1,9 @@
 <template>
   <div class="main-container">
     <TopBar />
-    <div class="app-container"></div>
+    <div class="app-container">
+      <router-view></router-view>
+    </div>
     <BottomBar />
   </div>
 </template>
@@ -13,6 +15,7 @@ import TopBar from './components/common/TopBar.vue';
 
 <style scoped>
 .app-container {
+  overflow-y: auto;
   padding: 70px 0 95px 0;
 }
 

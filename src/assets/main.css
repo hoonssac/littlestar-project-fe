@@ -13,10 +13,11 @@
   background-color: white;
   position: relative;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 body::before {
   content: '';
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   height: 70%;
@@ -30,6 +31,7 @@ body {
   min-width: 320px; /* 가로 최소 크기 */
   overflow-x: auto; /* 작아질 경우 스크롤 발생 */
   font-family: 'NeoDunggeunmo', Arial, Helvetica, sans-serif;
+  height: 100%;
 }
 
 p {
