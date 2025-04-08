@@ -1,17 +1,18 @@
 <template>
   <div class="main-container">
-    <div class="hello">
-      <p>hello vue!!</p>
-      <p>hi hi</p>
-    </div>
+    <TopBar />
+    <div class="app-container"></div>
+    <BottomBar />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import BottomBar from './components/common/BottomBar.vue';
+import TopBar from './components/common/TopBar.vue';
+</script>
 
 <style scoped>
-.hello {
-  display: flex;
-  justify-content: space-between;
+.app-container {
+  padding: 70px 0 95px 0;
 }
 </style>
