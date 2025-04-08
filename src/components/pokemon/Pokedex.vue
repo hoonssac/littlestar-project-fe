@@ -102,5 +102,4 @@ onMounted(async () => {
   object-fit: contain;
   opacity: 0.7; /* 흐릿하게도 가능! */
 }
-
 </style>
