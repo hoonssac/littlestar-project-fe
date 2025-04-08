@@ -1,13 +1,14 @@
 <template>
   <div class="main-container">
     <div class="hello">
-      <p>hello vue!!</p>
-      <p>hi hi</p>
+      <MoneyTrackPage />
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import MoneyTrackPage from './pages/money-tracker/MoneyTrackPage.vue';
+</script>
 
 <style scoped>
 .hello {
