@@ -29,7 +29,7 @@ const router = createRouter({
     },
     {
       path: '/money-tracker/income/:categoryId',
-      name: 'money-tracker-income/categoryId',
+      name: 'money-tracker-income-categoryId',
       component: RecordListPage,
     },
   ],

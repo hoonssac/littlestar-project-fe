@@ -10,7 +10,7 @@
         :key="category.id"
         @click="
           router.push({
-            name: 'money-tracker-income/categoryId',
+            name: 'money-tracker-income-categoryId',
             params: { categoryId: category.id },
           })
         "

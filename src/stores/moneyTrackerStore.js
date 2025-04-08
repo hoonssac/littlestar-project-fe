@@ -7,15 +7,16 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
   const incomeCategories = ref([]);
   const expenseCategories = ref([]);
 
+  const transactions = ref([]);
   const isAddCategoryModalOpen = ref(false);
 
-  const url = 'http://localhost:3000/categories';
-
+  //   1. 전체 카테고리 가져오기
   const fetchCategories = async () => {
     try {
-      let response = await axios.get(url);
+      const url = 'http://localhost:3000/categories';
+      const response = await axios.get(url);
       categories.value = response.data;
-
+      // 수입/지출 카테고리 분리
       incomeCategories.value = categories.value.filter((c) => c.is_income);
       expenseCategories.value = categories.value.filter((c) => !c.is_income);
     } catch (error) {
@@ -23,6 +24,18 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
     }
   };
 
+  //   2. 거래 내역 전체 가져오기
+  const fetchTransactions = async () => {
+    try {
+      const url = 'http://localhost:3000/transactions';
+      const response = await axios.get(url);
+      transactions.value = response.data;
+    } catch (error) {
+      console.error('트랜잭션 불러오기 오류: ', error);
+    }
+  };
+
+  //   3. 카테고리 추가(수입/지출 구분)
   const addCategory = async (categoryName, isIncome) => {
     try {
       const data = {
@@ -43,6 +56,11 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
     }
   };
 
+  const getTransactionsByCategoryId = (categoryId) => {
+    if (!categoryId) return [];
+    return transactions.value.filter((t) => t.category_id === categoryId);
+  };
+
   const openAddCategoryModal = () => {
     isAddCategoryModalOpen.value = true;
   };
@@ -54,10 +72,14 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
     categories,
     incomeCategories,
     expenseCategories,
+    transactions,
     isAddCategoryModalOpen,
+
     fetchCategories,
+    fetchTransactions,
     addCategory,
     openAddCategoryModal,
     closeAddCategoryModal,
+    getTransactionsByCategoryId,
   };
 });
