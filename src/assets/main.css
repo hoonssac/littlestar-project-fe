@@ -29,3 +29,7 @@ body {
   overflow-x: auto; /* 작아질 경우 스크롤 발생 */
   font-family: 'NeoDunggeunmo', Arial, Helvetica, sans-serif;
 }
+
+p {
+  margin: 0;
+}
