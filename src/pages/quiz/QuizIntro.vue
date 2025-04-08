@@ -1,14 +1,30 @@
 <template>
   <div class="quiz-intro" @click="nextDialog">
-    <QuizProfessorTalk :text="currentText" />
-    <img src="@/assets/prof_O.png" alt="오박사" class="professor" />
+    <!-- 말풍선에 트랜지션 클래스 -->
+    <QuizProfessorTalk
+      :text="currentText"
+      :isLast="isLast"
+      :dialogIndex="currentIndex"
+      class="fade-in delay-2"
+    />
+
+    <!-- 마지막 대사일 때만 프롬프트 등장 -->
+    <QuizStartPrompt v-if="isLast" @confirm="goToQuiz" @cancel="goBack" />
+
+    <!-- 오박사 이미지에도 트랜지션 클래스 -->
+    <img
+      src="@/assets/images/dr-oh.png"
+      alt="오박사"
+      class="professor fade-in delay-1"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import QuizProfessorTalk from '@/components/quiz/QuizProfessorTalk.vue';
+import QuizStartPrompt from '@/components/quiz/QuizStartPrompt.vue';
 
 const router = useRouter();
 
@@ -22,13 +38,21 @@ const dialogList = [
 const currentIndex = ref(0);
 const currentText = ref(dialogList[currentIndex.value]);
 
+const isLast = computed(() => currentIndex.value === dialogList.length - 1);
+
 const nextDialog = () => {
-  if (currentIndex.value < dialogList.length - 1) {
+  if (!isLast.value) {
     currentIndex.value++;
     currentText.value = dialogList[currentIndex.value];
-  } else {
-    router.push('/quiz/question'); // 퀴즈 문제 화면으로 이동
   }
+};
+
+const goToQuiz = () => {
+  router.push('/quiz/question');
+};
+
+const goBack = () => {
+  router.push('/quiz');
 };
 </script>
 
@@ -40,7 +64,7 @@ const nextDialog = () => {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 3rem;
+  padding-top: 1rem;
   overflow: hidden;
   cursor: pointer; /* 클릭 가능한 느낌 주기 */
 }
@@ -51,14 +75,14 @@ const nextDialog = () => {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 400px;
-  height: 400px;
-  background-image: url('@/assets/monsterball.png');
+  width: 200px;
+  height: 200px;
+  background-image: url('@/assets/images/monster-ball-back.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   transform: translate(-50%, -50%);
-  opacity: 0.15;
+
   z-index: 0;
 }
 
@@ -69,5 +93,27 @@ const nextDialog = () => {
   right: -3rem;
   width: 300px;
   z-index: 1;
+}
+
+/* 트랜지션 공통 */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.fade-in.delay-1 {
+  animation-delay: 0.4s;
+}
+
+.fade-in.delay-2 {
+  animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

@@ -5,7 +5,7 @@
       <div class="quiz-title" style="transition-delay: 0.2s">
         <h2>
           오늘의 퀴즈
-          <img src="@/assets/pikachu.png" alt="피카츄" class="pikachu" />
+          <img src="@/assets/images/pikachu.png" alt="피카츄" class="pikachu" />
         </h2>
       </div>
     </transition>
@@ -23,7 +23,7 @@
     <!-- 이미지 -->
     <transition name="fade-up" appear>
       <img
-        src="@/assets/question-box.png"
+        src="@/assets/images/dice.png"
         alt="물음표 박스"
         class="question-box"
         style="transition-delay: 1s"

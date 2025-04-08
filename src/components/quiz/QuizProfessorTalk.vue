@@ -1,14 +1,59 @@
 <template>
   <div class="speech-bubble">
-    <p class="dialog-text" v-html="text"></p>
-    <div class="next-hint">아무곳이나 누르면 다음으로 이동합니다</div>
+    <p class="dialog-text" v-html="displayedText"></p>
+    <div class="next-hint" v-if="!isLast && isTypingFinished">
+      아무곳이나 누르면 다음으로 이동합니다
+    </div>
   </div>
 </template>
 
 <script setup>
-defineProps({
+import { ref, watch } from 'vue';
+
+const props = defineProps({
   text: String,
+  isLast: Boolean,
+  dialogIndex: Number,
 });
+
+const displayedText = ref('');
+const typingIndex = ref(0);
+let typingTimer = null;
+const isTypingFinished = ref(false); // ✅ 추가
+
+watch(
+  () => props.text,
+  (newText) => {
+    clearInterval(typingTimer);
+    displayedText.value = '';
+    typingIndex.value = 0;
+    isTypingFinished.value = false;
+
+    const delay = props.dialogIndex === 0 ? 800 : 0;
+
+    setTimeout(() => {
+      typeText(newText);
+    }, delay);
+  },
+  { immediate: true }
+);
+
+function typeText(fullText) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = fullText;
+  const plainText = tempDiv.textContent || tempDiv.innerText || '';
+
+  typingTimer = setInterval(() => {
+    if (typingIndex.value < plainText.length) {
+      displayedText.value = plainText.slice(0, typingIndex.value + 1);
+      typingIndex.value++;
+    } else {
+      displayedText.value = fullText; // HTML 복원
+      clearInterval(typingTimer);
+      isTypingFinished.value = true; // ✅ 타이핑 완료 후 표시
+    }
+  }, 30);
+}
 </script>
 
 <style scoped>
