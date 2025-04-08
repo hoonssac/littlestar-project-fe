@@ -9,11 +9,7 @@
         <p>이번 달 합계:</p>
       </div>
     </div>
-    <img
-      class="img-jiwoo"
-      src="https://i.namu.wiki/i/BIe9SZJzkl3F1-qIqDnszqrllzF5u798R8CO1otQA1Xe_TbIv4Pl-L5la8n01wF4S2imOaKu78rPUGVXhio8aCHuQN5Kk3YLhrWplr0wK-B9MGysIhtUNHXwmqK-hNj5l4-vr5Qfxz8DqWIyaeRzOg.webp"
-      alt=""
-    />
+    <img :src="jiwoo" alt="지우" />
 
     <div class="button-group">
       <router-link
@@ -32,7 +28,7 @@
   </div>
 </template>
 <script setup>
-import axios from 'axios';
+import jiwoo from '@/assets/images/jiwoo.png';
 </script>
 <style scoped>
 .container {
@@ -94,7 +90,7 @@ hr {
   border-bottom-width: 3px;
   border-left-width: 0px;
 }
-.img-jiwoo {
+img {
   position: absolute;
   left: 60%;
   /* transform: translateX(-50%); */
