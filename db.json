@@ -17,6 +17,19 @@
       ],
       "mileage": 0,
       "ticket_count": 1
+    },
+    {
+      "id": "fa8a",
+      "username": "asdf",
+      "password": "1234",
+      "lase_answered_date": null,
+      "pokemon_ids": [
+        7
+      ],
+      "main_pokemon_id": 7,
+      "question_ids": [],
+      "mileage": 0,
+      "ticket_count": 0
     }
   ],
   "pokedex": [

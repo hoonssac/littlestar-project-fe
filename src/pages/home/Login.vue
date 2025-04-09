@@ -6,9 +6,13 @@
 
     <div class="inputs-container">
       <p>별명</p>
-      <input type="text" placeholder="별명을 입력하세요." />
+      <input v-model="username" type="text" placeholder="별명을 입력하세요." />
       <p>비밀번호</p>
-      <input type="password" placeholder="비밀번호를 입력하세요." />
+      <input
+        v-model="password"
+        type="password"
+        placeholder="비밀번호를 입력하세요."
+      />
     </div>
 
     <div class="bottom-button-container">
@@ -31,17 +35,35 @@
 </template>
 
 <script setup>
+import { login } from '@/apis/users';
 import CustomButton from '@/components/common/CustomButton.vue';
+import { useAuthStore } from '@/stores/authStore';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+const username = ref();
+const password = ref();
 const router = useRouter();
 
 const handleNavigate = (routeName) => {
   router.push({ name: routeName });
 };
 
-const handleLogin = () => {
+const handleLogin = async () => {
   // TODO: 로그인 api 구현!!!
+  if (!username.value || !password.value) {
+    alert('아이디와 비밀번호를 다시 확인하세요!');
+    return;
+  }
+  const user = await login(username.value, password.value);
+
+  if (!user) {
+    alert('일치하는 사용자가 없습니다!');
+    return;
+  }
+
+  const authStore = useAuthStore();
+  console.log(authStore);
   handleNavigate('home');
 };
 </script>

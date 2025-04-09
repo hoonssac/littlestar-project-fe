@@ -60,6 +60,7 @@
 
 <script setup>
 import { getPokedex } from '@/apis/pokedex';
+import { signup } from '@/apis/users';
 import CustomButton from '@/components/common/CustomButton.vue';
 import { useSignupStore } from '@/stores/signupStore';
 import { onMounted, ref } from 'vue';
@@ -107,13 +108,18 @@ const resetSelection = () => {
   isConfirmed.value = false;
 };
 
-const confirmSelection = () => {
+const confirmSelection = async () => {
   // TODO: 메인포켓몬 설정 api 로직 추가
 
   // pinia 저장
   signupStore.main_pokemon_id = Number(selectedId.value);
   signupStore.pokemon_ids = [Number(selectedId.value)];
 
+  const user = { ...signupStore.$state };
+
+  const response = await signup(user);
+
+  console.log(response);
   console.log(signupStore);
 
   handleNavigate('home');
@@ -123,7 +129,6 @@ const confirmSelection = () => {
 onMounted(async () => {
   const startingIds = [1, 4, 7];
   const responses = await Promise.all(startingIds.map(getPokedex));
-  console.log(responses);
 
   startingPokemons.value = responses.filter(Boolean).map((pokemon) => ({
     id: pokemon.id,
