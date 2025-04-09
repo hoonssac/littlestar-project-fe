@@ -1,7 +1,7 @@
 <template>
   <div class="speech-bubble">
     <p class="dialog-text" v-html="displayedText"></p>
-    <div class="next-hint" v-if="!isLast && isTypingFinished">
+    <div class="next-hint" v-if="!isLast && isTypingFinished && showNextHint">
       아무곳이나 누르면 다음으로 이동합니다
     </div>
   </div>
@@ -9,11 +9,16 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+const emit = defineEmits(['typingEnd']);
 
 const props = defineProps({
   text: String,
   isLast: Boolean,
   dialogIndex: Number,
+  showNextHint: {
+    type: Boolean,
+    default: true, // 기본값은 true (기존 인트로 흐름 유지)
+  },
 });
 
 const displayedText = ref('');
@@ -48,9 +53,10 @@ function typeText(fullText) {
       displayedText.value = plainText.slice(0, typingIndex.value + 1);
       typingIndex.value++;
     } else {
-      displayedText.value = fullText; // HTML 복원
+      displayedText.value = fullText;
       clearInterval(typingTimer);
-      isTypingFinished.value = true; // ✅ 타이핑 완료 후 표시
+      isTypingFinished.value = true;
+      emit('typingEnd'); // 🎯 타이핑 완료 알림 보내기
     }
   }, 30);
 }
@@ -65,7 +71,7 @@ function typeText(fullText) {
   border-radius: 15px;
   box-shadow: 4px 4px 0 #444;
   padding: 1rem;
-  margin-top: 1rem;
+  margin-top: 4rem;
   max-width: 90%;
   font-size: 22px;
   line-height: 1.6;

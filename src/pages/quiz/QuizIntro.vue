@@ -66,7 +66,6 @@ const goBack = () => {
   justify-content: flex-start;
   padding-top: 1rem;
   overflow: hidden;
-  cursor: pointer; /* 클릭 가능한 느낌 주기 */
 }
 
 /* 배경 몬스터볼 */
@@ -75,14 +74,13 @@ const goBack = () => {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   background-image: url('@/assets/images/monster-ball-back.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   transform: translate(-50%, -50%);
-
   z-index: 0;
 }
 
