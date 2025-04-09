@@ -1,16 +1,24 @@
 <template>
   <div class="main-container">
-    <TopBar />
+    <TopBar v-if="!isAuthPage" />
     <div class="app-container">
       <router-view></router-view>
     </div>
-    <BottomBar />
+    <BottomBar v-if="!isAuthPage" />
   </div>
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
 import BottomBar from './components/common/BottomBar.vue';
 import TopBar from './components/common/TopBar.vue';
+import { computed } from 'vue';
+
+const route = useRoute();
+
+const isAuthPage = computed(() => {
+  return ['/login', '/signup', '/select-main-pokemon'].includes(route.path);
+});
 </script>
 
 <style scoped>
