@@ -26,13 +26,17 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 import QuizProfessorTalk from '@/components/quiz/QuizProfessorTalk.vue';
 import QuizOptionPrompt from '@/components/quiz/QuizOptionPrompt.vue';
+import { useQuizResultStore } from '@/stores/quizResult';
 
+const quizResult = useQuizResultStore();
 const questionText = ref('');
 const pickedQuestion = ref(null);
 const showOptions = ref(false);
+const router = useRouter();
 
 onMounted(async () => {
   const res = await axios.get('http://localhost:3001/questions');
@@ -48,8 +52,15 @@ const onTypingEnd = () => {
 
 function handleSelect(index) {
   const correct = pickedQuestion.value.answer_index;
-  if (index === correct) console.log('정답!');
-  else console.log('오답!');
+  const isCorrect = index === correct;
+
+  quizResult.setResult({
+    isCorrect,
+    mileage: isCorrect ? 1000 : 500,
+    explanation: pickedQuestion.value.explanation,
+  });
+
+  router.push('/quiz/result');
 }
 </script>
 
