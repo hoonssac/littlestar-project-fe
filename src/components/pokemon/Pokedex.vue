@@ -36,19 +36,46 @@
       </ul>
 
       <!-- 포켓몬 모달 -->
-      <PokemonDetailModal
+      <CustomModal
         v-if="isModalVisible"
-        :pokemon="selectedPokemon"
-        :isVisible="isModalVisible"
-        :closeModal="pokedexStore.closeModal" />
-
+        class="pokemon-detail-modal"
+        :title="
+          isOwned
+            ? `No.${selectedPokemon.id}\n${selectedPokemon?.name} `
+            : `No. ?\n???`
+        "
+        :description="
+          isOwned
+            ? `타입: ${selectedPokemon?.types.join(', ')}\n키: ${
+                selectedPokemon?.height
+              }cm\n몸무게: ${selectedPokemon?.weight}kg`
+            : '미지의 포켓몬'
+        "
+        :img="isOwned ? selectedPokemon?.image_url : monsterBallImage"
+        :class="{ 'small-monsterball': !isOwned, 'owned-modal': isOwned }">
+        <div class="modal-button-container">
+          <CustomButton
+            category="secondary"
+            class="fixed-modal-button"
+            @click="closeModal"
+            >취소</CustomButton
+          >
+          <CustomButton
+            class="fixed-modal-button"
+            @click="setMainPokemon(selectedPokemon.id)"
+            >대표 설정</CustomButton
+          >
+        </div>
+      </CustomModal>
     </div>
   </div>
 </template>
 <script setup>
 import { usePokedexStore } from '@/stores/pokedex';
 import { computed, onMounted, watchEffect } from 'vue';
-import PokemonDetailModal from './PokemonDetailModal.vue'; // 모달 컴포넌트 불러오기
+import CustomModal from '@/components/common/CustomModal.vue';
+import CustomButton from '@/components/common/CustomButton.vue';
+import monsterBallImage from '@/assets/images/monster-ball.png';
 
 const pokedexStore = usePokedexStore();
 
@@ -61,6 +88,12 @@ const mainPokemon = computed(() => pokedexStore.mainPokemon);
 const displayPokedex = computed(() => pokedexStore.displayPokedex);
 const isModalVisible = computed(() => pokedexStore.isModalVisible);
 const selectedPokemon = computed(() => pokedexStore.selectedPokemon);
+const isOwned = computed(() => {
+  return selectedPokemon.value
+    ? pokedexStore.isOwnedPokemon(selectedPokemon.value.id)
+    : false;
+});
+const setMainPokemon = pokedexStore.setMainPokemon;
 const openModal = pokedexStore.openModal;
 const closeModal = pokedexStore.closeModal;
 
@@ -117,5 +150,36 @@ onMounted(async () => {
   height: 100px;
   object-fit: contain;
   opacity: 0.7; /* 흐릿하게도 가능! */
+}
+
+:deep(.pokemon-detail-modal .modal-container) {
+  width: 300px;
+  max-width: 90%;
+}
+
+:deep(.pokemon-detail-modal .modal-description) {
+  font-size: 24px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+:deep(.small-monsterball) img {
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+.fixed-modal-button {
+  width: 120px; /* 원하는 고정된 너비 */
+  height: 48px;
+  font-size: 18px;
+  white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+.modal-button-container {
+  display: flex;
+  justify-content: space-evenly;
 }
 </style>
