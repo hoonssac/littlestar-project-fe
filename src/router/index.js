@@ -9,6 +9,7 @@ import RecordListPage from '@/pages/money-tracker/RecordListPage.vue';
 import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
 import Statistics from '@/pages/statistics/Statistics.vue';
 import Home from '@/pages/home/Home.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
