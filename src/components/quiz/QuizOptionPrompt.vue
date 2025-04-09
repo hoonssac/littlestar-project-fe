@@ -48,7 +48,7 @@ function typeText(full, index, speed = 30, delay = 0) {
 <style scoped>
 .start-prompt {
   position: fixed;
-  bottom: 1rem;
+  bottom: 7rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -69,6 +69,7 @@ function typeText(full, index, speed = 30, delay = 0) {
   box-sizing: border-box;
   overflow: hidden;
 }
+
 .button-group {
   display: grid;
   grid-template-columns: 1fr 1fr; /* 2열로 나누기 */

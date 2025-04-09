@@ -75,7 +75,7 @@ function handleSelect(index) {
 
 .quiz-question {
   position: relative;
-  min-height: 100vh;
+  height: 100%;
   background-color: #f8f9fa;
   display: flex;
   flex-direction: column;

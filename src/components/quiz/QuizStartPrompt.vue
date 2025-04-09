@@ -41,7 +41,7 @@ function typeText(full, targetRef, speed = 30, delay = 0) {
 <style scoped>
 .start-prompt {
   position: fixed;
-  bottom: 9rem;
+  bottom: 7rem;
   width: 100%;
   display: flex;
   justify-content: center;
