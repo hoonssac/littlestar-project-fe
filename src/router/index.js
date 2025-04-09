@@ -7,6 +7,7 @@ import IncomeCategoryPage from '@/pages/money-tracker/IncomeCategory.vue';
 import ExpenseCategoryPage from '@/pages/money-tracker/ExpenseCategory.vue';
 import RecordListPage from '@/pages/money-tracker/RecordListPage.vue';
 import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
+import PokemonGachaPage from '@/pages/pokemon/PokemonGachaPage.vue';
 import Statistics from '@/pages/statistics/Statistics.vue';
 import Home from '@/pages/home/Home.vue';
 
@@ -64,6 +65,11 @@ const router = createRouter({
       path: '/pokedex',
       name: 'pokedex',
       component: PokedexPage,
+    },
+    {
+      path: '/gacha',
+      name: 'gacha',
+      component: PokemonGachaPage,
     },
   ],
 });

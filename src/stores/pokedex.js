@@ -12,6 +12,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
   // 모달 상태
   const isModalVisible = ref(false);
+  const isDrawing = ref(false); // 뽑기 중 상태 추가
   const selectedPokemon = ref(null);
 
   const route = useRoute(); // 현재 라우트 정보 가져오기
@@ -20,7 +21,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/users/1');
+      const response = await axios.get('/api/users/1');
 
       // 전체 객체를 바꾸지 않고 내부 속성만 덮어씀
       Object.assign(user, response.data);
@@ -37,14 +38,10 @@ export const usePokedexStore = defineStore('pokedex', () => {
     return;
   };
 
-  // const updateMainPokemon = computed(() => {
-  //   // 메인 포켓몬 변경 - 추후 추가
-  // });
-
   const fetchPokedex = async () => {
     isLoading.value = true;
     try {
-      const response = await axios.get('http://localhost:3001/pokedex');
+      const response = await axios.get('/api/pokedex');
       if (response.status === 200) {
         pokedex.value = response.data;
         console.log('도감 불러오기 성공!', pokedex.value);
@@ -111,7 +108,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
   // 포켓몬 디테일 가져오기
   const fetchPokemonDetails = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3001/pokedex/${id}`);
+      const response = await axios.get(`/api/pokedex/${id}`);
       if (response.status === 200) {
         selectedPokemon.value = response.data; // 선택한 포켓몬 정보를 업데이트
         isModalVisible.value = true; // 모달 열기
@@ -146,7 +143,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     }
     const numericPokemonId = Number(pokemonId);
     try {
-      await axios.patch(`http://localhost:3001/users/1`, {
+      await axios.patch(`/api/users/1`, {
         main_pokemon_id: numericPokemonId,
       });
 
@@ -158,8 +155,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
       console.error('대표 포켓몬 설정 중 오류 발생:', e);
     }
     return {
-      // 기존 내용
-      setMainPokemon, // 추가
+      setMainPokemon
     };
   };
 
@@ -170,6 +166,66 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const closeModal = () => {
     isModalVisible.value = false;
     selectedPokemon.value = null;
+  };
+
+  // 가챠 관련 요소 시작
+
+  // 가챠 실행 함수
+  const drawPokemon = async () => {
+    console.log('뽑기 직전 pokedex: ', pokedex);
+    if (user.ticket_count < 1) {
+      alert('사용 가능한 뽑기권이 없어요!');
+      return;
+    }
+
+    // 보유하지 않은 포켓몬 리스트
+    const notOwnedPokemon = pokedex.value.filter(
+      (p) => !user.pokemon_ids.includes(p.id)
+    );
+
+    if (notOwnedPokemon.length === 0) {
+      alert('모든 포켓몬을 보유하고 있어요!');
+      return;
+    }
+
+    // 랜덤으로 포켓몬 하나 선택
+    const randomIndex = Math.floor(Math.random() * notOwnedPokemon.length);
+    const newPokemon = notOwnedPokemon[randomIndex];
+
+    // 유저 정보 업데이트 (포켓몬 추가 & 티켓 차감)
+    user.pokemon_ids.push(Number(newPokemon.id));
+    user.ticket_count -= 1;
+
+    // 서버에 업데이트
+    try {
+      await axios.patch(`/api/users/1`, {
+        pokemon_ids: user.pokemon_ids,
+        ticket_count: user.ticket_count,
+      });
+      isModalVisible.value = true;
+      console.log(`🎉 ${newPokemon.name} 획득!`);
+      return newPokemon;
+    } catch (e) {
+      console.error('포켓몬 뽑기 실패:', e);
+      return null;
+    }
+  };
+
+  const handleGacha = async () => {
+    isDrawing.value = true; // 뽑기 중 상태 활성화
+    selectedPokemon.value = null; // 초기화
+    isModalVisible.value = true; // 모달 표시
+
+    const newPokemon = await drawPokemon();
+
+    if (newPokemon) {
+      setTimeout(() => {
+        selectedPokemon.value = newPokemon; // 2초 후 결과 표시
+        isDrawing.value = false; // 뽑기 완료
+      }, 2000);
+    } else {
+      isModalVisible.value = false; // 뽑기 실패 시 모달 닫기
+    }
   };
 
   return {
@@ -188,5 +244,8 @@ export const usePokedexStore = defineStore('pokedex', () => {
     openModal,
     isModalVisible,
     closeModal,
+    drawPokemon,
+    handleGacha,
+    isDrawing,
   };
 });
