@@ -28,7 +28,7 @@
             @click="openModal(pokemon)">
             No. {{ pokemon.id }}
             <img
-              :src="pokemon.image_url"
+              :src="pokemon.isOwned ? pokemon.image_url : monsterBallImage"
               alt="Pokemon Image"
               :class="pokemon.isOwned ? 'pokemon-image' : 'pokeball-image'" />
             {{ pokemon.name }}
@@ -87,7 +87,6 @@ import { RouterLink, RouterView } from 'vue-router';
 import CustomModal from '@/components/common/CustomModal.vue';
 import CustomButton from '@/components/common/CustomButton.vue';
 import monsterBallImage from '@/assets/images/monster-ball.png';
-
 
 const pokedexStore = usePokedexStore();
 
