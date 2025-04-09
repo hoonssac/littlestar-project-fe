@@ -59,7 +59,7 @@ const goBack = () => {
 <style scoped>
 .quiz-intro {
   position: relative;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

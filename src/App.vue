@@ -14,9 +14,15 @@ import TopBar from './components/common/TopBar.vue';
 </script>
 
 <style scoped>
+.main-container {
+  display: flex;
+}
+
 .app-container {
+  min-height: 100vh;
+  padding: 70px 0 80px 0;
   overflow-y: auto;
-  padding: 70px 0 95px 0;
+  flex: 1;
 }
 
 .navbar {
