@@ -1,24 +1,28 @@
 <template>
   <div class="main-container">
-    <div class="hello"></div>
-
-    <!-- 임시 네비게이션 바 -->
-    <!-- 첫 페이지에서 네비게이션 바 두 번 렌더링됨 - 해결필요 -->
-    <nav class="navbar">
-      <router-link to="/pokedex">📘 도감</router-link>
-      <router-link to="/money-tracker">💰 가계부</router-link>
-      <router-link to="/quiz">🔎 퀴즈</router-link>
-    </nav>
-    <router-view />
+    <TopBar />
+    <div class="app-container">
+      <router-view></router-view>
+    </div>
+    <BottomBar />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import BottomBar from './components/common/BottomBar.vue';
+import TopBar from './components/common/TopBar.vue';
+</script>
 
 <style scoped>
-.hello {
+.main-container {
   display: flex;
-  justify-content: space-between;
+}
+
+.app-container {
+  min-height: 100vh;
+  padding: 70px 0 80px 0;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .navbar {
