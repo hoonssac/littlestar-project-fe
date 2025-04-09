@@ -1531,13 +1531,67 @@
   ],
   "transactions": [
     {
-      "id": "1",
+      "id": "6110",
       "user_id": 1,
-      "date": "2024-04-06",
+      "date": "2025-04-01",
+      "is_income": true,
+      "amount": "9000",
+      "memo": "하하하",
+      "category_id": "67cb"
+    },
+    {
+      "id": "a4f9",
+      "user_id": 1,
+      "date": "2025-04-18",
+      "is_income": true,
+      "amount": "9000",
+      "memo": "히히",
+      "category_id": "67cb"
+    },
+    {
+      "id": "e616",
+      "user_id": 1,
+      "date": "2025-04-02",
+      "is_income": true,
+      "amount": "9000",
+      "memo": "99",
+      "category_id": "9efe"
+    },
+    {
+      "id": "03bc",
+      "user_id": 1,
+      "date": "2025-04-18",
+      "is_income": true,
+      "amount": "9000",
+      "memo": "1",
+      "category_id": "9efe"
+    },
+    {
+      "id": "e27f",
+      "user_id": 1,
+      "date": "2025-04-02",
+      "is_income": true,
+      "amount": "9000",
+      "memo": "77",
+      "category_id": "e4a1"
+    },
+    {
+      "id": "aa23",
+      "user_id": 1,
+      "date": "2025-04-10",
       "is_income": false,
-      "amount": 1000,
-      "memo": "편의점에서 초콜릿 샀음.",
-      "category_id": 1
+      "amount": "9000",
+      "memo": "uuu",
+      "category_id": "7759"
+    },
+    {
+      "id": "92cc",
+      "user_id": 1,
+      "date": "2025-04-17",
+      "is_income": false,
+      "amount": "2000",
+      "memo": "777",
+      "category_id": "7759"
     }
   ],
   "categories": [
@@ -1576,6 +1630,24 @@
       "name": "냐냐냥",
       "transaction_ids": [],
       "is_income": true
+    },
+    {
+      "id": "417c",
+      "name": "ll",
+      "transaction_ids": [],
+      "is_income": true
+    },
+    {
+      "id": "ae71",
+      "name": "지출4",
+      "transaction_ids": [],
+      "is_income": false
+    },
+    {
+      "id": "8d51",
+      "name": "55",
+      "transaction_ids": [],
+      "is_income": false
     }
   ]
 }
