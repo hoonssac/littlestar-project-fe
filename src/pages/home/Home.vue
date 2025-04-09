@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <ProgressBar degree="10" />
+    <ProgressBar :degree="10" />
     <div class="mileage-container">
       <p class="mileage-text">500 / 5000</p>
       <IconMileage color="#FAB809" size="20" />
