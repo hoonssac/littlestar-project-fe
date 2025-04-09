@@ -46,10 +46,10 @@ const router = createRouter({
       component: QuizResult,
     },
     {
-      path: '/quiz/result/reward',
+      path: '/quiz/reward',
       name: 'QuizReward',
-      componene: QuizReward,
-    }
+      component: QuizReward,
+    },
     {
       path: '/money-tracker',
       name: 'money-tracker',

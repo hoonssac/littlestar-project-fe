@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import IconMileage from '@/components/common/icons/IconMileage.vue'; // 아이콘 경로
 import { useQuizResultStore } from '@/stores/quizResult';
@@ -59,15 +59,6 @@ const mileage = quizResult.mileage;
 const explanation = quizResult.explanation;
 
 const showExplanation = ref(false);
-
-function handleButtonClick() {
-  if (!showExplanation.value) {
-    showExplanation.value = true;
-  } else {
-    // 포켓몬 뽑기 화면으로 이동!
-    router.push('/pokedex');
-  }
-}
 
 const buttonText = computed(() => {
   if (isCorrect) return '포켓몬 뽑으러 가기';
@@ -86,7 +77,7 @@ function handleButtonClick() {
   } else if (!showExplanation.value) {
     showExplanation.value = true;
   } else {
-    router.push('/mileage-reward'); // 👉 새 화면으로 이동
+    router.push('/quiz/reward'); // 👉 새 화면으로 이동
   }
 }
 </script>
