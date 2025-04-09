@@ -1,4 +1,5 @@
 import { ref, reactive, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import monsterBallImage from '@/assets/images/monster-ball.png';
@@ -145,7 +146,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
       console.error('대표 포켓몬 설정 중 오류 발생:', e);
     }
     return {
-      setMainPokemon
+      setMainPokemon,
     };
   };
 
