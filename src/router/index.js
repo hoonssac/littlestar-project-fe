@@ -12,9 +12,8 @@ import RecordListPage from '@/pages/money-tracker/TransactionListPage.vue';
 import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
 import Home from '@/pages/home/Home.vue';
 import AddTransactionPage from '@/pages/money-tracker/AddTransactionPage.vue';
+import PokemonGachaPage from '@/pages/pokemon/PokemonGachaPage.vue';
 import Statistics from '@/pages/statistics/Statistics.vue';
-import TransactionListPage from '@/pages/money-tracker/TransactionListPage.vue';
-import EditTransactionPage from '@/pages/money-tracker/EditTransactionPage.vue';
 
 
 const router = createRouter({
@@ -101,6 +100,11 @@ const router = createRouter({
       path: '/pokedex',
       name: 'pokedex',
       component: PokedexPage,
+    },
+    {
+      path: '/gacha',
+      name: 'gacha',
+      component: PokemonGachaPage,
     },
   ],
 });
