@@ -63,18 +63,26 @@ export const usePokedexStore = defineStore('pokedex', () => {
   // 보유/미보유 포켓몬 display 처리
   const displayPokedex = computed(() => {
     const ownedIds = user.pokemon_ids || [];
-
-    const owned = pokedex.value.filter((p) => ownedIds.includes(Number(p.id)));
-    const notOwned = pokedex.value
-      .filter((p) => !ownedIds.includes(Number(p.id)))
+  
+    // 보유한 포켓몬 먼저
+    const owned = pokedex.value
+      .filter((p) => ownedIds.includes(Number(p.id)))
       .map((p) => ({
         ...p,
-        id: '?',
-        name: '???',
-        image_url: monsterBallImage, // 미보유 포켓몬 이미지 (로컬 or 링크)
+        isOwned: true, // ✅ 보유 여부 추가
       }));
-
-    return [...owned, ...notOwned];
+  
+    // 미보유 포켓몬 뒤에 배치
+    const notOwned = pokedex.value
+      .filter((p) => !ownedIds.includes(Number(p.id)))
+      .map(() => ({
+        id: '?', // ✅ 원래 ID 숨기기
+        name: '???', // ✅ 원래 이름 숨기기
+        image_url: monsterBallImage, // ✅ 포켓볼 이미지 적용
+        isOwned: false, // ✅ 미보유 상태 추가
+      }));
+  
+    return [...owned, ...notOwned]; // ✅ 보유한 포켓몬 먼저 추가
   });
 
   const calculateMainPokemon = () => {
