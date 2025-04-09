@@ -3,11 +3,11 @@
     <div class="card">
       <div class="card-body">
         <p>이름: {{}}</p>
-        <p>이번 달 수입:{{ totalIncome.toLocaleString() }}원</p>
-        <p>이번 달 지출:{{ totalExpense.toLocaleString() }}원</p>
+        <p>이번 달 수입: {{ totalIncome.toLocaleString() }}원</p>
+        <p>이번 달 지출: {{ totalExpense.toLocaleString() }}원</p>
         <hr />
         <p>
-          이번 달 합계:{{ (totalIncome - totalExpense).toLocaleString() }}원
+          이번 달 합계: {{ (totalIncome - totalExpense).toLocaleString() }}원
         </p>
       </div>
     </div>

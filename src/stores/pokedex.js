@@ -1,5 +1,4 @@
 import { ref, reactive, computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import monsterBallImage from '@/assets/images/monster-ball.png';
@@ -9,14 +8,6 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const user = reactive({});
   const isLoading = ref(false);
   const mainPokemon = ref(null);
-
-  // 모달 상태
-  const isModalVisible = ref(false);
-  const selectedPokemon = ref(null);
-
-  const route = useRoute(); // 현재 라우트 정보 가져오기
-  const router = useRouter(); // 라우터 인스턴스
-  const pokemon = ref({});
 
   const fetchUser = async () => {
     try {
@@ -67,23 +58,14 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const displayPokedex = computed(() => {
     const ownedIds = user.pokemon_ids || [];
 
-    // 보유 포켓몬: 원래 정보 유지 + isOwned: true
-    const owned = pokedex.value
-      .filter((p) => ownedIds.includes(Number(p.id)))
-      .map((p) => ({
-        ...p,
-        isOwned: true,
-      }));
-
-    // 미보유 포켓몬: 이름, ID, 이미지 가리기 + isOwned: false
+    const owned = pokedex.value.filter((p) => ownedIds.includes(Number(p.id)));
     const notOwned = pokedex.value
       .filter((p) => !ownedIds.includes(Number(p.id)))
       .map((p) => ({
         ...p,
         id: '?',
         name: '???',
-        image_url: monsterBallImage,
-        isOwned: false,
+        image_url: monsterBallImage, // 미보유 포켓몬 이미지 (로컬 or 링크)
       }));
 
     return [...owned, ...notOwned];
@@ -106,72 +88,11 @@ export const usePokedexStore = defineStore('pokedex', () => {
     console.log('✅ mainPokemon 설정됨:', mainPokemon.value);
   };
 
-  // 디테일 모달창 관련 코드 시작
-
-  // 포켓몬 디테일 가져오기
-  const fetchPokemonDetails = async (id) => {
-    try {
-      const response = await axios.get(`http://localhost:3001/pokedex/${id}`);
-      if (response.status === 200) {
-        selectedPokemon.value = response.data; // 선택한 포켓몬 정보를 업데이트
-        isModalVisible.value = true; // 모달 열기
-        console.log('📜 포켓몬 상세 정보:', response.data);
-      } else {
-        console.warn('포켓몬 상세 정보를 불러오지 못했어요.');
-      }
-    } catch (e) {
-      console.error('포켓몬 정보를 가져오는 데 실패했습니다:', e);
-    }
-  };
-
-  const isOwnedPokemon = (pokemonId) => {
-    console.log('🛠 isOwnedPokemon 호출됨!');
-    console.log('🔍 user.pokemon_ids:', user.pokemon_ids);
-    console.log('🔍 pokemonId 타입:', typeof pokemonId, '값:', pokemonId);
-
-    if (!user || !user.pokemon_ids) {
-      console.log('❌ 유저 정보 없음 → false 반환');
-      return false;
-    }
-
-    const result = user.pokemon_ids.includes(Number(pokemonId)); // 🔥 숫자로 변환하여 비교
-    console.log('✅ 보유 여부:', result);
-    return result;
-  };
-
-  const setMainPokemon = async (pokemonId) => {
-    if (!isOwnedPokemon(pokemonId)) {
-      alert('미지의 포켓몬은 대표 포켓몬으로 설정할 수 없어요!');
-      return;
-    }
-    const numericPokemonId = Number(pokemonId);
-    try {
-      await axios.patch(`http://localhost:3001/users/1`, {
-        main_pokemon_id: numericPokemonId,
-      });
-
-      user.main_pokemon_id = pokemonId; // 상태 업데이트
-      calculateMainPokemon(); // 대표 포켓몬 다시 계산
-      console.log(`🎉 대표 포켓몬이 No.${pokemonId}으로 변경되었습니다!`);
-      closeModal();
-    } catch (e) {
-      console.error('대표 포켓몬 설정 중 오류 발생:', e);
-    }
-    return {
-      // 기존 내용
-      setMainPokemon, // 추가
-    };
-  };
-
-  const openModal = async (pokemon) => {
-    await fetchPokemonDetails(pokemon.id);
-  };
-
-  const closeModal = () => {
-    isModalVisible.value = false;
-    selectedPokemon.value = null;
-  };
-
+  console.log('🧪 user.main_pokemon_id:', user.main_pokemon_id);
+  console.log(
+    '🧪 pokedex ids:',
+    pokedex.value.map((p) => p.id)
+  );
   return {
     user,
     pokedex,
@@ -181,12 +102,5 @@ export const usePokedexStore = defineStore('pokedex', () => {
     mainPokemon,
     calculateMainPokemon,
     displayPokedex,
-    selectedPokemon,
-    fetchPokemonDetails,
-    isOwnedPokemon,
-    setMainPokemon,
-    openModal,
-    isModalVisible,
-    closeModal,
   };
 });
