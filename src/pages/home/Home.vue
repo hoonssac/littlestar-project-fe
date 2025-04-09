@@ -45,7 +45,6 @@ const pokedex = ref(null);
 onMounted(async () => {
   if (authStore.user) {
     const data = await getPokedex(authStore.user.main_pokemon_id);
-    console.log('data', data);
     pokedex.value = data;
   }
 });
