@@ -128,12 +128,12 @@ export const usePokedexStore = defineStore('pokedex', () => {
     console.log('🛠 isOwnedPokemon 호출됨!');
     console.log('🔍 user.pokemon_ids:', user.pokemon_ids);
     console.log('🔍 pokemonId 타입:', typeof pokemonId, '값:', pokemonId);
-  
+
     if (!user || !user.pokemon_ids) {
       console.log('❌ 유저 정보 없음 → false 반환');
       return false;
     }
-  
+
     const result = user.pokemon_ids.includes(Number(pokemonId)); // 🔥 숫자로 변환하여 비교
     console.log('✅ 보유 여부:', result);
     return result;
@@ -144,15 +144,16 @@ export const usePokedexStore = defineStore('pokedex', () => {
       alert('미지의 포켓몬은 대표 포켓몬으로 설정할 수 없어요!');
       return;
     }
-  
+    const numericPokemonId = Number(pokemonId);
     try {
       await axios.patch(`http://localhost:3001/users/1`, {
-        main_pokemon_id: pokemonId,
+        main_pokemon_id: numericPokemonId,
       });
-  
+
       user.main_pokemon_id = pokemonId; // 상태 업데이트
       calculateMainPokemon(); // 대표 포켓몬 다시 계산
       console.log(`🎉 대표 포켓몬이 No.${pokemonId}으로 변경되었습니다!`);
+      closeModal();
     } catch (e) {
       console.error('대표 포켓몬 설정 중 오류 발생:', e);
     }
@@ -161,8 +162,6 @@ export const usePokedexStore = defineStore('pokedex', () => {
       setMainPokemon, // 추가
     };
   };
-  
-
 
   const openModal = async (pokemon) => {
     await fetchPokemonDetails(pokemon.id);
