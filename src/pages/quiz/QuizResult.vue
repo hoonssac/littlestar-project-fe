@@ -21,9 +21,13 @@
           </div>
         </div>
 
-        <div v-if="isCorrect" class="mileage fade-up delay-2">
-          {{ mileage }}
-        </div>
+        <!-- 마일리지 텍스트 -->
+        <MileageCounter
+          v-if="isCorrect"
+          :amount="mileage"
+          :duration="1200"
+          class="mileage fade-up delay-2"
+        />
 
         <p class="result-text fade-up delay-3">
           {{ isCorrect ? '정답이에요!' : '틀렸어요!' }}
@@ -60,11 +64,11 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import IconMileage from '@/components/common/icons/IconMileage.vue'; // 아이콘 경로
 import { useQuizResultStore } from '@/stores/quizResult';
 import CustomButton from '@/components/common/CustomButton.vue';
 import axios from 'axios';
 import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
+import MileageCounter from '@/components/quiz/MileageCounter.vue';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();

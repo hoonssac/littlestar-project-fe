@@ -7,7 +7,11 @@
         </div> -->
         <MileageDisplay :size="120" color="#FAB809" class="delay-1" />
 
-        <div class="mileage fade-up delay-2">500</div>
+        <MileageCounter
+          :amount="mileage"
+          :duration="1200"
+          class="mileage fade-up delay-2"
+        />
 
         <p class="result-text fade-up delay-3">그래도 잘했어요!</p>
         <p class="sub-text fade-up delay-4">500마일리지 획득</p>
@@ -30,11 +34,11 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import IconMileage from '@/components/common/icons/IconMileage.vue'; // 아이콘 경로
 import { useQuizResultStore } from '@/stores/quizResult';
 import CustomButton from '@/components/common/CustomButton.vue';
 import axios from 'axios';
 import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
+import MileageCounter from '@/components/quiz/MileageCounter.vue';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
