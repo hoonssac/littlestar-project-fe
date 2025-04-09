@@ -1,5 +1,4 @@
 import { ref, reactive, computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import monsterBallImage from '@/assets/images/monster-ball.png';
@@ -64,23 +63,14 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const displayPokedex = computed(() => {
     const ownedIds = user.pokemon_ids || [];
 
-    // 보유 포켓몬: 원래 정보 유지 + isOwned: true
-    const owned = pokedex.value
-      .filter((p) => ownedIds.includes(Number(p.id)))
-      .map((p) => ({
-        ...p,
-        isOwned: true,
-      }));
-
-    // 미보유 포켓몬: 이름, ID, 이미지 가리기 + isOwned: false
+    const owned = pokedex.value.filter((p) => ownedIds.includes(Number(p.id)));
     const notOwned = pokedex.value
       .filter((p) => !ownedIds.includes(Number(p.id)))
       .map((p) => ({
         ...p,
         id: '?',
         name: '???',
-        image_url: monsterBallImage,
-        isOwned: false,
+        image_url: monsterBallImage, // 미보유 포켓몬 이미지 (로컬 or 링크)
       }));
 
     return [...owned, ...notOwned];

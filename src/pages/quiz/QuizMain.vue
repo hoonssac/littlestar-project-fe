@@ -11,14 +11,20 @@
     </transition>
 
     <!-- 설명 -->
-    <transition name="fade-up" appear>
-      <div class="quiz-desc" style="transition-delay: 0.6s">
-        <p class="quiz-desc-1">
+
+    <div class="quiz-desc">
+      <transition name="fade-up" appear>
+        <p class="quiz-desc-1" style="transition-delay: 0.6s">
           정답을 맞히면 포켓몬을 뽑을 수 있는<br />마일리지를 받을 수 있어요!
         </p>
-        <p class="quiz-desc-2">퀴즈는 하루에 한 번만 도전 가능해요!</p>
-      </div>
-    </transition>
+      </transition>
+
+      <transition name="fade-up" appear>
+        <p class="quiz-desc-2" style="transition-delay: 1s">
+          퀴즈는 하루에 한 번만 도전 가능해요!
+        </p>
+      </transition>
+    </div>
 
     <!-- 이미지 -->
     <transition name="fade-up" appear>
@@ -26,16 +32,17 @@
         src="@/assets/images/dice.png"
         alt="물음표 박스"
         class="question-box"
-        style="transition-delay: 1s"
+        style="transition-delay: 1.4s"
       />
     </transition>
 
     <!-- START 버튼 -->
-    <transition name="fade-up">
+    <transition name="fade-up" appear>
       <button
         class="start-button"
         :class="{ faded: !showButton }"
         @click="goToQuiz"
+        style="transition-delay: 1.8s"
       >
         START
       </button>
@@ -103,6 +110,10 @@ onMounted(() => {
 .delay-4.fade-up-appear-active {
   transition-delay: 1.4s;
 }
+.delay-4.fade-up-appear-active {
+  transition-delay: 1.8s;
+}
+
 .invisible {
   visibility: hidden;
 }
@@ -125,6 +136,8 @@ onMounted(() => {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 0;
+
+  margin-top: 10px;
 }
 .question-box {
   width: 300px;
