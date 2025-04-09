@@ -10,6 +10,7 @@
           🎟 사용 가능한 뽑기권: {{ user.ticket_count }}개
         </p>
         <p v-else>❌ 사용 가능한 뽑기권이 없어요!</p>
+        <p>다음 뽑기권까지 필요한 마일리지</p>
       </div>
 
       <div class="button-container">
