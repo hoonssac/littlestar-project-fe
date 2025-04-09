@@ -8,13 +8,14 @@ import QuizReward from '@/pages/quiz/QuizReward.vue';
 import MoneyTrackPage from '@/pages/money-tracker/MoneyTrackPage.vue';
 import IncomeCategoryPage from '@/pages/money-tracker/IncomeCategory.vue';
 import ExpenseCategoryPage from '@/pages/money-tracker/ExpenseCategory.vue';
+import TransactionListPage from '@/pages/money-tracker/TransactionListPage.vue';
+import EditTransactionPage from '@/pages/money-tracker/EditTransactionPage.vue';
 import RecordListPage from '@/pages/money-tracker/TransactionListPage.vue';
 import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
 import Home from '@/pages/home/Home.vue';
 import AddTransactionPage from '@/pages/money-tracker/AddTransactionPage.vue';
 import PokemonGachaPage from '@/pages/pokemon/PokemonGachaPage.vue';
 import Statistics from '@/pages/statistics/Statistics.vue';
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
