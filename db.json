@@ -2053,6 +2053,24 @@
       "amount": "2000",
       "memo": "777",
       "category_id": "7759"
+    },
+    {
+      "id": "37ac",
+      "user_id": 1,
+      "date": "2025-04-11",
+      "is_income": true,
+      "amount": "2000",
+      "memo": "wow",
+      "category_id": "e4a1"
+    },
+    {
+      "id": "5a0d",
+      "user_id": 1,
+      "date": "2025-04-10",
+      "is_income": true,
+      "amount": "9000",
+      "memo": "헉",
+      "category_id": "e4a1"
     }
   ],
   "categories": [

@@ -14,7 +14,7 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
   //   1. 전체 카테고리 가져오기
   const fetchCategories = async () => {
     try {
-      const url = 'http://localhost:3001/categories';
+      const url = '/api/categories';
       //   const url = 'http://localhost:3000/categories';
       const response = await axios.get(url);
       categories.value = response.data;
@@ -30,7 +30,7 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
   const fetchTransactions = async () => {
     try {
       //   const url = 'http://localhost:3000/transactions';
-      const url = 'http://localhost:3001/transactions';
+      const url = '/api/transactions';
       const response = await axios.get(url);
       transactions.value = response.data;
     } catch (error) {
@@ -47,7 +47,7 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
         is_income: isIncome,
       };
       //   const url = 'http://localhost:3000/categories';
-      const url = 'http://localhost:3001/categories';
+      const url = '/api/categories';
       const response = await axios.post(url, data);
       categories.value.push(response.data);
 
@@ -88,7 +88,7 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
         category_id: categoryId,
       };
       //   const url = 'http://localhost:3000/transactions';
-      const url = 'http://localhost:3001/transactions';
+      const url = '/api/transactions';
       const response = await axios.post(url, data);
       transactions.value.push(response.data);
     } catch (error) {
@@ -115,7 +115,7 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
   const deleteTransaction = async (transactionId) => {
     try {
       //   const url = `http://localhost:3000/transactions/${transactionId}`;
-      const url = `http://localhost:3001/transactions/${transactionId}`;
+      const url = `/api/transactions/${transactionId}`;
       await axios.delete(url);
 
       transactions.value = transactions.value.filter(
