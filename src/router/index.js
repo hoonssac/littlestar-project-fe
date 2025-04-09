@@ -7,6 +7,8 @@ import IncomeCategoryPage from '@/pages/money-tracker/IncomeCategory.vue';
 import ExpenseCategoryPage from '@/pages/money-tracker/ExpenseCategory.vue';
 import RecordListPage from '@/pages/money-tracker/RecordListPage.vue';
 import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
+import PokemonDetailModal from '@/components/pokemon/PokemonDetailModal.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -52,6 +54,13 @@ const router = createRouter({
       path: '/pokedex',
       name: 'pokedex',
       component: PokedexPage,
+      children: [
+        {
+          path: '/pokedex/:id',
+          name: 'PokemonDetail',
+          component: PokemonDetailModal,
+        },
+      ],
     },
   ],
 });

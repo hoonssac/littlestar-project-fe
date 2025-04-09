@@ -24,7 +24,8 @@
         <li
           class="pokemon-container"
           v-for="pokemon in displayPokedex"
-          :key="pokemon.id + pokemon.name">
+          :key="pokemon.id + pokemon.name"
+          @click="openModal(pokemon)">
           No. {{ pokemon.id }}
           <img
             :src="pokemon.image_url"
@@ -33,12 +34,21 @@
           {{ pokemon.name }}
         </li>
       </ul>
+
+      <!-- 포켓몬 모달 -->
+      <PokemonDetailModal
+        v-if="isModalVisible"
+        :pokemon="selectedPokemon"
+        :isVisible="isModalVisible"
+        :closeModal="pokedexStore.closeModal" />
+
     </div>
   </div>
 </template>
 <script setup>
 import { usePokedexStore } from '@/stores/pokedex';
 import { computed, onMounted, watchEffect } from 'vue';
+import PokemonDetailModal from './PokemonDetailModal.vue'; // 모달 컴포넌트 불러오기
 
 const pokedexStore = usePokedexStore();
 
@@ -49,6 +59,10 @@ const fetchUser = pokedexStore.fetchUser;
 const fetchPokedex = pokedexStore.fetchPokedex;
 const mainPokemon = computed(() => pokedexStore.mainPokemon);
 const displayPokedex = computed(() => pokedexStore.displayPokedex);
+const isModalVisible = computed(() => pokedexStore.isModalVisible);
+const selectedPokemon = computed(() => pokedexStore.selectedPokemon);
+const openModal = pokedexStore.openModal;
+const closeModal = pokedexStore.closeModal;
 
 onMounted(async () => {
   await fetchUser();
@@ -76,29 +90,31 @@ onMounted(async () => {
 .pokemon-list {
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개 */
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   padding: 0;
   list-style: none;
 }
 .pokemon-container {
   display: flex;
-  flex-direction: column; /* ← 요게 핵심! */
-  align-items: center; /* 중앙 정렬하면 보기 더 좋음 */
+  flex-direction: column;
+  align-items: center;
   padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 0.5px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .pokemon-image {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
 }
 
 .pokeball-image {
   width: 60px; /* 👈 요걸로 살짝 작게 조절! */
-  height: 60px;
+  height: 100px;
   object-fit: contain;
   opacity: 0.7; /* 흐릿하게도 가능! */
 }
