@@ -7,6 +7,9 @@ import MoneyTrackPage from '@/pages/money-tracker/MoneyTrackPage.vue';
 import IncomeCategoryPage from '@/pages/money-tracker/IncomeCategory.vue';
 import ExpenseCategoryPage from '@/pages/money-tracker/ExpenseCategory.vue';
 import RecordListPage from '@/pages/money-tracker/RecordListPage.vue';
+import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
+import Statistics from '@/pages/statistics/Statistics.vue';
+import Home from '@/pages/home/Home.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -16,14 +19,18 @@ const router = createRouter({
       component: App,
     },
     {
-      // 퀴즈 메인 페이지
+      path: '/home',
+      name: 'home',
+      component: Home,
+    },
+    {
       path: '/quiz',
-      name: 'Quiz',
+      name: 'quiz',
       component: QuizMainPage,
     },
     {
       path: '/quiz/intro',
-      name: 'QuizIntro',
+      name: 'quiz-intro',
       component: QuizIntroPage,
     },
     {
@@ -35,21 +42,33 @@ const router = createRouter({
       path: '/money-tracker',
       name: 'money-tracker',
       component: MoneyTrackPage,
+      children: [
+        {
+          path: 'income',
+          name: 'money-tracker-income',
+          component: IncomeCategoryPage,
+        },
+        {
+          path: 'expense',
+          name: 'money-tracker-expense',
+          component: ExpenseCategoryPage,
+        },
+        {
+          path: 'income/:categoryId',
+          name: 'money-tracker-income-category',
+          component: RecordListPage,
+        },
+      ],
     },
     {
-      path: '/money-tracker/income',
-      name: 'money-tracker-income',
-      component: IncomeCategoryPage,
+      path: '/statistics',
+      name: 'statistics',
+      component: Statistics,
     },
     {
-      path: '/money-tracker/expense',
-      name: 'money-tracker-expense',
-      component: ExpenseCategoryPage,
-    },
-    {
-      path: '/money-tracker/income/:categoryId',
-      name: 'money-tracker-income/categoryId',
-      component: RecordListPage,
+      path: '/pokedex',
+      name: 'pokedex',
+      component: PokedexPage,
     },
   ],
 });

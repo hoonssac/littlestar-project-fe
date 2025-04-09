@@ -1,19 +1,26 @@
 <template>
   <div class="main-container">
-    <div class="hello">
-      <!-- <MoneyTrackPage /> -->
+    <TopBar />
+    <div class="app-container">
+      <router-view></router-view>
     </div>
-    <router-view></router-view>
+    <BottomBar />
   </div>
 </template>
 
 <script setup>
-import MoneyTrackPage from './pages/money-tracker/MoneyTrackPage.vue';
+import BottomBar from './components/common/BottomBar.vue';
+import TopBar from './components/common/TopBar.vue';
 </script>
 
 <style scoped>
-.hello {
+.app-container {
+  overflow-y: auto;
+  padding: 70px 0 95px 0;
+}
+
+.navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
 }
 </style>
