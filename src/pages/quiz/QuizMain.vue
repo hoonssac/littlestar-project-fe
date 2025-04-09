@@ -47,19 +47,42 @@
         START
       </button>
     </transition>
+
+    <transition name="scale-fade">
+      <TodayLimitModal v-if="showModal" @close="showModal = false" />
+    </transition>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
+import TodayLimitModal from '@/components/quiz/TodayLimitModal.vue'; // 모달 컴포넌트
 
 const router = useRouter();
-
 const showButton = ref(false);
+const showModal = ref(false);
 
-const goToQuiz = () => {
-  router.push('/quiz/intro');
+function getTodayDateString() {
+  const today = new Date();
+  return today.toISOString().split('T')[0];
+}
+
+const goToQuiz = async () => {
+  try {
+    const res = await axios.get('/api/users/1'); // 임시 사용자
+    const lastAnswered = res.data.last_answered_date;
+    const today = getTodayDateString();
+
+    if (lastAnswered === today) {
+      showModal.value = true; // 👉 오늘 이미 풀었으면 모달 표시
+    } else {
+      router.push('/quiz/intro'); // 👉 아직 안 풀었으면 퀴즈 시작
+    }
+  } catch (err) {
+    console.error('유저 정보 불러오기 실패:', err);
+  }
 };
 
 onMounted(() => {
