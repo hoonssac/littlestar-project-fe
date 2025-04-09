@@ -5,8 +5,10 @@ import QuizIntroPage from '@/pages/quiz/QuizIntro.vue';
 import MoneyTrackPage from '@/pages/money-tracker/MoneyTrackPage.vue';
 import IncomeCategoryPage from '@/pages/money-tracker/IncomeCategory.vue';
 import ExpenseCategoryPage from '@/pages/money-tracker/ExpenseCategory.vue';
-import RecordListPage from '@/pages/money-tracker/RecordListPage.vue';
+import RecordListPage from '@/pages/money-tracker/TransactionListPage.vue';
 import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
+import TransactionListPage from '@/pages/money-tracker/TransactionListPage.vue';
+import AddTransactionPage from '@/pages/money-tracker/AddTransactionPage.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -41,12 +43,17 @@ const router = createRouter({
           name: 'money-tracker-expense',
           component: ExpenseCategoryPage,
         },
-        {
-          path: 'income/:categoryId',
-          name: 'money-tracker-income-category',
-          component: RecordListPage,
-        },
       ],
+    },
+    {
+      path: '/money-tracker/income/:categoryId',
+      name: 'money-tracker-income-category',
+      component: TransactionListPage,
+    },
+    {
+      path: '/money-tracker/income/:categoryId/add',
+      name: 'money-tracker-income-category-add',
+      component: AddTransactionPage,
     },
     {
       path: '/pokedex',
