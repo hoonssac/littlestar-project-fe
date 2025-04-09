@@ -38,14 +38,16 @@
 
     <!-- START 버튼 -->
     <transition name="fade-up" appear>
-      <button
+      <CustomButton
+        :category="buttonCategory"
+        size="medium"
         class="start-button"
         :class="{ faded: !showButton }"
-        @click="goToQuiz"
         style="transition-delay: 1.8s"
+        @click="goToQuiz"
       >
         START
-      </button>
+      </CustomButton>
     </transition>
 
     <transition name="scale-fade">
@@ -59,6 +61,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import TodayLimitModal from '@/components/quiz/TodayLimitModal.vue'; // 모달 컴포넌트
+import CustomButton from '@/components/common/CustomButton.vue';
 
 const router = useRouter();
 const showButton = ref(false);
@@ -167,13 +170,10 @@ onMounted(() => {
   padding-bottom: 15px;
 }
 .start-button {
-  background-color: #fed337;
-  color: #333;
   font-size: 48px;
-  border: none;
-  border-radius: 13px;
+
   padding: 0.1rem 2rem;
-  box-shadow: 4px 4px 0px rgba(74, 72, 63, 0.1);
+
   transition: transform 0.2s;
   width: 80%;
   max-width: 400px;
