@@ -6,19 +6,19 @@
       <IconMileage color="#FAB809" size="20" />
     </div>
 
-    <div class="info-container" size="small">
-      <p>No. 14 피카츄</p>
-      <p>타입: 전기</p>
-      <p>크기: 0.4cm</p>
-      <p>무게: 6.0kg</p>
+    <div v-if="pokedex !== null" class="info-container" size="small">
+      <p>No.{{ pokedex.id }} {{ pokedex.name }}</p>
+      <p>타입: {{ pokedex.types?.join(', ') }}</p>
+      <p>크기: {{ pokedex.height }}cm</p>
+      <p>무게: {{ pokedex.weight }}kg</p>
     </div>
 
     <div class="main-pokemon-container">
       <img
+        v-if="pokedex"
         class="main-pokemon-img"
-        src="@/assets/images/pokemon-gacha.png"
-        alt=""
-        width="400"
+        :src="pokedex.image_url"
+        :alt="pokedex.name"
       />
     </div>
 
@@ -32,9 +32,23 @@
 </template>
 
 <script setup>
+import { getPokedex } from '@/apis/pokedex';
 import CustomButton from '@/components/common/CustomButton.vue';
 import { IconMileage } from '@/components/common/icons';
 import ProgressBar from '@/components/common/ProgressBar.vue';
+import { useAuthStore } from '@/stores/authStore';
+import { onMounted, ref } from 'vue';
+
+const authStore = useAuthStore();
+const pokedex = ref(null);
+
+onMounted(async () => {
+  if (authStore.user) {
+    const data = await getPokedex(authStore.user.main_pokemon_id);
+    console.log('data', data);
+    pokedex.value = data;
+  }
+});
 </script>
 
 <style scoped>
@@ -81,10 +95,19 @@ import ProgressBar from '@/components/common/ProgressBar.vue';
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  width: 320px;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
 }
 .main-pokemon-img {
   position: relative;
   z-index: 10;
+  width: 400px;
+  transform: scale(1.4);
 }
 
 .add-button-container {
@@ -113,8 +136,10 @@ import ProgressBar from '@/components/common/ProgressBar.vue';
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  max-height: 400px;
   background-image: url('@/assets/images/monster-ball-back.png');
   background-size: contain;
   background-repeat: no-repeat;
