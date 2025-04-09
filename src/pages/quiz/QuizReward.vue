@@ -2,18 +2,19 @@
   <div class="quiz-result">
     <div class="content-wrapper">
       <div class="result-wrapper">
-        <div class="result-image">
+        <!-- <div class="result-image spin-in-fade-up spin-in">
           <IconMileage size="120" color="#FAB809" />
-        </div>
+        </div> -->
+        <MileageDisplay :size="120" color="#FAB809" class="delay-1" />
 
-        <div class="mileage">500</div>
+        <div class="mileage fade-up delay-2">500</div>
 
-        <p class="result-text">그래도 잘했어요!</p>
-        <p class="sub-text">500마일리지 획득</p>
+        <p class="result-text fade-up delay-3">그래도 잘했어요!</p>
+        <p class="sub-text fade-up delay-4">500마일리지 획득</p>
       </div>
     </div>
 
-    <div class="footer-button">
+    <div class="footer-button fade-up delay-5">
       <CustomButton
         category="primary"
         size="medium"
@@ -32,6 +33,8 @@ import { useRoute, useRouter } from 'vue-router';
 import IconMileage from '@/components/common/icons/IconMileage.vue'; // 아이콘 경로
 import { useQuizResultStore } from '@/stores/quizResult';
 import CustomButton from '@/components/common/CustomButton.vue';
+import axios from 'axios';
+import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -40,8 +43,22 @@ const isCorrect = quizResult.isCorrect;
 const mileage = quizResult.mileage;
 const explanation = quizResult.explanation;
 
-onMounted(() => {
-  // mileage.add(500); // 오답 보상 지급
+onMounted(async () => {
+  try {
+    // 먼저 기존 유저 정보 가져오기
+    const res = await axios.get('/api/users/1');
+    const currentMileage = res.data.mileage;
+
+    // 마일리지 500 추가해서 PATCH 요청 보내기
+    await axios.patch('/api/users/1', {
+      mileage: currentMileage + 500,
+    });
+
+    console.log('마일리지 지급 완료!');
+    console.log(currentMileage);
+  } catch (error) {
+    console.error('마일리지 업데이트 실패:', error);
+  }
 });
 
 function goToPokedex() {
@@ -82,7 +99,6 @@ function goToPokedex() {
 
 .mileage {
   font-size: 40px;
-  font-weight: bold;
   color: #fab809;
 }
 
@@ -90,6 +106,7 @@ function goToPokedex() {
   font-size: 35px;
   font-weight: bold;
   margin-top: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .sub-text {
@@ -102,5 +119,59 @@ function goToPokedex() {
   display: flex;
   justify-content: center;
   margin-bottom: 3rem;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+.delay-2 {
+  animation-delay: 0.4s;
+}
+.delay-3 {
+  animation-delay: 0.6s;
+}
+.delay-4 {
+  animation-delay: 0.8s;
+}
+.delay-5 {
+  animation-delay: 1.4s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spin-in {
+  animation: spinInY 0.8s ease-out forwards;
+  transform-style: preserve-3d; /* ✅ 3D 회전 자연스럽게 */
+}
+
+.spin-in-fade-up {
+  animation: spinInFadeUp 0.8s ease-out forwards;
+  transform-style: preserve-3d;
+}
+
+@keyframes spinInFadeUp {
+  0% {
+    opacity: 0;
+    transform: rotateY(90deg) scale(0.8) translateY(80px);
+  }
+  60% {
+    opacity: 1;
+    transform: rotateY(180deg) scale(1.05) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(360deg) scale(1) translateY(0);
+  }
 }
 </style>

@@ -3,19 +3,33 @@
     <!-- 상단 이미지 및 텍스트 영역 -->
     <div class="content-wrapper">
       <div class="result-wrapper">
-        <div class="result-image">
-          <IconMileage v-if="isCorrect" size="120" color="#FAB809" />
-          <img
-            v-else
-            src="@/assets/images/sobble.png"
-            class="sobble"
-            alt="울머기"
-          />
+        <div class="result-image fade-up delay-1">
+          <div>
+            <MileageDisplay
+              v-if="isCorrect"
+              :size="120"
+              color="#FAB809"
+              class="delay-1"
+            />
+
+            <img
+              v-else
+              src="@/assets/images/sobble.png"
+              class="sobble"
+              alt="울머기"
+            />
+          </div>
         </div>
 
-        <div v-if="isCorrect" class="mileage">{{ mileage }}</div>
-        <p class="result-text">{{ isCorrect ? '정답이에요!' : '틀렸어요!' }}</p>
-        <p class="sub-text">
+        <div v-if="isCorrect" class="mileage fade-up delay-2">
+          {{ mileage }}
+        </div>
+
+        <p class="result-text fade-up delay-3">
+          {{ isCorrect ? '정답이에요!' : '틀렸어요!' }}
+        </p>
+
+        <p class="sub-text fade-up delay-4">
           {{
             isCorrect
               ? `${mileage} 마일리지 획득!`
@@ -23,15 +37,14 @@
           }}
         </p>
 
-        <!-- 해설 텍스트 -->
-        <div v-if="showExplanation" class="explanation-box">
+        <div v-if="showExplanation" class="explanation-box fade-up delay-5">
           {{ explanation }}
         </div>
       </div>
     </div>
 
     <!-- 하단 버튼 -->
-    <div class="footer-button">
+    <div class="footer-button fade-up delay-6">
       <CustomButton
         :category="buttonCategory"
         size="medium"
@@ -45,11 +58,13 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import IconMileage from '@/components/common/icons/IconMileage.vue'; // 아이콘 경로
 import { useQuizResultStore } from '@/stores/quizResult';
 import CustomButton from '@/components/common/CustomButton.vue';
+import axios from 'axios';
+import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -80,6 +95,24 @@ function handleButtonClick() {
     router.push('/quiz/reward'); // 👉 새 화면으로 이동
   }
 }
+
+onMounted(async () => {
+  if (!isCorrect) return; // ❌ 오답일 경우 종료
+
+  try {
+    const res = await axios.get('/api/users/1');
+    const currentMileage = res.data.mileage;
+
+    await axios.patch(`/api/users/1`, {
+      mileage: currentMileage + 1000,
+    });
+
+    console.log('정답 보상 1000 마일리지 지급 완료!');
+    console.log(currentMileage);
+  } catch (err) {
+    console.error('마일리지 지급 실패:', err);
+  }
+});
 </script>
 
 <style scoped>
@@ -121,6 +154,7 @@ function handleButtonClick() {
   font-size: 35px;
   font-weight: bold;
   margin-top: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .sub-text {
@@ -166,5 +200,57 @@ function handleButtonClick() {
 .sobble {
   width: 180px;
   height: auto;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+.delay-2 {
+  animation-delay: 0.4s;
+}
+.delay-3 {
+  animation-delay: 0.6s;
+}
+.delay-4 {
+  animation-delay: 0.8s;
+}
+.delay-5 {
+  animation-delay: 0.3s;
+}
+.delay-6 {
+  animation-delay: 1.2s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spin-in {
+  animation: spinInY 0.8s ease-out forwards;
+  transform-style: preserve-3d; /* ✅ 3D 회전 자연스럽게 */
+}
+
+@keyframes spinInY {
+  0% {
+    opacity: 0;
+    transform: rotateY(90deg) scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: rotateY(180deg) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(360deg) scale(1);
+  }
 }
 </style>
