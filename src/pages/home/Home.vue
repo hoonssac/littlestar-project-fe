@@ -9,7 +9,7 @@
     <div class="info-container" size="small">
       <p>No. 14 피카츄</p>
       <p>타입: 전기</p>
-      <p>크기: 0.4m</p>
+      <p>크기: 0.4cm</p>
       <p>무게: 6.0kg</p>
     </div>
 
