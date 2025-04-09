@@ -2,7 +2,7 @@
   <div class="top-container">
     <img class="logo" src="@/assets/images/logo.png" alt="" />
     <div class="mileage-container">
-      <p>10</p>
+      <p class="mileage-text">10</p>
       <IconMileage color="#FAB809" size="27" />
     </div>
   </div>
