@@ -6,15 +6,20 @@
 
     <div class="inputs-container">
       <p>별명</p>
-      <input type="text" placeholder="별명을 입력하세요. (2글자 이상)" />
+      <input
+        v-model="username"
+        type="text"
+        placeholder="별명을 입력하세요. (2글자 이상)"
+      />
       <p>비밀번호</p>
       <input
+        v-model="password"
         type="password"
         placeholder="비밀번호를 입력하세요. (4글자 이상)"
       />
       <p>나이</p>
       <div class="select-wrapper">
-        <select name="age" id="age">
+        <select v-model="age" name="age" id="age">
           <option value="" disabled selected hidden>=== 나이선택 ===</option>
           <option value="4">4</option>
           <option value="5">5</option>
@@ -45,11 +50,32 @@
 
 <script setup>
 import CustomButton from '@/components/common/CustomButton.vue';
+import { useSignupStore } from '@/stores/signupStore';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+
+const signupStore = useSignupStore();
 
 const router = useRouter();
 
+const username = ref();
+const password = ref();
+const age = ref();
+
 const handleNavigate = (routeName) => {
+  if (
+    username.value === undefined ||
+    username.value.length < 2 ||
+    password.value < 4 ||
+    !age.value
+  ) {
+    alert('입력값을 다시 확인해주세요.');
+    return;
+  }
+
+  signupStore.username = username.value;
+  signupStore.password = password.value;
+
   router.push({ name: routeName });
 };
 </script>

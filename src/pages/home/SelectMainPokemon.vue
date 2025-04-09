@@ -61,6 +61,7 @@
 <script setup>
 import { getPokedex } from '@/apis/pokedex';
 import CustomButton from '@/components/common/CustomButton.vue';
+import { useSignupStore } from '@/stores/signupStore';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -68,6 +69,7 @@ const startingPokemons = ref([]);
 const selectedId = ref(null);
 const content = ref('');
 const isConfirmed = ref(false);
+const signupStore = useSignupStore();
 
 const selectContent = '어떤 포켓몬을 선택할까요?';
 
@@ -107,6 +109,13 @@ const resetSelection = () => {
 
 const confirmSelection = () => {
   // TODO: 메인포켓몬 설정 api 로직 추가
+
+  // pinia 저장
+  signupStore.main_pokemon_id = Number(selectedId.value);
+  signupStore.pokemon_ids = [Number(selectedId.value)];
+
+  console.log(signupStore);
+
   handleNavigate('home');
   console.log('최종 선택 포켓몬:', selectedId.value);
 };
