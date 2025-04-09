@@ -41,13 +41,17 @@
         </div>
       </div>
     </div>
+
+    <TeamRocketAlert :show="showAlert" :message="alertMessage" />
   </div>
 </template>
 <script setup>
-import CustomButton from '@/components/common/CustomButton.vue';
 import { useMoneyTrackerStore } from '@/stores/moneyTrackerStore';
 import { useRoute, useRouter } from 'vue-router';
 import { computed, ref } from 'vue';
+import CustomButton from '@/components/common/CustomButton.vue';
+import TeamRocketAlert from '@/components/money-tracker/TeamRocketAlert.vue';
+
 const currentRoute = useRoute();
 const router = useRouter();
 const store = useMoneyTrackerStore();
@@ -57,6 +61,9 @@ const date = ref('');
 const amount = ref('');
 const memo = ref('');
 
+const showAlert = ref(false);
+const alertMessage = ref('');
+
 const categoryName = computed(() => {
   const category = store.categories.find((c) => String(c.id) === String(id));
   return category.name;
@@ -65,15 +72,25 @@ const isIncome = computed(() => {
   const category = store.categories.find((c) => String(c.id) === String(id));
   return category.is_income;
 });
+
+const showTemporaryAlert = (message) => {
+  alertMessage.value = message;
+  showAlert.value = true;
+  setTimeout(() => {
+    showAlert.value = false;
+  }, 2000);
+};
 const addTransaction = async () => {
-  if (!amount.value || isNaN(amount.value)) {
-    alert('금액은 숫자로 입력해주세요!');
+  if (!amount.value || !memo.value || !date.value) {
+    showTemporaryAlert('모든 항목을 입력해라옹!');
     return;
   }
-  if (!memo.value || !date.value) {
-    alert('메모를 입력해주세요!');
+
+  if (isNaN(amount.value)) {
+    showTemporaryAlert('금액은 숫자로 입력해라옹!');
     return;
   }
+
   //   유저 아이디 생기면 수정 필요
   await store.addTransaction(
     1,
