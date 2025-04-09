@@ -13,6 +13,7 @@ import Statistics from '@/pages/statistics/Statistics.vue';
 import TransactionListPage from '@/pages/money-tracker/TransactionListPage.vue';
 import EditTransactionPage from '@/pages/money-tracker/EditTransactionPage.vue';
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

@@ -2,8 +2,14 @@
   <div class="modal-overlay">
     <div class="modal-container">
       <h2 class="modal-title">{{ title }}</h2>
-      <img v-if="img" :src="img" alt="modal image" class="modal-image" />
+      <img
+        v-if="img"
+        :src="img"
+        alt="modal image"
+        class="modal-image" />
       <p class="modal-description">{{ description }}</p>
+      <slot></slot>
+      <!-- 추가 내용(버튼) 렌더링 -->
     </div>
   </div>
 </template>
