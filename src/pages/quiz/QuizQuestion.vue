@@ -37,7 +37,7 @@ const showOptions = ref(false);
 const router = useRouter();
 
 onMounted(async () => {
-  const res = await axios.get('http://localhost:3001/questions');
+  const res = await axios.get('/api/questions');
   const questions = res.data;
   const randomIndex = Math.floor(Math.random() * questions.length);
   pickedQuestion.value = questions[randomIndex];
