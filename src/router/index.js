@@ -9,6 +9,9 @@ import RecordListPage from '@/pages/money-tracker/RecordListPage.vue';
 import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
 import Statistics from '@/pages/statistics/Statistics.vue';
 import Home from '@/pages/home/Home.vue';
+import Login from '@/pages/home/Login.vue';
+import SignUp from '@/pages/home/SignUp.vue';
+import SelectMainPokemon from '@/pages/home/SelectMainPokemon.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -16,6 +19,21 @@ const router = createRouter({
       path: '/',
       name: 'app',
       component: App,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUp,
+    },
+    {
+      path: '/select-main-pokemon',
+      name: 'select-main-pokemon',
+      component: SelectMainPokemon,
     },
     {
       path: '/home',
