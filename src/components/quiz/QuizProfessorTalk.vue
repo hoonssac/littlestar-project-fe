@@ -71,7 +71,7 @@ function typeText(fullText) {
   border-radius: 15px;
   box-shadow: 4px 4px 0 #444;
   padding: 1rem;
-  margin-top: 1rem;
+  margin-top: 4rem;
   max-width: 90%;
   font-size: 22px;
   line-height: 1.6;

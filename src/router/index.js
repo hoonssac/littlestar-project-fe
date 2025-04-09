@@ -4,6 +4,7 @@ import QuizMainPage from '@/pages/quiz/QuizMain.vue';
 import QuizIntroPage from '@/pages/quiz/QuizIntro.vue';
 import QuizQuestion from '@/pages/quiz/QuizQuestion.vue';
 import QuizResult from '@/pages/quiz/QuizResult.vue';
+import QuizReward from '@/pages/quiz/QuizReward.vue';
 import MoneyTrackPage from '@/pages/money-tracker/MoneyTrackPage.vue';
 import IncomeCategoryPage from '@/pages/money-tracker/IncomeCategory.vue';
 import ExpenseCategoryPage from '@/pages/money-tracker/ExpenseCategory.vue';
@@ -44,6 +45,11 @@ const router = createRouter({
       name: 'QuizResult',
       component: QuizResult,
     },
+    {
+      path: '/quiz/result/reward',
+      name: 'QuizReward',
+      componene: QuizReward,
+    }
     {
       path: '/money-tracker',
       name: 'money-tracker',

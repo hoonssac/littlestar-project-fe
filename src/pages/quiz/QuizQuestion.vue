@@ -1,7 +1,5 @@
 <template>
   <div class="quiz-question">
-    <h2 class="quiz-title">퀴즈</h2>
-
     <QuizProfessorTalk
       v-if="questionText"
       :text="questionText"
@@ -70,7 +68,8 @@ function handleSelect(index) {
   font-weight: bold;
   color: #333;
   z-index: 2;
-  margin: 0;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 .quiz-question {
@@ -90,8 +89,8 @@ function handleSelect(index) {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   background-image: url('@/assets/images/monster-ball-back.png');
   background-size: contain;
   background-repeat: no-repeat;
