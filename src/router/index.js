@@ -7,6 +7,12 @@ import IncomeCategoryPage from '@/pages/money-tracker/IncomeCategory.vue';
 import ExpenseCategoryPage from '@/pages/money-tracker/ExpenseCategory.vue';
 import RecordListPage from '@/pages/money-tracker/TransactionListPage.vue';
 import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
+import Home from '@/pages/home/Home.vue';
+import AddTransactionPage from '@/pages/money-tracker/AddTransactionPage.vue';
+import Statistics from '@/pages/statistics/Statistics.vue';
+import TransactionListPage from '@/pages/money-tracker/TransactionListPage.vue';
+import EditTransactionPage from '@/pages/money-tracker/EditTransactionPage.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -53,9 +59,19 @@ const router = createRouter({
       component: TransactionListPage,
     },
     {
-      path: '/money-tracker/income/:categoryId/add',
-      name: 'money-tracker-income-category-add',
+      path: '/money-tracker/expense/:categoryId',
+      name: 'money-tracker-expense-category',
+      component: TransactionListPage,
+    },
+    {
+      path: '/money-tracker/:categoryId/add',
+      name: 'money-tracker-category-add',
       component: AddTransactionPage,
+    },
+    {
+      path: '/money-tracker/:categoryId/edit/:transactionId',
+      name: 'money-tracker-category-edit-transactionId',
+      component: EditTransactionPage,
     },
     {
       path: '/statistics',
