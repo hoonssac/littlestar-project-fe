@@ -62,11 +62,12 @@ onMounted(() => {
 
 <style scoped>
 .quiz-intro {
-  min-height: 100vh;
+  height: 100%;
   background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
 }
 .faded {
@@ -127,6 +128,7 @@ onMounted(() => {
 }
 .question-box {
   width: 300px;
+  padding-bottom: 15px;
 }
 .start-button {
   background-color: #fed337;
