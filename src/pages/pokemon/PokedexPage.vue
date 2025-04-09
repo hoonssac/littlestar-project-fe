@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    <h1>로고, 마일리지 자리</h1>
+  <div class="main-container">
     <Pokedex></Pokedex>
   </div>
 </template>

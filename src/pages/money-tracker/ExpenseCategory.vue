@@ -8,6 +8,12 @@
         class="list-group-item"
         v-for="category in store.expenseCategories"
         :key="category.id"
+        @click="
+          router.push({
+            name: 'money-tracker-expense-category',
+            params: { categoryId: category.id },
+          })
+        "
       >
         {{ category.name }}
       </div>
@@ -23,9 +29,9 @@ import axios from 'axios';
 import AddCategoryModal from '@/components/money-tracker/AddCategoryModal.vue';
 import { useMoneyTrackerStore } from '@/stores/moneyTrackerStore';
 import { onMounted } from 'vue';
-
+import { useRouter } from 'vue-router';
 const store = useMoneyTrackerStore();
-
+const router = useRouter();
 onMounted(() => {
   store.fetchCategories();
 });
