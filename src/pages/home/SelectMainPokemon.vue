@@ -119,9 +119,6 @@ const confirmSelection = async () => {
 
   const response = await signup(user);
 
-  console.log(response);
-  console.log(signupStore);
-
   handleNavigate('home');
   console.log('최종 선택 포켓몬:', selectedId.value);
 };
