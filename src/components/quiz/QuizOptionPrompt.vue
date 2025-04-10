@@ -5,7 +5,7 @@
         <button
           v-for="(option, index) in optionTexts"
           :key="index"
-          @click="$emit('select', index)"
+          @click="handleClick(index)"
         >
           {{ option }}
         </button>
@@ -16,6 +16,14 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
+import SelectSound from '@/assets/sounds/ButtonSound.mp3';
+
+const emit = defineEmits(['select']);
+
+function handleClick(index) {
+  playClickSound();
+  emit('select', index);
+}
 
 const props = defineProps({
   options: Array, // ["보기1", "보기2", ...]
@@ -42,6 +50,14 @@ function typeText(full, index, speed = 30, delay = 0) {
       }
     }, speed);
   }, delay);
+}
+
+function playClickSound() {
+  const audio = new Audio(SelectSound);
+  audio.volume = 1.0; // 🎵 소리 크기 최대로
+  audio.play().catch((err) => {
+    console.warn('효과음 재생 실패:', err);
+  });
 }
 </script>
 
