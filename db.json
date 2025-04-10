@@ -15,7 +15,7 @@
       "id": "fa8a",
       "username": "asdf",
       "password": "1234",
-      "lase_answered_date": null,
+      "last_answered_date": "2025-04-09",
       "pokemon_ids": [7],
       "main_pokemon_id": 7,
       "question_ids": [],
