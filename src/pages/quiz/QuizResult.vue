@@ -74,6 +74,8 @@ import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
 import MileageCounter from '@/components/quiz/MileageCounter.vue';
 import { useAuthStore } from '@/stores/authStore';
 import { getUserInfo } from '@/apis/users';
+import GetMileageSound from '@/assets/sounds/GetMileage.mp3';
+import QuizWrongSound from '@/assets/sounds/QuizWrong.mp3';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -83,7 +85,6 @@ const mileage = quizResult.mileage;
 const explanation = quizResult.explanation;
 const date = quizResult.date;
 const authStore = useAuthStore();
-
 const showExplanation = ref(false);
 
 const buttonText = computed(() => {
@@ -126,6 +127,14 @@ async function updateAnsweredDate() {
 
 onMounted(async () => {
   updateAnsweredDate(); // ✅ 정답/오답 관계없이 무조건 실행
+
+  // 🎵 효과음 재생
+  const audio = new Audio(isCorrect ? GetMileageSound : QuizWrongSound);
+  audio.volume = 0.6;
+
+  audio.play().catch((err) => {
+    console.warn('🔇 효과음 자동재생 실패:', err);
+  });
 
   if (!isCorrect) return; // ❌ 오답이면 마일리지는 지급하지 않음
 
@@ -183,6 +192,11 @@ onMounted(async () => {
 
 .mileage {
   font-size: 40px;
+  font-weight: bold;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   font-weight: bold;
   color: #fab809;
 }

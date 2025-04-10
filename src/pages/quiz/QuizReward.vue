@@ -41,6 +41,7 @@ import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
 import MileageCounter from '@/components/quiz/MileageCounter.vue';
 import { useAuthStore } from '@/stores/authStore';
 import { getUserInfo } from '@/apis/users';
+import GetMileageSound from '@/assets/sounds/GetMileage.mp3';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -57,6 +58,13 @@ function getTodayDateString() {
 }
 
 onMounted(async () => {
+  // 🎵 효과음 재생
+  const audio = new Audio(GetMileageSound);
+  audio.volume = 0.6;
+
+  audio.play().catch((err) => {
+    console.warn('🔇 효과음 자동재생 실패:', err);
+  });
   try {
     // 먼저 기존 유저 정보 가져오기
     const userId = authStore.user.id;
@@ -122,6 +130,12 @@ function goToPokedex() {
 
 .mileage {
   font-size: 40px;
+
+  font-family: 'Pretendard Variable', Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  font-weight: bold;
   color: #fab809;
 }
 
