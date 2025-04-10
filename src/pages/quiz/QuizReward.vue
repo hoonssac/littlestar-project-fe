@@ -39,6 +39,7 @@ import CustomButton from '@/components/common/CustomButton.vue';
 import axios from 'axios';
 import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
 import MileageCounter from '@/components/quiz/MileageCounter.vue';
+import { useAuthStore } from '@/stores/authStore';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -47,6 +48,7 @@ const isCorrect = quizResult.isCorrect;
 const mileage = quizResult.mileage;
 const explanation = quizResult.explanation;
 const last_answered_date = quizResult.last_answered_date;
+const authStore = useAuthStore();
 
 function getTodayDateString() {
   const today = new Date();
@@ -56,11 +58,12 @@ function getTodayDateString() {
 onMounted(async () => {
   try {
     // 먼저 기존 유저 정보 가져오기
-    const res = await axios.get('/api/users/1');
+    const userId = authStore.user.id;
+    const res = await axios.get(`/api/users/${userId}`);
     const currentMileage = res.data.mileage;
 
     // 마일리지 500 추가해서 PATCH 요청 보내기
-    await axios.patch('/api/users/1', {
+    await axios.patch(`/api/users/${userId}`, {
       mileage: currentMileage + 500,
       last_answered_date: getTodayDateString(),
     });

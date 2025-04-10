@@ -72,6 +72,7 @@ import CustomButton from '@/components/common/CustomButton.vue';
 import axios from 'axios';
 import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
 import MileageCounter from '@/components/quiz/MileageCounter.vue';
+import { useAuthStore } from '@/stores/authStore';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -80,6 +81,7 @@ const isCorrect = quizResult.isCorrect;
 const mileage = quizResult.mileage;
 const explanation = quizResult.explanation;
 const date = quizResult.date;
+const authStore = useAuthStore();
 
 const showExplanation = ref(false);
 
@@ -109,22 +111,35 @@ function getTodayDateString() {
   return today.toISOString().split('T')[0];
 }
 
-onMounted(async () => {
-  if (!isCorrect) return; // ❌ 오답일 경우 종료
-
+async function updateAnsweredDate() {
   try {
-    const res = await axios.get('/api/users/1');
-    const currentMileage = res.data.mileage;
-
-    await axios.patch(`/api/users/1`, {
-      mileage: currentMileage + 1000,
+    const userId = authStore.user.id;
+    await axios.patch(`/api/users/${userId}`, {
       last_answered_date: getTodayDateString(),
     });
-
-    console.log('정답 보상 1000 마일리지 지급 완료!');
-    console.log(currentMileage);
+    console.log('✅ 날짜 업데이트 완료');
   } catch (err) {
-    console.error('마일리지 지급 실패:', err);
+    console.error('❌ 날짜 업데이트 실패:', err);
+  }
+}
+
+onMounted(async () => {
+  updateAnsweredDate(); // ✅ 정답/오답 관계없이 무조건 실행
+
+  if (!isCorrect) return; // ❌ 오답이면 마일리지는 지급하지 않음
+
+  try {
+    const userId = authStore.user.id;
+    const res = await axios.get(`/api/users/${userId}`);
+    const currentMileage = res.data.mileage;
+
+    await axios.patch(`/api/users/${userId}`, {
+      mileage: currentMileage + 1000,
+    });
+
+    console.log('✅ 정답 보상 1000 마일리지 지급 완료!');
+  } catch (err) {
+    console.error('❌ 마일리지 지급 실패:', err);
   }
 });
 </script>
