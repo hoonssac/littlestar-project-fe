@@ -5,58 +5,10 @@
       "username": "피카츄777",
       "password": "pikachu777",
       "last_answered_date": "2025-04-10",
-      "pokemon_ids": [
-        1,
-        9,
-        39
-      ],
+      "pokemon_ids": [1, 9, 39],
       "main_pokemon_id": 39,
-      "question_ids": [
-        1,
-        7
-      ],
-      "mileage": 42550,
-      "ticket_count": 0
-    },
-    {
-      "id": "28a2",
-      "username": "지우",
-      "password": "1234",
-      "last_answered_date": "2025-04-09",
-      "pokemon_ids": [
-        7,
-        21,
-        83
-      ],
-      "main_pokemon_id": 7,
-      "question_ids": [],
-      "mileage": 4001,
-      "ticket_count": 0
-    },
-    {
-      "id": "7207",
-      "username": "하이",
-      "password": "1234",
-      "last_answered_date": "2025-04-10",
-      "pokemon_ids": [
-        4
-      ],
-      "main_pokemon_id": 4,
-      "question_ids": [],
-      "mileage": 11500,
-      "ticket_count": 0
-    },
-    {
-      "id": "14d4",
-      "username": "asdf",
-      "password": "1234",
-      "last_answered_date": null,
-      "pokemon_ids": [
-        7
-      ],
-      "main_pokemon_id": 7,
-      "question_ids": [],
-      "mileage": 0,
+      "question_ids": [1, 7],
+      "mileage": 35550,
       "ticket_count": 0
     }
   ],
