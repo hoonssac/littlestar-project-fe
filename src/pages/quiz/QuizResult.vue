@@ -73,6 +73,7 @@ import axios from 'axios';
 import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
 import MileageCounter from '@/components/quiz/MileageCounter.vue';
 import { useAuthStore } from '@/stores/authStore';
+import { getUserInfo } from '@/apis/users';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -137,6 +138,13 @@ onMounted(async () => {
       mileage: currentMileage + 1000,
     });
 
+    const fetchUser = async () => {
+      if (authStore.user) {
+        await getUserInfo(authStore.user.id);
+      }
+    };
+
+    await fetchUser();
     console.log('✅ 정답 보상 1000 마일리지 지급 완료!');
   } catch (err) {
     console.error('❌ 마일리지 지급 실패:', err);
@@ -150,7 +158,6 @@ onMounted(async () => {
   flex-direction: column;
   justify-content: space-between; /* 상단 + 하단 분리 */
   height: 100%;
-  padding: 2rem 1rem;
   text-align: center;
 }
 
@@ -159,6 +166,7 @@ onMounted(async () => {
   flex-direction: column;
   align-items: center;
   margin-top: 10rem;
+  flex: 1;
 }
 
 .result-wrapper {

@@ -40,6 +40,7 @@ import axios from 'axios';
 import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
 import MileageCounter from '@/components/quiz/MileageCounter.vue';
 import { useAuthStore } from '@/stores/authStore';
+import { getUserInfo } from '@/apis/users';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -67,6 +68,14 @@ onMounted(async () => {
       mileage: currentMileage + 500,
       last_answered_date: getTodayDateString(),
     });
+
+    const fetchUser = async () => {
+      if (authStore.user) {
+        await getUserInfo(authStore.user.id);
+      }
+    };
+
+    await fetchUser();
 
     console.log('마일리지 지급 완료!');
     console.log(currentMileage);

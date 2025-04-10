@@ -99,7 +99,7 @@ onMounted(() => {
 <style scoped>
 .quiz-intro {
   height: 100%;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
