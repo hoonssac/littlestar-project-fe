@@ -4,7 +4,7 @@ export const useSignupStore = defineStore('signup', {
   state: () => ({
     username: '',
     password: '',
-    lase_answered_date: null,
+    last_answered_date: null,
     pokemon_ids: [],
     main_pokemon_id: null,
     question_ids: [],
