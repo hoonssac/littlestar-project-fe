@@ -17,7 +17,7 @@
             취소
           </button>
 
-          <button class="modal-button add-button" @click="addCateogry">
+          <button class="modal-button add-button" @click="addCategory">
             저장
           </button>
         </div>
@@ -36,9 +36,9 @@ const props = defineProps({
 const store = useMoneyTrackerStore();
 const categoryName = ref('');
 
-const addCateogry = () => {
+const addCategory = async () => {
   if (categoryName.value.trim() !== '') {
-    store.addCategory(categoryName.value.trim(), props.isIncome);
+    await store.addCategory(categoryName.value.trim(), props.isIncome);
     store.closeAddCategoryModal();
     categoryName.value = '';
   }

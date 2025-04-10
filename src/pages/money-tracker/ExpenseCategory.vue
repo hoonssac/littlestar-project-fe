@@ -72,7 +72,6 @@ const getHeightPercentage = (categoryId) => {
 
 const getHeight = (categoryId) => {
   const percent = getHeightPercentage(categoryId);
-  console.log(percent);
   return percent === 0 ? 15 : percent;
 };
 </script>
@@ -109,5 +108,9 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+}
+button {
+  margin-bottom: 3rem;
 }
 </style>

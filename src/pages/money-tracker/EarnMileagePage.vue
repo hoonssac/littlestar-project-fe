@@ -16,14 +16,17 @@
 </template>
 <script setup>
 import { useMoneyTrackerStore } from '@/stores/moneyTrackerStore';
+import { useAuthStore } from '@/stores/authStore';
 import { useRoute, useRouter } from 'vue-router';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, useAttrs } from 'vue';
 import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
 import MileageCounter from '@/components/quiz/MileageCounter.vue';
+import axios from 'axios';
 
 const router = useRouter();
 const currentRoute = useRoute();
 const store = useMoneyTrackerStore();
+const authStore = useAuthStore();
 const id = currentRoute.params.categoryId;
 
 const categoryName = computed(() => {
@@ -32,7 +35,20 @@ const categoryName = computed(() => {
 });
 
 onMounted(() => {
-  setTimeout(() => {
+  setTimeout(async () => {
+    try {
+      const res = await axios.get(`/api/users/${authStore.user.id}`);
+      const currentMileage = res.data.mileage;
+
+      await axios.patch(`/api/users/${authStore.user.id}`, {
+        mileage: currentMileage + 500,
+      });
+
+      console.log('마일리지 지급 완료!');
+      console.log(currentMileage);
+    } catch (err) {
+      console.error('마일리지 지급 실패:', err);
+    }
     router.go(-2);
   }, 3000);
 });

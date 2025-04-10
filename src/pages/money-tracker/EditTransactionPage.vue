@@ -42,19 +42,22 @@
       </div>
     </div>
     <TeamRocketAlert :show="showAlert" :message="alertMessage" />
+
+    <SuccessAlert :show="showAlert2" :message="alertMessage2" />
   </div>
 </template>
 <script setup>
 import { useMoneyTrackerStore } from '@/stores/moneyTrackerStore';
+import { useAuthStore } from '@/stores/authStore';
 import { useRoute, useRouter } from 'vue-router';
 import { computed, ref, onMounted } from 'vue';
 import CustomButton from '@/components/common/CustomButton.vue';
 import TeamRocketAlert from '@/components/common/TeamRocketAlert.vue';
-
+import SuccessAlert from '@/components/money-tracker/SuccessAlert.vue';
 const currentRoute = useRoute();
 const router = useRouter();
 const store = useMoneyTrackerStore();
-
+const authStore = useAuthStore();
 const id = currentRoute.params.categoryId;
 const t_id = currentRoute.params.transactionId;
 
@@ -65,6 +68,9 @@ const isIncome = ref(false);
 
 const showAlert = ref(false);
 const alertMessage = ref('');
+
+const showAlert2 = ref(false);
+const alertMessage2 = ref('');
 
 onMounted(async () => {
   await store.fetchTransactions();
@@ -96,6 +102,15 @@ const showTemporaryAlert = (message) => {
     showAlert.value = false;
   }, 2000);
 };
+
+const showTemporarySuccessAlert = (message) => {
+  alertMessage2.value = message;
+  showAlert2.value = true;
+  setTimeout(() => {
+    showAlert2.value = false;
+  }, 2000);
+};
+
 const editTransaction = async () => {
   if (!amount.value || !memo.value || !date.value) {
     showTemporaryAlert('모든 항목을 입력해라옹!');
@@ -109,7 +124,7 @@ const editTransaction = async () => {
 
   //   유저 아이디 생기면 수정 필요
   const updatedData = {
-    user_id: 1,
+    user_id: authStore.user.id,
     date: date.value,
     is_income: isIncome.value,
     amount: Number(amount.value),
@@ -117,9 +132,15 @@ const editTransaction = async () => {
     category_id: id,
   };
 
+  console.log('hi');
   await store.editTransaction(t_id, updatedData);
 
-  router.go(-1);
+  showTemporarySuccessAlert('수정 완료!');
+
+  setTimeout(() => {
+    router.go(-1);
+  }, 2000);
+  // router.go(-1);
 };
 </script>
 <style scoped>

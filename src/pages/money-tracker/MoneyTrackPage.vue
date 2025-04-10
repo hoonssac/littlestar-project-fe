@@ -2,7 +2,7 @@
   <div class="m-container">
     <div class="card">
       <div class="card-body">
-        <p>이름: {{}}</p>
+        <p>이름: {{ authStore.user.username }}</p>
         <p>이번 달 수입: {{ totalIncome.toLocaleString() }}원</p>
         <p>이번 달 지출: {{ totalExpense.toLocaleString() }}원</p>
         <hr />
@@ -33,8 +33,10 @@
 import jiwoo from '@/assets/images/jiwoo.png';
 import { computed, onMounted } from 'vue';
 import { useMoneyTrackerStore } from '@/stores/moneyTrackerStore';
+import { useAuthStore } from '@/stores/authStore';
 
 const store = useMoneyTrackerStore();
+const authStore = useAuthStore();
 
 const today = new Date();
 

@@ -64,7 +64,6 @@ onMounted(() => {
 const getHeightPercentage = (categoryId) => {
   const sum = store.incomeCategorySums[categoryId] || 0;
   const total = store.totalIncome;
-  console.log('categoryid:' + categoryId + ' sum:' + sum + ' total:' + total);
 
   if (sum === 0 || total === 0) {
     return 0;
@@ -74,7 +73,7 @@ const getHeightPercentage = (categoryId) => {
 
 const getHeight = (categoryId) => {
   const percent = getHeightPercentage(categoryId);
-  return percent === 0 ? 15 : percent;
+  return percent < 15 ? 15 : percent;
 };
 </script>
 <style scoped>
@@ -102,7 +101,6 @@ button {
 .list-group {
   width: 100%;
   margin: 3rem auto;
-  border-radius: 0;
 }
 .list-group-item {
   border: none;
@@ -110,5 +108,10 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+}
+
+button {
+  margin-bottom: 3rem;
 }
 </style>

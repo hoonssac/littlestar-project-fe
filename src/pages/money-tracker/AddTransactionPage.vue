@@ -47,6 +47,7 @@
 </template>
 <script setup>
 import { useMoneyTrackerStore } from '@/stores/moneyTrackerStore';
+import { useAuthStore } from '@/stores/authStore';
 import { useRoute, useRouter } from 'vue-router';
 import { computed, ref } from 'vue';
 import CustomButton from '@/components/common/CustomButton.vue';
@@ -55,6 +56,8 @@ import TeamRocketAlert from '@/components/common/TeamRocketAlert.vue';
 const currentRoute = useRoute();
 const router = useRouter();
 const store = useMoneyTrackerStore();
+const authStore = useAuthStore();
+
 const id = currentRoute.params.categoryId;
 
 const date = ref('');
@@ -91,9 +94,7 @@ const addTransaction = async () => {
     return;
   }
 
-  //   유저 아이디 생기면 수정 필요
   await store.addTransaction(
-    1,
     date.value,
     isIncome.value,
     amount.value,
