@@ -16,21 +16,6 @@
       ],
       "mileage": 1,
       "ticket_count": 0
-    },
-    {
-      "id": "d80f",
-      "username": "저웅",
-      "password": "1234",
-      "lase_answered_date": null,
-      "pokemon_ids": [
-        1,
-        123,
-        3
-      ],
-      "main_pokemon_id": 3,
-      "question_ids": [],
-      "mileage": 3,
-      "ticket_count": 0
     }
   ],
   "pokedex": [
