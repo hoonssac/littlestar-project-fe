@@ -5,16 +5,21 @@
       "username": "피카츄777",
       "password": "pikachu777",
       "last_answered_date": "2025-04-10",
-      "pokemon_ids": [
-        1,
-        39
-      ],
+      "pokemon_ids": [1, 9, 39],
       "main_pokemon_id": 39,
-      "question_ids": [
-        1,
-        7
-      ],
-      "mileage": 1,
+      "question_ids": [1, 7],
+      "mileage": 42550,
+      "ticket_count": 0
+    },
+    {
+      "id": "28a2",
+      "username": "지우",
+      "password": "1234",
+      "last_answered_date": "2025-04-10",
+      "pokemon_ids": [7],
+      "main_pokemon_id": 7,
+      "question_ids": [],
+      "mileage": 14001,
       "ticket_count": 0
     }
   ],
@@ -23,10 +28,7 @@
       "id": "1",
       "name": "이상해씨",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-      "types": [
-        "풀",
-        "독"
-      ],
+      "types": ["풀", "독"],
       "height": 70,
       "weight": 6.9
     },
@@ -34,10 +36,7 @@
       "id": "2",
       "name": "이상해풀",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-      "types": [
-        "풀",
-        "독"
-      ],
+      "types": ["풀", "독"],
       "height": 100,
       "weight": 13
     },
@@ -45,10 +44,7 @@
       "id": "3",
       "name": "이상해꽃",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
-      "types": [
-        "풀",
-        "독"
-      ],
+      "types": ["풀", "독"],
       "height": 200,
       "weight": 100
     },
@@ -56,9 +52,7 @@
       "id": "4",
       "name": "파이리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-      "types": [
-        "불꽃"
-      ],
+      "types": ["불꽃"],
       "height": 60,
       "weight": 8.5
     },
@@ -66,9 +60,7 @@
       "id": "5",
       "name": "리자드",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
-      "types": [
-        "불꽃"
-      ],
+      "types": ["불꽃"],
       "height": 110,
       "weight": 19
     },
@@ -76,10 +68,7 @@
       "id": "6",
       "name": "리자몽",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
-      "types": [
-        "불꽃",
-        "비행"
-      ],
+      "types": ["불꽃", "비행"],
       "height": 170,
       "weight": 90.5
     },
@@ -2095,42 +2084,6 @@
   ],
   "transactions": [
     {
-      "id": "6110",
-      "user_id": 1,
-      "date": "2025-04-01",
-      "is_income": true,
-      "amount": "9000",
-      "memo": "하하하",
-      "category_id": "67cb"
-    },
-    {
-      "id": "a4f9",
-      "user_id": 1,
-      "date": "2025-04-18",
-      "is_income": true,
-      "amount": "9000",
-      "memo": "히히",
-      "category_id": "67cb"
-    },
-    {
-      "id": "e616",
-      "user_id": 1,
-      "date": "2025-04-02",
-      "is_income": true,
-      "amount": "9000",
-      "memo": "99",
-      "category_id": "9efe"
-    },
-    {
-      "id": "03bc",
-      "user_id": 1,
-      "date": "2025-04-18",
-      "is_income": true,
-      "amount": "9000",
-      "memo": "1",
-      "category_id": "9efe"
-    },
-    {
       "id": "aa23",
       "user_id": 1,
       "date": "2025-04-10",
@@ -2146,6 +2099,42 @@
       "is_income": false,
       "amount": "2000",
       "memo": "777",
+      "category_id": "7759"
+    },
+    {
+      "id": "069d",
+      "user_id": 1,
+      "date": "2025-04-10",
+      "is_income": true,
+      "amount": "1000",
+      "memo": "1",
+      "category_id": "e4a1"
+    },
+    {
+      "id": "8ab6",
+      "user_id": 1,
+      "date": "2025-04-16",
+      "is_income": true,
+      "amount": "2000",
+      "memo": "22",
+      "category_id": "e4a1"
+    },
+    {
+      "id": "75a2",
+      "user_id": 1,
+      "date": "2025-04-01",
+      "is_income": true,
+      "amount": "9000",
+      "memo": "33",
+      "category_id": "9efe"
+    },
+    {
+      "id": "c008",
+      "user_id": 1,
+      "date": "2025-04-12",
+      "is_income": false,
+      "amount": "9000",
+      "memo": "88",
       "category_id": "7759"
     }
   ],
@@ -2203,6 +2192,18 @@
       "name": "55",
       "transaction_ids": [],
       "is_income": false
+    },
+    {
+      "id": "3bfe",
+      "name": "33",
+      "transaction_ids": [],
+      "is_income": true
+    },
+    {
+      "id": "3bb8",
+      "name": "44",
+      "transaction_ids": [],
+      "is_income": true
     }
   ]
 }

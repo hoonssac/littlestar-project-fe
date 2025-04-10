@@ -204,7 +204,7 @@ onMounted(async () => {
 .gacha-button {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 100px;
   background: none;
   border: none;
   cursor: pointer;
@@ -212,6 +212,14 @@ onMounted(async () => {
   justify-content: center;
   align-items: center;
   z-index: 1000; /* 다른 요소 위에 떠 있도록 */
+}
+
+/* 노트북 & 태블릿 가로 (해상도 768px ~)*/
+@media all and (min-width: 768px) {
+  .gacha-button {
+    right: 50%;
+    transform: translateX(365px);
+  }
 }
 
 .gacha-button img {

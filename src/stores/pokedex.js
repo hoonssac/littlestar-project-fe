@@ -1,9 +1,10 @@
-import { ref, reactive, computed, toRefs, watch } from 'vue';
+import { ref, reactive, computed, watch, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import monsterBallImage from '@/assets/images/monster-ball.png';
 import { useAuthStore } from './authStore';
+import { getUserInfo } from '@/apis/users';
 
 export const usePokedexStore = defineStore('pokedex', () => {
   const pokedex = ref([]);
@@ -182,7 +183,17 @@ export const usePokedexStore = defineStore('pokedex', () => {
     selectedPokemon.value = null;
   };
 
-  // 가챠 관련 요소 시작
+  const closeGachaModal = () => {
+    isModalVisible.value = false;
+  
+    // ✅ 다른 페이지로 이동 후 다시 가챠 페이지로 이동 (라우터 트릭 사용)
+    router.replace('/temp'); // 1️⃣ 임시 페이지로 이동
+    setTimeout(() => {
+      router.replace('/gacha'); // 2️⃣ 다시 가챠 페이지로 이동 (리렌더링 유도)
+    }, 30); // 🔹 50ms 정도 텀을 주면 Vue가 정상적으로 감지함
+  };
+
+  // 가챠 함수 시작
 
   // 포켓몬 뽑기 실행
   const drawPokemon = async () => {
@@ -209,6 +220,21 @@ export const usePokedexStore = defineStore('pokedex', () => {
     // 유저 정보 업데이트 (포켓몬 추가, 마일리지 차감)
     user.pokemon_ids.push(Number(newPokemon.id));
     user.mileage -= 5000;
+    console.log('🔴 마일리지 차감 완료, 현재 마일리지:', user.mileage);
+    console.log('🧐 authStore 상태:', authStore);
+    // ✅ 새로운 객체로 user 업데이트 (Vue가 변경 감지 가능하도록)
+    authStore.user = { ...authStore.user, mileage: user.mileage };
+    console.log('🔴 authStore.user 업데이트 완료!:', user.mileage);
+
+    // userMileage.value = user.mileage;
+    // console.log('🔄 즉시 반영된 마일리지:', userMileage.value);
+    // ✅ fetchMileageData를 먼저 호출하여 프로그래스 바 즉시 반영
+
+    // ✅ nextTick() 사용해서 렌더링 보장
+    await nextTick();
+    console.log('🟢 nextTick 이후 ProgressBar 강제 업데이트됨!');
+    fetchMileageData();
+    updateProgressBar();
 
     // 서버에 업데이트
     try {
@@ -218,10 +244,14 @@ export const usePokedexStore = defineStore('pokedex', () => {
       });
       isModalVisible.value = true;
       console.log(`🎉 ${newPokemon.name} 획득!`);
+      updateProgressBar();
       return newPokemon;
     } catch (e) {
       console.error('포켓몬 뽑기 실패:', e);
       return null;
+    } finally {
+      await fetchUser();
+      await fetchMileageData();
     }
   };
 
@@ -243,18 +273,27 @@ export const usePokedexStore = defineStore('pokedex', () => {
   };
 
   const fetchMileageData = async () => {
+    const fetchUser = async () => {
+      if (authStore.user) {
+        await getUserInfo(authStore.user.id);
+      }
+    };
+    await fetchUser();
+
     if (authStore.user) {
       userMileage.value = authStore.user.mileage;
       console.log('fetchMileageData 실행됨, userMileage: ', userMileage.value);
     }
   };
 
-  // ✅ ProgressBar 적용할 값 계산 (0~100%)
-  const userMileageDegree = computed(() => {
-    return authStore.user && authStore.user.mileage !== undefined
-      ? Math.min((userMileage.value / 5000) * 100, 100)
-      : 0.5; // ✅ 안전한 기본값 설정
-  });
+  // // ✅ ProgressBar 적용할 값 계산 (0~100%)
+  // const userMileageDegree = computed(() => {
+  //   return authStore.user && authStore.user.mileage !== undefined
+  //     ? Math.min((userMileage.value / 5000) * 100, 100)
+  //     : 0.5; // ✅ 안전한 기본값 설정
+  // });
+
+  const userMileageDegree = ref(0); // ✅ 초기값 0
   // ✅ authStore.user가 변경될 때 콘솔 확인
   watch(
     () => authStore.user,
@@ -266,6 +305,32 @@ export const usePokedexStore = defineStore('pokedex', () => {
     },
     { immediate: true } // ⭐ `immediate: true`로 처음에도 실행되도록 함
   );
+
+  // Progress Bar 강제 리렌더링을 위한 key
+  const progressBarKey = ref(0);
+
+  watch(
+    () => authStore.user?.mileage,
+    (newMileage) => {
+      if (newMileage !== undefined) {
+        userMileageDegree.value = Math.min((newMileage / 5000) * 100, 100);
+        console.log(
+          '🔄 ProgressBar 업데이트됨! 최신 마일리지:',
+          userMileageDegree.value
+        );
+      }
+    },
+    { immediate: true }
+  );
+
+  const updateProgressBar = () => {
+    userMileage.value = authStore.user.mileage;
+    userMileageDegree.value = Math.min((userMileage.value / 5000) * 100, 100);
+    console.log(
+      '🔄 ProgressBar 강제 업데이트! 최신 마일리지:',
+      userMileage.value
+    );
+  };
 
   return {
     user,
@@ -283,6 +348,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     openModal,
     isModalVisible,
     closeModal,
+    closeGachaModal,
     drawPokemon,
     handleGacha,
     isDrawing,

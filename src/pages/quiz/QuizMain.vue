@@ -62,10 +62,12 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 import TodayLimitModal from '@/components/quiz/TodayLimitModal.vue'; // 모달 컴포넌트
 import CustomButton from '@/components/common/CustomButton.vue';
+import { useAuthStore } from '@/stores/authStore';
 
 const router = useRouter();
 const showButton = ref(false);
 const showModal = ref(false);
+const authStore = useAuthStore();
 
 function getTodayDateString() {
   const today = new Date();
@@ -74,7 +76,8 @@ function getTodayDateString() {
 
 const goToQuiz = async () => {
   try {
-    const res = await axios.get('/api/users/1'); // 임시 사용자
+    const userId = authStore.user.id;
+    const res = await axios.get(`/api/users/${userId}`); // 임시 사용자
     const lastAnswered = res.data.last_answered_date;
     const today = getTodayDateString();
 
@@ -96,7 +99,7 @@ onMounted(() => {
 <style scoped>
 .quiz-intro {
   height: 100%;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;

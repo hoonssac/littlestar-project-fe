@@ -11,9 +11,6 @@
 import teamRocket from '@/assets/images/team-rocket.png';
 import { onMounted } from 'vue';
 
-onMounted(() => {
-  console.log('onmount');
-});
 defineProps({
   show: {
     type: Boolean,

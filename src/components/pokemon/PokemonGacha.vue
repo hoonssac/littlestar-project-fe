@@ -26,8 +26,8 @@
       <div class="button-container">
         <CustomButton
           category="secondary"
-          class="fixed-modal-button"
-          @click="backToPokedex">
+          class="fixed-modal-button">
+          <!-- @click="backToPokedex"추가 필요 -->
           도감 확인</CustomButton
         >
         <CustomButton
@@ -77,7 +77,7 @@
                 </div>
                 <CustomButton
                   class="result-check-button"
-                  @click="closeModal"
+                  @click="closeGachaModal"
                   >확인</CustomButton
                 >
               </div>
@@ -98,7 +98,6 @@ import pokemonGachaImage from '@/assets/images/pokemon-gacha.png';
 import IconMileage from '../common/icons/IconMileage.vue';
 import ProgressBar from '../common/ProgressBar.vue';
 
-
 const pokedexStore = usePokedexStore();
 const authStore = useAuthStore();
 const user = pokedexStore.user;
@@ -109,12 +108,11 @@ const handleGacha = pokedexStore.handleGacha;
 const isDrawing = computed(() => pokedexStore.isDrawing);
 const selectedPokemon = computed(() => pokedexStore.selectedPokemon);
 const isModalVisible = computed(() => pokedexStore.isModalVisible);
-const closeModal = pokedexStore.closeModal;
+const closeGachaModal = pokedexStore.closeGachaModal;
 const maxMileage = pokedexStore.maxMileage;
 const userMileage = pokedexStore.userMileage;
 const userMileageDegree = pokedexStore.userMileageDegree;
 const fetchMileageData = pokedexStore.fetchMileageData;
-
 
 onMounted(async () => {
   await fetchUser();
@@ -123,8 +121,8 @@ onMounted(async () => {
   console.log('가챠 페이지 - fetchPokedex 완료!', pokedex);
   pokedexStore.calculateMainPokemon();
   await fetchMileageData();
-  console.log('유저 마일리지 불러옴',  authStore.user.mileage)
-  console.log(userMileageDegree)
+  console.log('유저 마일리지 불러옴', authStore.user.mileage);
+  console.log(userMileageDegree);
   console.log('onMounted 실행됨!');
   user.value = { ...user.value };
 });
