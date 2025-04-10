@@ -4,22 +4,33 @@
       "id": "1",
       "username": "피카츄777",
       "password": "pikachu777",
-      "last_answered_date": "2025-04-09",
-      "pokemon_ids": [1, 4, 9],
-      "main_pokemon_id": 4,
+      "last_answered_date": "2025-04-10",
+      "pokemon_ids": [1, 9, 39],
+      "main_pokemon_id": 39,
       "question_ids": [1, 7],
-      "mileage": 34050,
-      "ticket_count": 1
+      "mileage": 42550,
+      "ticket_count": 0
     },
     {
-      "id": "fa8a",
-      "username": "asdf",
+      "id": "28a2",
+      "username": "지우",
       "password": "1234",
       "last_answered_date": "2025-04-09",
       "pokemon_ids": [7],
       "main_pokemon_id": 7,
       "question_ids": [],
-      "mileage": 0,
+      "mileage": 14001,
+      "ticket_count": 0
+    },
+    {
+      "id": "7207",
+      "username": "하이",
+      "password": "1234",
+      "last_answered_date": "2025-04-10",
+      "pokemon_ids": [4],
+      "main_pokemon_id": 4,
+      "question_ids": [],
+      "mileage": 11500,
       "ticket_count": 0
     }
   ],
@@ -1601,6 +1612,42 @@
       "is_income": false,
       "amount": "2000",
       "memo": "777",
+      "category_id": "7759"
+    },
+    {
+      "id": "069d",
+      "user_id": 1,
+      "date": "2025-04-10",
+      "is_income": true,
+      "amount": "1000",
+      "memo": "1",
+      "category_id": "e4a1"
+    },
+    {
+      "id": "8ab6",
+      "user_id": 1,
+      "date": "2025-04-16",
+      "is_income": true,
+      "amount": "2000",
+      "memo": "22",
+      "category_id": "e4a1"
+    },
+    {
+      "id": "75a2",
+      "user_id": 1,
+      "date": "2025-04-01",
+      "is_income": true,
+      "amount": "9000",
+      "memo": "33",
+      "category_id": "9efe"
+    },
+    {
+      "id": "c008",
+      "user_id": 1,
+      "date": "2025-04-12",
+      "is_income": false,
+      "amount": "9000",
+      "memo": "88",
       "category_id": "7759"
     }
   ],

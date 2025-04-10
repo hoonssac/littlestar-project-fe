@@ -5,6 +5,8 @@
       <p class="mileage-text">{{ userMileage }} / 5000</p>
       <IconMileage color="#FAB809" size="20" />
     </div>
+    <CustomButton @click="showModal = true">사용 방법</CustomButton>
+    <Help :show="showModal" @close="showModal = false" />
 
     <div v-if="pokedex !== null" class="info-container" size="small">
       <p>No.{{ pokedex.id }} {{ pokedex.name }}</p>
@@ -39,7 +41,9 @@ import ProgressBar from '@/components/common/ProgressBar.vue';
 import { useAuthStore } from '@/stores/authStore';
 import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import Help from '@/components/home/Help.vue';
 
+const showModal = ref(false);
 const route = useRoute();
 const authStore = useAuthStore();
 const pokedex = ref(null);
@@ -164,5 +168,12 @@ const userMileageDegree = computed(() => {
   background-position: center;
   transform: translate(-50%, -50%);
   z-index: 0;
+}
+
+.help-button-container {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  z-index: 50;
 }
 </style>

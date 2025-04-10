@@ -2,8 +2,8 @@
   <div class="start-prompt">
     <div class="prompt-box">
       <div class="button-group">
-        <button @click="$emit('confirm')">{{ confirmText }}</button>
-        <button @click="$emit('cancel')">{{ cancelText }}</button>
+        <button @click="handleConfirm">{{ confirmText }}</button>
+        <button @click="handleCancel">{{ cancelText }}</button>
       </div>
     </div>
   </div>
@@ -11,12 +11,14 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import SelectSound from '@/assets/sounds/ButtonSound.mp3';
 
 const fullConfirm = '► 네 알겠습니다!';
 const fullCancel = '► 다음에 올게요!';
 
 const confirmText = ref('');
 const cancelText = ref('');
+const emit = defineEmits(['confirm', 'cancel']);
 
 onMounted(() => {
   typeText(fullConfirm, confirmText, 30);
@@ -35,6 +37,24 @@ function typeText(full, targetRef, speed = 30, delay = 0) {
       }
     }, speed);
   }, delay);
+}
+
+function playClickSound() {
+  const sound = new Audio(SelectSound);
+  sound.volume = 1.0; // 볼륨 최대로
+  sound.play().catch((err) => {
+    console.warn('효과음 재생 실패:', err);
+  });
+}
+
+function handleConfirm() {
+  playClickSound();
+  emit('confirm');
+}
+
+function handleCancel() {
+  playClickSound();
+  emit('cancel');
 }
 </script>
 
