@@ -13,9 +13,12 @@ import EditTransactionPage from '@/pages/money-tracker/EditTransactionPage.vue';
 import RecordListPage from '@/pages/money-tracker/TransactionListPage.vue';
 import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
 import Home from '@/pages/home/Home.vue';
+import Login from '@/pages/home/Login.vue';
+import SelectMainPokemon from '@/pages/home/SelectMainPokemon.vue';
 import AddTransactionPage from '@/pages/money-tracker/AddTransactionPage.vue';
 import PokemonGachaPage from '@/pages/pokemon/PokemonGachaPage.vue';
 import Statistics from '@/pages/statistics/Statistics.vue';
+import Signup from '@/pages/home/Signup.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +27,21 @@ const router = createRouter({
       path: '/',
       name: 'app',
       component: App,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: Signup,
+    },
+    {
+      path: '/select-main-pokemon',
+      name: 'select-main-pokemon',
+      component: SelectMainPokemon,
     },
     {
       path: '/home',

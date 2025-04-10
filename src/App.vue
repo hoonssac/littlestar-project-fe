@@ -1,16 +1,47 @@
 <template>
   <div class="main-container">
-    <TopBar />
+    <TopBar v-if="!isAuthPage" />
     <div class="app-container">
       <router-view></router-view>
     </div>
-    <BottomBar />
+    <BottomBar v-if="!isAuthPage" />
   </div>
 </template>
 
 <script setup>
+import { useRoute, useRouter } from 'vue-router';
 import BottomBar from './components/common/BottomBar.vue';
 import TopBar from './components/common/TopBar.vue';
+import { computed, onMounted, watch } from 'vue';
+import { useAuthStore } from './stores/authStore';
+import { getUserInfo } from './apis/users';
+
+const route = useRoute();
+const router = useRouter();
+const authStore = useAuthStore();
+
+const isAuthPage = computed(() => {
+  return ['/login', '/signup', '/select-main-pokemon'].includes(route.path);
+});
+
+onMounted(() => {
+  if (!authStore.user && !isAuthPage.value) {
+    router.push('/login');
+  }
+});
+
+const fetchUser = async () => {
+  if (authStore.user) {
+    await getUserInfo(authStore.user.id);
+  }
+};
+
+watch(
+  () => route.fullPath,
+  async () => {
+    await fetchUser();
+  }
+);
 </script>
 
 <style scoped>
