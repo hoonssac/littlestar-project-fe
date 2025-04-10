@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="m-container">
     <div class="card">
       <div class="card-body">
         <p>이름: {{}}</p>
@@ -66,7 +66,7 @@ const totalExpense = computed(() => {
 });
 </script>
 <style scoped>
-.container {
+.m-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,6 +95,7 @@ p {
 }
 hr {
   margin: 0.3rem;
+  border: 1px dashed;
 }
 
 .income-tab {

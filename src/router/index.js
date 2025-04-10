@@ -18,6 +18,9 @@ import SelectMainPokemon from '@/pages/home/SelectMainPokemon.vue';
 import AddTransactionPage from '@/pages/money-tracker/AddTransactionPage.vue';
 import PokemonGachaPage from '@/pages/pokemon/PokemonGachaPage.vue';
 import Statistics from '@/pages/statistics/Statistics.vue';
+import TransactionListPage from '@/pages/money-tracker/TransactionListPage.vue';
+import EditTransactionPage from '@/pages/money-tracker/EditTransactionPage.vue';
+import EarnMileagePage from '@/pages/money-tracker/EarnMileagePage.vue';
 import Signup from '@/pages/home/Signup.vue';
 
 const router = createRouter({
@@ -109,6 +112,11 @@ const router = createRouter({
       path: '/money-tracker/:categoryId/edit/:transactionId',
       name: 'money-tracker-category-edit-transactionId',
       component: EditTransactionPage,
+    },
+    {
+      path: '/money-tracker/:categoryId/mileage',
+      name: 'money-tracker-category-mileage',
+      component: EarnMileagePage,
     },
     {
       path: '/statistics',
