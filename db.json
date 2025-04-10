@@ -32,6 +32,17 @@
       "question_ids": [],
       "mileage": 11500,
       "ticket_count": 0
+    },
+    {
+      "id": "14d4",
+      "username": "asdf",
+      "password": "1234",
+      "last_answered_date": null,
+      "pokemon_ids": [7],
+      "main_pokemon_id": 7,
+      "question_ids": [],
+      "mileage": 0,
+      "ticket_count": 0
     }
   ],
   "pokedex": [
@@ -1562,7 +1573,7 @@
     },
     {
       "id": "6111",
-      "user_id": "fa8a",
+      "user_id": "14d4",
       "date": "2025-04-01",
       "is_income": false,
       "amount": "9000",
