@@ -21,10 +21,12 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import QuizProfessorTalk from '@/components/quiz/QuizProfessorTalk.vue';
 import QuizStartPrompt from '@/components/quiz/QuizStartPrompt.vue';
+import quizBgm from '@/assets/sounds/QuizIntroBgm.mp3'; // 💡 상대 경로에 맞게 수정!
+let audio = null;
 
 const router = useRouter();
 
@@ -39,6 +41,23 @@ const currentIndex = ref(0);
 const currentText = ref(dialogList[currentIndex.value]);
 
 const isLast = computed(() => currentIndex.value === dialogList.length - 1);
+
+onMounted(() => {
+  audio = new Audio(quizBgm);
+  audio.loop = true;
+  audio.volume = 0.4; // 🎵 볼륨 조절 (0~1)
+  audio.play().catch((err) => {
+    console.warn('오디오 자동 재생 실패:', err);
+  });
+});
+
+onUnmounted(() => {
+  if (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+    audio = null;
+  }
+});
 
 const nextDialog = () => {
   if (!isLast.value) {
