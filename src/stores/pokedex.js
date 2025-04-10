@@ -1,14 +1,36 @@
-import { ref, reactive, computed } from 'vue';
+import { ref, reactive, computed, watch, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import monsterBallImage from '@/assets/images/monster-ball.png';
+import { useAuthStore } from './authStore';
+import { getUserInfo } from '@/apis/users';
 
 export const usePokedexStore = defineStore('pokedex', () => {
   const pokedex = ref([]);
   const user = reactive({});
   const isLoading = ref(false);
   const mainPokemon = ref(null);
+  const authStore = useAuthStore();
+  const userMileage = ref(0);
+
+  // 마일리지
+  // const { mileage } = toRefs(user);
+  // const progressDegree = ref(0);
+
+  // `watch()`를 사용해 `mileage`가 변경될 때마다 progress 업데이트
+  // watch(
+  //   mileage,
+  //   (newMileage) => {
+  //     console.log('🟡 mileage 변경 감지됨!', newMileage);
+  //     const maxMileage = 5000;
+  //     progressDegree.value = Math.min(
+  //       ((newMileage % maxMileage) / maxMileage) * 100,
+  //       100
+  //     );
+  //   },
+  //   { immediate: true }
+  // ); // 🚀 컴포넌트가 마운트될 때도 한 번 실행!
 
   // 모달 상태
   const isModalVisible = ref(false);
@@ -21,7 +43,8 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get('/api/users/1');
+      const response = await axios.get(`/api/users/${authStore.user.id}`);
+      const users = response.data;
 
       // 전체 객체를 바꾸지 않고 내부 속성만 덮어씀
       Object.assign(user, response.data);
@@ -60,29 +83,22 @@ export const usePokedexStore = defineStore('pokedex', () => {
     return;
   };
 
-  // 보유/미보유 포켓몬 display 처리
   const displayPokedex = computed(() => {
     const ownedIds = user.pokemon_ids || [];
-  
-    // 보유한 포켓몬 먼저
-    const owned = pokedex.value
-      .filter((p) => ownedIds.includes(Number(p.id)))
-      .map((p) => ({
-        ...p,
-        isOwned: true, // ✅ 보유 여부 추가
-      }));
-  
-    // 미보유 포켓몬 뒤에 배치
-    const notOwned = pokedex.value
-      .filter((p) => !ownedIds.includes(Number(p.id)))
-      .map(() => ({
-        id: '?', // ✅ 원래 ID 숨기기
-        name: '???', // ✅ 원래 이름 숨기기
-        image_url: monsterBallImage, // ✅ 포켓볼 이미지 적용
-        isOwned: false, // ✅ 미보유 상태 추가
-      }));
-  
-    return [...owned, ...notOwned]; // ✅ 보유한 포켓몬 먼저 추가
+
+    // 기존 포켓몬 데이터 순서를 유지하면서 보유 여부 추가
+    return pokedex.value.map((p) => {
+      const isOwned = ownedIds.includes(Number(p.id));
+
+      return isOwned
+        ? { ...p, isOwned: true } // 보유한 포켓몬은 원래 데이터 유지
+        : {
+            id: '?', // 미보유 포켓몬은 ID 숨김
+            name: '???', // 이름 숨김
+            image_url: monsterBallImage, // 포켓볼 이미지 적용
+            isOwned: false, // 미보유 상태 추가
+          };
+    });
   });
 
   const calculateMainPokemon = () => {
@@ -142,7 +158,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     }
     const numericPokemonId = Number(pokemonId);
     try {
-      await axios.patch(`/api/users/1`, {
+      await axios.patch(`/api/users/${authStore.user.id}`, {
         main_pokemon_id: numericPokemonId,
       });
 
@@ -167,13 +183,23 @@ export const usePokedexStore = defineStore('pokedex', () => {
     selectedPokemon.value = null;
   };
 
-  // 가챠 관련 요소 시작
+  const closeGachaModal = () => {
+    isModalVisible.value = false;
+  
+    // ✅ 다른 페이지로 이동 후 다시 가챠 페이지로 이동 (라우터 트릭 사용)
+    router.replace('/temp'); // 1️⃣ 임시 페이지로 이동
+    setTimeout(() => {
+      router.replace('/gacha'); // 2️⃣ 다시 가챠 페이지로 이동 (리렌더링 유도)
+    }, 30); // 🔹 50ms 정도 텀을 주면 Vue가 정상적으로 감지함
+  };
 
-  // 가챠 실행 함수
+  // 가챠 함수 시작
+
+  // 포켓몬 뽑기 실행
   const drawPokemon = async () => {
     console.log('뽑기 직전 pokedex: ', pokedex);
-    if (user.ticket_count < 1) {
-      alert('사용 가능한 뽑기권이 없어요!');
+    if (user.mileage < 5000) {
+      alert(`마일리지가 부족해요! 필요한 마일리지: ${5000 - user.mileage}`);
       return;
     }
 
@@ -191,22 +217,41 @@ export const usePokedexStore = defineStore('pokedex', () => {
     const randomIndex = Math.floor(Math.random() * notOwnedPokemon.length);
     const newPokemon = notOwnedPokemon[randomIndex];
 
-    // 유저 정보 업데이트 (포켓몬 추가 & 티켓 차감)
+    // 유저 정보 업데이트 (포켓몬 추가, 마일리지 차감)
     user.pokemon_ids.push(Number(newPokemon.id));
-    user.ticket_count -= 1;
+    user.mileage -= 5000;
+    console.log('🔴 마일리지 차감 완료, 현재 마일리지:', user.mileage);
+    console.log('🧐 authStore 상태:', authStore);
+    // ✅ 새로운 객체로 user 업데이트 (Vue가 변경 감지 가능하도록)
+    authStore.user = { ...authStore.user, mileage: user.mileage };
+    console.log('🔴 authStore.user 업데이트 완료!:', user.mileage);
+
+    // userMileage.value = user.mileage;
+    // console.log('🔄 즉시 반영된 마일리지:', userMileage.value);
+    // ✅ fetchMileageData를 먼저 호출하여 프로그래스 바 즉시 반영
+
+    // ✅ nextTick() 사용해서 렌더링 보장
+    await nextTick();
+    console.log('🟢 nextTick 이후 ProgressBar 강제 업데이트됨!');
+    fetchMileageData();
+    updateProgressBar();
 
     // 서버에 업데이트
     try {
-      await axios.patch(`/api/users/1`, {
+      await axios.patch(`/api/users/${authStore.user.id}`, {
         pokemon_ids: user.pokemon_ids,
-        ticket_count: user.ticket_count,
+        mileage: user.mileage,
       });
       isModalVisible.value = true;
       console.log(`🎉 ${newPokemon.name} 획득!`);
+      updateProgressBar();
       return newPokemon;
     } catch (e) {
       console.error('포켓몬 뽑기 실패:', e);
       return null;
+    } finally {
+      await fetchUser();
+      await fetchMileageData();
     }
   };
 
@@ -227,6 +272,66 @@ export const usePokedexStore = defineStore('pokedex', () => {
     }
   };
 
+  const fetchMileageData = async () => {
+    const fetchUser = async () => {
+      if (authStore.user) {
+        await getUserInfo(authStore.user.id);
+      }
+    };
+    await fetchUser();
+
+    if (authStore.user) {
+      userMileage.value = authStore.user.mileage;
+      console.log('fetchMileageData 실행됨, userMileage: ', userMileage.value);
+    }
+  };
+
+  // // ✅ ProgressBar 적용할 값 계산 (0~100%)
+  // const userMileageDegree = computed(() => {
+  //   return authStore.user && authStore.user.mileage !== undefined
+  //     ? Math.min((userMileage.value / 5000) * 100, 100)
+  //     : 0.5; // ✅ 안전한 기본값 설정
+  // });
+
+  const userMileageDegree = ref(0); // ✅ 초기값 0
+  // ✅ authStore.user가 변경될 때 콘솔 확인
+  watch(
+    () => authStore.user,
+    (newUser) => {
+      if (newUser) {
+        console.log('🟢 유저 정보 업데이트됨!', newUser);
+        console.log('🔄 최신 userMileageDegree:', userMileageDegree.value);
+      }
+    },
+    { immediate: true } // ⭐ `immediate: true`로 처음에도 실행되도록 함
+  );
+
+  // Progress Bar 강제 리렌더링을 위한 key
+  const progressBarKey = ref(0);
+
+  watch(
+    () => authStore.user?.mileage,
+    (newMileage) => {
+      if (newMileage !== undefined) {
+        userMileageDegree.value = Math.min((newMileage / 5000) * 100, 100);
+        console.log(
+          '🔄 ProgressBar 업데이트됨! 최신 마일리지:',
+          userMileageDegree.value
+        );
+      }
+    },
+    { immediate: true }
+  );
+
+  const updateProgressBar = () => {
+    userMileage.value = authStore.user.mileage;
+    userMileageDegree.value = Math.min((userMileage.value / 5000) * 100, 100);
+    console.log(
+      '🔄 ProgressBar 강제 업데이트! 최신 마일리지:',
+      userMileage.value
+    );
+  };
+
   return {
     user,
     pokedex,
@@ -243,8 +348,11 @@ export const usePokedexStore = defineStore('pokedex', () => {
     openModal,
     isModalVisible,
     closeModal,
+    closeGachaModal,
     drawPokemon,
     handleGacha,
     isDrawing,
+    userMileageDegree,
+    fetchMileageData,
   };
 });

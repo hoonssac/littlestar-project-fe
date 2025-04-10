@@ -3,19 +3,25 @@
     <ProgressBar :degree="userMileageDegree" />
     <div class="mileage-container">
       <p class="mileage-text">{{ userMileage }} / 5000</p>
-      <IconMileage color="#FAB809" size="20" />
+      <IconMileage
+        color="#FAB809"
+        size="20" />
     </div>
     <IconHowto
       class="info-btn"
-      size="30"
+      size="35"
       color="gray"
-      @click="showModal = true"
-    >
+      @click="showModal = true">
       사용 방법
     </IconHowto>
-    <Help :show="showModal" @close="showModal = false" />
+    <Help
+      :show="showModal"
+      @close="showModal = false" />
 
-    <div v-if="pokedex !== null" class="info-container" size="small">
+    <div
+      v-if="pokedex !== null"
+      class="info-container"
+      size="small">
       <p>No.{{ pokedex.id }} {{ pokedex.name }}</p>
       <p>타입: {{ pokedex.types?.join(', ') }}</p>
       <p>크기: {{ pokedex.height }}cm</p>
@@ -27,12 +33,13 @@
         v-if="pokedex"
         class="main-pokemon-img"
         :src="pokedex.image_url"
-        :alt="pokedex.name"
-      />
+        :alt="pokedex.name" />
     </div>
 
     <div class="add-button-container">
-      <CustomButton class="add-button" size="large">
+      <CustomButton
+        class="add-button"
+        size="large">
         <p class="plus-text">+</p>
         <p>빠른 추가</p>
       </CustomButton>
@@ -143,7 +150,7 @@ const userMileageDegree = computed(() => {
   position: relative;
   z-index: 10;
   width: 400px;
-  transform: scale(1.4);
+  /* transform: scale(1.4); */
 }
 
 .add-button-container {

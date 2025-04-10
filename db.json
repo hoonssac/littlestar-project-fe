@@ -8,40 +8,7 @@
       "pokemon_ids": [1, 9, 39],
       "main_pokemon_id": 39,
       "question_ids": [1, 7],
-      "mileage": 42550,
-      "ticket_count": 0
-    },
-    {
-      "id": "28a2",
-      "username": "지우",
-      "password": "1234",
-      "last_answered_date": "2025-04-09",
-      "pokemon_ids": [7],
-      "main_pokemon_id": 7,
-      "question_ids": [],
-      "mileage": 14001,
-      "ticket_count": 0
-    },
-    {
-      "id": "7207",
-      "username": "하이",
-      "password": "1234",
-      "last_answered_date": "2025-04-10",
-      "pokemon_ids": [4],
-      "main_pokemon_id": 4,
-      "question_ids": [],
-      "mileage": 11500,
-      "ticket_count": 0
-    },
-    {
-      "id": "14d4",
-      "username": "asdf",
-      "password": "1234",
-      "last_answered_date": null,
-      "pokemon_ids": [7],
-      "main_pokemon_id": 7,
-      "question_ids": [],
-      "mileage": 0,
+      "mileage": 35550,
       "ticket_count": 0
     }
   ],
@@ -50,7 +17,10 @@
       "id": "1",
       "name": "이상해씨",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-      "types": ["풀", "독"],
+      "types": [
+        "풀",
+        "독"
+      ],
       "height": 70,
       "weight": 6.9
     },
@@ -58,7 +28,10 @@
       "id": "2",
       "name": "이상해풀",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-      "types": ["풀", "독"],
+      "types": [
+        "풀",
+        "독"
+      ],
       "height": 100,
       "weight": 13
     },
@@ -66,7 +39,10 @@
       "id": "3",
       "name": "이상해꽃",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
-      "types": ["풀", "독"],
+      "types": [
+        "풀",
+        "독"
+      ],
       "height": 200,
       "weight": 100
     },
@@ -74,7 +50,9 @@
       "id": "4",
       "name": "파이리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-      "types": ["불꽃"],
+      "types": [
+        "불꽃"
+      ],
       "height": 60,
       "weight": 8.5
     },
@@ -82,7 +60,9 @@
       "id": "5",
       "name": "리자드",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
-      "types": ["불꽃"],
+      "types": [
+        "불꽃"
+      ],
       "height": 110,
       "weight": 19
     },
@@ -90,7 +70,10 @@
       "id": "6",
       "name": "리자몽",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
-      "types": ["불꽃", "비행"],
+      "types": [
+        "불꽃",
+        "비행"
+      ],
       "height": 170,
       "weight": 90.5
     },
@@ -98,7 +81,9 @@
       "id": "7",
       "name": "꼬부기",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 50,
       "weight": 9
     },
@@ -106,7 +91,9 @@
       "id": "8",
       "name": "어니부기",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 100,
       "weight": 22.5
     },
@@ -114,7 +101,9 @@
       "id": "9",
       "name": "거북왕",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 160,
       "weight": 85.5
     },
@@ -122,7 +111,9 @@
       "id": "10",
       "name": "캐터피",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
-      "types": ["벌레"],
+      "types": [
+        "벌레"
+      ],
       "height": 30,
       "weight": 2.9
     },
@@ -130,7 +121,9 @@
       "id": "11",
       "name": "단데기",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
-      "types": ["벌레"],
+      "types": [
+        "벌레"
+      ],
       "height": 70,
       "weight": 9.9
     },
@@ -138,7 +131,10 @@
       "id": "12",
       "name": "버터플",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
-      "types": ["벌레", "비행"],
+      "types": [
+        "벌레",
+        "비행"
+      ],
       "height": 110,
       "weight": 32
     },
@@ -146,7 +142,10 @@
       "id": "13",
       "name": "뿔충이",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png",
-      "types": ["벌레", "독"],
+      "types": [
+        "벌레",
+        "독"
+      ],
       "height": 30,
       "weight": 3.2
     },
@@ -154,7 +153,10 @@
       "id": "14",
       "name": "딱충이",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png",
-      "types": ["벌레", "독"],
+      "types": [
+        "벌레",
+        "독"
+      ],
       "height": 60,
       "weight": 10
     },
@@ -162,7 +164,10 @@
       "id": "15",
       "name": "독침붕",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png",
-      "types": ["벌레", "독"],
+      "types": [
+        "벌레",
+        "독"
+      ],
       "height": 100,
       "weight": 29.5
     },
@@ -170,7 +175,10 @@
       "id": "16",
       "name": "구구",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png",
-      "types": ["노말", "비행"],
+      "types": [
+        "노말",
+        "비행"
+      ],
       "height": 30,
       "weight": 1.8
     },
@@ -178,7 +186,10 @@
       "id": "17",
       "name": "피죤",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png",
-      "types": ["노말", "비행"],
+      "types": [
+        "노말",
+        "비행"
+      ],
       "height": 110,
       "weight": 30
     },
@@ -186,7 +197,10 @@
       "id": "18",
       "name": "피죤투",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png",
-      "types": ["노말", "비행"],
+      "types": [
+        "노말",
+        "비행"
+      ],
       "height": 150,
       "weight": 39.5
     },
@@ -194,7 +208,9 @@
       "id": "19",
       "name": "꼬렛",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 30,
       "weight": 3.5
     },
@@ -202,7 +218,9 @@
       "id": "20",
       "name": "레트라",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 70,
       "weight": 18.5
     },
@@ -210,7 +228,10 @@
       "id": "21",
       "name": "깨비참",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/21.png",
-      "types": ["노말", "비행"],
+      "types": [
+        "노말",
+        "비행"
+      ],
       "height": 30,
       "weight": 2
     },
@@ -218,7 +239,10 @@
       "id": "22",
       "name": "깨비드릴조",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png",
-      "types": ["노말", "비행"],
+      "types": [
+        "노말",
+        "비행"
+      ],
       "height": 120,
       "weight": 38
     },
@@ -226,7 +250,9 @@
       "id": "23",
       "name": "아보",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png",
-      "types": ["독"],
+      "types": [
+        "독"
+      ],
       "height": 200,
       "weight": 6.9
     },
@@ -234,7 +260,9 @@
       "id": "24",
       "name": "아보크",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png",
-      "types": ["독"],
+      "types": [
+        "독"
+      ],
       "height": 350,
       "weight": 65
     },
@@ -242,7 +270,9 @@
       "id": "25",
       "name": "피카츄",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-      "types": ["전기"],
+      "types": [
+        "전기"
+      ],
       "height": 40,
       "weight": 6
     },
@@ -250,7 +280,9 @@
       "id": "26",
       "name": "라이츄",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png",
-      "types": ["전기"],
+      "types": [
+        "전기"
+      ],
       "height": 80,
       "weight": 30
     },
@@ -258,7 +290,9 @@
       "id": "27",
       "name": "모래두지",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/27.png",
-      "types": ["땅"],
+      "types": [
+        "땅"
+      ],
       "height": 60,
       "weight": 12
     },
@@ -266,7 +300,9 @@
       "id": "28",
       "name": "고지",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/28.png",
-      "types": ["땅"],
+      "types": [
+        "땅"
+      ],
       "height": 100,
       "weight": 29.5
     },
@@ -274,7 +310,9 @@
       "id": "29",
       "name": "니드런♀",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png",
-      "types": ["독"],
+      "types": [
+        "독"
+      ],
       "height": 40,
       "weight": 7
     },
@@ -282,7 +320,9 @@
       "id": "30",
       "name": "니드리나",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/30.png",
-      "types": ["독"],
+      "types": [
+        "독"
+      ],
       "height": 80,
       "weight": 20
     },
@@ -290,7 +330,10 @@
       "id": "31",
       "name": "니드퀸",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png",
-      "types": ["독", "땅"],
+      "types": [
+        "독",
+        "땅"
+      ],
       "height": 130,
       "weight": 60
     },
@@ -298,7 +341,9 @@
       "id": "32",
       "name": "니드런♂",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/32.png",
-      "types": ["독"],
+      "types": [
+        "독"
+      ],
       "height": 50,
       "weight": 9
     },
@@ -306,7 +351,9 @@
       "id": "33",
       "name": "니드리노",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/33.png",
-      "types": ["독"],
+      "types": [
+        "독"
+      ],
       "height": 90,
       "weight": 19.5
     },
@@ -314,7 +361,10 @@
       "id": "34",
       "name": "니드킹",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png",
-      "types": ["독", "땅"],
+      "types": [
+        "독",
+        "땅"
+      ],
       "height": 140,
       "weight": 62
     },
@@ -322,7 +372,9 @@
       "id": "35",
       "name": "삐삐",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png",
-      "types": ["페어리"],
+      "types": [
+        "페어리"
+      ],
       "height": 60,
       "weight": 7.5
     },
@@ -330,7 +382,9 @@
       "id": "36",
       "name": "픽시",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png",
-      "types": ["페어리"],
+      "types": [
+        "페어리"
+      ],
       "height": 130,
       "weight": 40
     },
@@ -338,7 +392,9 @@
       "id": "37",
       "name": "식스테일",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/37.png",
-      "types": ["불꽃"],
+      "types": [
+        "불꽃"
+      ],
       "height": 60,
       "weight": 9.9
     },
@@ -346,7 +402,9 @@
       "id": "38",
       "name": "나인테일",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png",
-      "types": ["불꽃"],
+      "types": [
+        "불꽃"
+      ],
       "height": 110,
       "weight": 19.9
     },
@@ -354,7 +412,10 @@
       "id": "39",
       "name": "푸린",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png",
-      "types": ["노말", "페어리"],
+      "types": [
+        "노말",
+        "페어리"
+      ],
       "height": 50,
       "weight": 5.5
     },
@@ -362,7 +423,10 @@
       "id": "40",
       "name": "푸크린",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/40.png",
-      "types": ["노말", "페어리"],
+      "types": [
+        "노말",
+        "페어리"
+      ],
       "height": 100,
       "weight": 12
     },
@@ -370,7 +434,10 @@
       "id": "41",
       "name": "주뱃",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png",
-      "types": ["독", "비행"],
+      "types": [
+        "독",
+        "비행"
+      ],
       "height": 80,
       "weight": 7.5
     },
@@ -378,7 +445,10 @@
       "id": "42",
       "name": "골뱃",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/42.png",
-      "types": ["독", "비행"],
+      "types": [
+        "독",
+        "비행"
+      ],
       "height": 160,
       "weight": 55
     },
@@ -386,7 +456,10 @@
       "id": "43",
       "name": "뚜벅쵸",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/43.png",
-      "types": ["풀", "독"],
+      "types": [
+        "풀",
+        "독"
+      ],
       "height": 50,
       "weight": 5.4
     },
@@ -394,7 +467,10 @@
       "id": "44",
       "name": "냄새꼬",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png",
-      "types": ["풀", "독"],
+      "types": [
+        "풀",
+        "독"
+      ],
       "height": 80,
       "weight": 8.6
     },
@@ -402,7 +478,10 @@
       "id": "45",
       "name": "라플레시아",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/45.png",
-      "types": ["풀", "독"],
+      "types": [
+        "풀",
+        "독"
+      ],
       "height": 120,
       "weight": 18.6
     },
@@ -410,7 +489,10 @@
       "id": "46",
       "name": "파라스",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/46.png",
-      "types": ["벌레", "풀"],
+      "types": [
+        "벌레",
+        "풀"
+      ],
       "height": 30,
       "weight": 5.4
     },
@@ -418,7 +500,10 @@
       "id": "47",
       "name": "파라섹트",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/47.png",
-      "types": ["벌레", "풀"],
+      "types": [
+        "벌레",
+        "풀"
+      ],
       "height": 100,
       "weight": 29.5
     },
@@ -426,7 +511,10 @@
       "id": "48",
       "name": "콘팡",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/48.png",
-      "types": ["벌레", "독"],
+      "types": [
+        "벌레",
+        "독"
+      ],
       "height": 100,
       "weight": 30
     },
@@ -434,7 +522,10 @@
       "id": "49",
       "name": "도나리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/49.png",
-      "types": ["벌레", "독"],
+      "types": [
+        "벌레",
+        "독"
+      ],
       "height": 150,
       "weight": 12.5
     },
@@ -442,7 +533,9 @@
       "id": "50",
       "name": "디그다",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png",
-      "types": ["땅"],
+      "types": [
+        "땅"
+      ],
       "height": 20,
       "weight": 0.8
     },
@@ -450,7 +543,9 @@
       "id": "51",
       "name": "닥트리오",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png",
-      "types": ["땅"],
+      "types": [
+        "땅"
+      ],
       "height": 70,
       "weight": 33.3
     },
@@ -458,7 +553,9 @@
       "id": "52",
       "name": "나옹",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 40,
       "weight": 4.2
     },
@@ -466,7 +563,9 @@
       "id": "53",
       "name": "페르시온",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/53.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 100,
       "weight": 32
     },
@@ -474,7 +573,9 @@
       "id": "54",
       "name": "고라파덕",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 80,
       "weight": 19.6
     },
@@ -482,7 +583,9 @@
       "id": "55",
       "name": "골덕",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/55.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 170,
       "weight": 76.6
     },
@@ -490,7 +593,9 @@
       "id": "56",
       "name": "망키",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/56.png",
-      "types": ["격투"],
+      "types": [
+        "격투"
+      ],
       "height": 50,
       "weight": 28
     },
@@ -498,7 +603,9 @@
       "id": "57",
       "name": "성원숭",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/57.png",
-      "types": ["격투"],
+      "types": [
+        "격투"
+      ],
       "height": 100,
       "weight": 32
     },
@@ -506,7 +613,9 @@
       "id": "58",
       "name": "가디",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/58.png",
-      "types": ["불꽃"],
+      "types": [
+        "불꽃"
+      ],
       "height": 70,
       "weight": 19
     },
@@ -514,7 +623,9 @@
       "id": "59",
       "name": "윈디",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png",
-      "types": ["불꽃"],
+      "types": [
+        "불꽃"
+      ],
       "height": 190,
       "weight": 155
     },
@@ -522,7 +633,9 @@
       "id": "60",
       "name": "발챙이",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/60.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 60,
       "weight": 12.4
     },
@@ -530,7 +643,9 @@
       "id": "61",
       "name": "슈륙챙이",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/61.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 100,
       "weight": 20
     },
@@ -538,7 +653,10 @@
       "id": "62",
       "name": "강챙이",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/62.png",
-      "types": ["물", "격투"],
+      "types": [
+        "물",
+        "격투"
+      ],
       "height": 130,
       "weight": 54
     },
@@ -546,7 +664,9 @@
       "id": "63",
       "name": "캐이시",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/63.png",
-      "types": ["에스퍼"],
+      "types": [
+        "에스퍼"
+      ],
       "height": 90,
       "weight": 19.5
     },
@@ -554,7 +674,9 @@
       "id": "64",
       "name": "윤겔라",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/64.png",
-      "types": ["에스퍼"],
+      "types": [
+        "에스퍼"
+      ],
       "height": 130,
       "weight": 56.5
     },
@@ -562,7 +684,9 @@
       "id": "65",
       "name": "후딘",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png",
-      "types": ["에스퍼"],
+      "types": [
+        "에스퍼"
+      ],
       "height": 150,
       "weight": 48
     },
@@ -570,7 +694,9 @@
       "id": "66",
       "name": "알통몬",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png",
-      "types": ["격투"],
+      "types": [
+        "격투"
+      ],
       "height": 80,
       "weight": 19.5
     },
@@ -578,7 +704,9 @@
       "id": "67",
       "name": "근육몬",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/67.png",
-      "types": ["격투"],
+      "types": [
+        "격투"
+      ],
       "height": 150,
       "weight": 70.5
     },
@@ -586,7 +714,9 @@
       "id": "68",
       "name": "괴력몬",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/68.png",
-      "types": ["격투"],
+      "types": [
+        "격투"
+      ],
       "height": 160,
       "weight": 130
     },
@@ -594,7 +724,10 @@
       "id": "69",
       "name": "모다피",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/69.png",
-      "types": ["풀", "독"],
+      "types": [
+        "풀",
+        "독"
+      ],
       "height": 70,
       "weight": 4
     },
@@ -602,7 +735,10 @@
       "id": "70",
       "name": "우츠동",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png",
-      "types": ["풀", "독"],
+      "types": [
+        "풀",
+        "독"
+      ],
       "height": 100,
       "weight": 6.4
     },
@@ -610,7 +746,10 @@
       "id": "71",
       "name": "우츠보트",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png",
-      "types": ["풀", "독"],
+      "types": [
+        "풀",
+        "독"
+      ],
       "height": 170,
       "weight": 15.5
     },
@@ -618,7 +757,10 @@
       "id": "72",
       "name": "왕눈해",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png",
-      "types": ["물", "독"],
+      "types": [
+        "물",
+        "독"
+      ],
       "height": 90,
       "weight": 45.5
     },
@@ -626,7 +768,10 @@
       "id": "73",
       "name": "독파리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/73.png",
-      "types": ["물", "독"],
+      "types": [
+        "물",
+        "독"
+      ],
       "height": 160,
       "weight": 55
     },
@@ -634,7 +779,10 @@
       "id": "74",
       "name": "꼬마돌",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png",
-      "types": ["바위", "땅"],
+      "types": [
+        "바위",
+        "땅"
+      ],
       "height": 40,
       "weight": 20
     },
@@ -642,7 +790,10 @@
       "id": "75",
       "name": "데구리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/75.png",
-      "types": ["바위", "땅"],
+      "types": [
+        "바위",
+        "땅"
+      ],
       "height": 100,
       "weight": 105
     },
@@ -650,7 +801,10 @@
       "id": "76",
       "name": "딱구리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/76.png",
-      "types": ["바위", "땅"],
+      "types": [
+        "바위",
+        "땅"
+      ],
       "height": 140,
       "weight": 300
     },
@@ -658,7 +812,9 @@
       "id": "77",
       "name": "포니타",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/77.png",
-      "types": ["불꽃"],
+      "types": [
+        "불꽃"
+      ],
       "height": 100,
       "weight": 30
     },
@@ -666,7 +822,9 @@
       "id": "78",
       "name": "날쌩마",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png",
-      "types": ["불꽃"],
+      "types": [
+        "불꽃"
+      ],
       "height": 170,
       "weight": 95
     },
@@ -674,7 +832,10 @@
       "id": "79",
       "name": "야돈",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/79.png",
-      "types": ["물", "에스퍼"],
+      "types": [
+        "물",
+        "에스퍼"
+      ],
       "height": 120,
       "weight": 36
     },
@@ -682,7 +843,10 @@
       "id": "80",
       "name": "야도란",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png",
-      "types": ["물", "에스퍼"],
+      "types": [
+        "물",
+        "에스퍼"
+      ],
       "height": 160,
       "weight": 78.5
     },
@@ -690,7 +854,10 @@
       "id": "81",
       "name": "코일",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png",
-      "types": ["전기", "강철"],
+      "types": [
+        "전기",
+        "강철"
+      ],
       "height": 30,
       "weight": 6
     },
@@ -698,7 +865,10 @@
       "id": "82",
       "name": "레어코일",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png",
-      "types": ["전기", "강철"],
+      "types": [
+        "전기",
+        "강철"
+      ],
       "height": 100,
       "weight": 60
     },
@@ -706,7 +876,10 @@
       "id": "83",
       "name": "파오리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/83.png",
-      "types": ["노말", "비행"],
+      "types": [
+        "노말",
+        "비행"
+      ],
       "height": 80,
       "weight": 15
     },
@@ -714,7 +887,10 @@
       "id": "84",
       "name": "두두",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/84.png",
-      "types": ["노말", "비행"],
+      "types": [
+        "노말",
+        "비행"
+      ],
       "height": 140,
       "weight": 39.2
     },
@@ -722,7 +898,10 @@
       "id": "85",
       "name": "두트리오",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/85.png",
-      "types": ["노말", "비행"],
+      "types": [
+        "노말",
+        "비행"
+      ],
       "height": 180,
       "weight": 85.2
     },
@@ -730,7 +909,9 @@
       "id": "86",
       "name": "쥬쥬",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/86.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 110,
       "weight": 90
     },
@@ -738,7 +919,10 @@
       "id": "87",
       "name": "쥬레곤",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/87.png",
-      "types": ["물", "얼음"],
+      "types": [
+        "물",
+        "얼음"
+      ],
       "height": 170,
       "weight": 120
     },
@@ -746,7 +930,9 @@
       "id": "88",
       "name": "질퍽이",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/88.png",
-      "types": ["독"],
+      "types": [
+        "독"
+      ],
       "height": 90,
       "weight": 30
     },
@@ -754,7 +940,9 @@
       "id": "89",
       "name": "질뻐기",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png",
-      "types": ["독"],
+      "types": [
+        "독"
+      ],
       "height": 120,
       "weight": 30
     },
@@ -762,7 +950,9 @@
       "id": "90",
       "name": "셀러",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 30,
       "weight": 4
     },
@@ -770,7 +960,10 @@
       "id": "91",
       "name": "파르셀",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png",
-      "types": ["물", "얼음"],
+      "types": [
+        "물",
+        "얼음"
+      ],
       "height": 150,
       "weight": 132.5
     },
@@ -778,7 +971,10 @@
       "id": "92",
       "name": "고오스",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png",
-      "types": ["고스트", "독"],
+      "types": [
+        "고스트",
+        "독"
+      ],
       "height": 130,
       "weight": 0.1
     },
@@ -786,7 +982,10 @@
       "id": "93",
       "name": "고우스트",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/93.png",
-      "types": ["고스트", "독"],
+      "types": [
+        "고스트",
+        "독"
+      ],
       "height": 160,
       "weight": 0.1
     },
@@ -794,7 +993,10 @@
       "id": "94",
       "name": "팬텀",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png",
-      "types": ["고스트", "독"],
+      "types": [
+        "고스트",
+        "독"
+      ],
       "height": 150,
       "weight": 40.5
     },
@@ -802,7 +1004,10 @@
       "id": "95",
       "name": "롱스톤",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png",
-      "types": ["바위", "땅"],
+      "types": [
+        "바위",
+        "땅"
+      ],
       "height": 880,
       "weight": 210
     },
@@ -810,7 +1015,9 @@
       "id": "96",
       "name": "슬리프",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/96.png",
-      "types": ["에스퍼"],
+      "types": [
+        "에스퍼"
+      ],
       "height": 100,
       "weight": 32.4
     },
@@ -818,7 +1025,9 @@
       "id": "97",
       "name": "슬리퍼",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/97.png",
-      "types": ["에스퍼"],
+      "types": [
+        "에스퍼"
+      ],
       "height": 160,
       "weight": 75.6
     },
@@ -826,7 +1035,9 @@
       "id": "98",
       "name": "크랩",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/98.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 40,
       "weight": 6.5
     },
@@ -834,7 +1045,9 @@
       "id": "99",
       "name": "킹크랩",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 130,
       "weight": 60
     },
@@ -842,7 +1055,9 @@
       "id": "100",
       "name": "찌리리공",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png",
-      "types": ["전기"],
+      "types": [
+        "전기"
+      ],
       "height": 50,
       "weight": 10.4
     },
@@ -850,7 +1065,9 @@
       "id": "101",
       "name": "붐볼",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png",
-      "types": ["전기"],
+      "types": [
+        "전기"
+      ],
       "height": 120,
       "weight": 66.6
     },
@@ -858,7 +1075,10 @@
       "id": "102",
       "name": "아라리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/102.png",
-      "types": ["풀", "에스퍼"],
+      "types": [
+        "풀",
+        "에스퍼"
+      ],
       "height": 40,
       "weight": 2.5
     },
@@ -866,7 +1086,10 @@
       "id": "103",
       "name": "나시",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png",
-      "types": ["풀", "에스퍼"],
+      "types": [
+        "풀",
+        "에스퍼"
+      ],
       "height": 200,
       "weight": 120
     },
@@ -874,7 +1097,9 @@
       "id": "104",
       "name": "탕구리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/104.png",
-      "types": ["땅"],
+      "types": [
+        "땅"
+      ],
       "height": 40,
       "weight": 6.5
     },
@@ -882,7 +1107,9 @@
       "id": "105",
       "name": "텅구리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/105.png",
-      "types": ["땅"],
+      "types": [
+        "땅"
+      ],
       "height": 100,
       "weight": 45
     },
@@ -890,7 +1117,9 @@
       "id": "106",
       "name": "시라소몬",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/106.png",
-      "types": ["격투"],
+      "types": [
+        "격투"
+      ],
       "height": 150,
       "weight": 49.8
     },
@@ -898,7 +1127,9 @@
       "id": "107",
       "name": "홍수몬",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/107.png",
-      "types": ["격투"],
+      "types": [
+        "격투"
+      ],
       "height": 140,
       "weight": 50.2
     },
@@ -906,7 +1137,9 @@
       "id": "108",
       "name": "내루미",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/108.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 120,
       "weight": 65.5
     },
@@ -914,7 +1147,9 @@
       "id": "109",
       "name": "또가스",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/109.png",
-      "types": ["독"],
+      "types": [
+        "독"
+      ],
       "height": 60,
       "weight": 1
     },
@@ -922,7 +1157,9 @@
       "id": "110",
       "name": "또도가스",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png",
-      "types": ["독"],
+      "types": [
+        "독"
+      ],
       "height": 120,
       "weight": 9.5
     },
@@ -930,7 +1167,10 @@
       "id": "111",
       "name": "뿔카노",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/111.png",
-      "types": ["땅", "바위"],
+      "types": [
+        "땅",
+        "바위"
+      ],
       "height": 100,
       "weight": 115
     },
@@ -938,7 +1178,10 @@
       "id": "112",
       "name": "코뿌리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png",
-      "types": ["땅", "바위"],
+      "types": [
+        "땅",
+        "바위"
+      ],
       "height": 190,
       "weight": 120
     },
@@ -946,7 +1189,9 @@
       "id": "113",
       "name": "럭키",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/113.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 110,
       "weight": 34.6
     },
@@ -954,7 +1199,9 @@
       "id": "114",
       "name": "덩쿠리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/114.png",
-      "types": ["풀"],
+      "types": [
+        "풀"
+      ],
       "height": 100,
       "weight": 35
     },
@@ -962,7 +1209,9 @@
       "id": "115",
       "name": "캥카",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/115.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 220,
       "weight": 80
     },
@@ -970,7 +1219,9 @@
       "id": "116",
       "name": "쏘드라",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 40,
       "weight": 8
     },
@@ -978,7 +1229,9 @@
       "id": "117",
       "name": "시드라",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 120,
       "weight": 25
     },
@@ -986,7 +1239,9 @@
       "id": "118",
       "name": "콘치",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/118.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 60,
       "weight": 15
     },
@@ -994,7 +1249,9 @@
       "id": "119",
       "name": "왕콘치",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 130,
       "weight": 39
     },
@@ -1002,7 +1259,9 @@
       "id": "120",
       "name": "별가사리",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/120.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 80,
       "weight": 34.5
     },
@@ -1010,7 +1269,10 @@
       "id": "121",
       "name": "아쿠스타",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png",
-      "types": ["물", "에스퍼"],
+      "types": [
+        "물",
+        "에스퍼"
+      ],
       "height": 110,
       "weight": 80
     },
@@ -1018,7 +1280,10 @@
       "id": "122",
       "name": "마임맨",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png",
-      "types": ["에스퍼", "페어리"],
+      "types": [
+        "에스퍼",
+        "페어리"
+      ],
       "height": 130,
       "weight": 54.5
     },
@@ -1026,7 +1291,10 @@
       "id": "123",
       "name": "스라크",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/123.png",
-      "types": ["벌레", "비행"],
+      "types": [
+        "벌레",
+        "비행"
+      ],
       "height": 150,
       "weight": 56
     },
@@ -1034,7 +1302,10 @@
       "id": "124",
       "name": "루주라",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png",
-      "types": ["얼음", "에스퍼"],
+      "types": [
+        "얼음",
+        "에스퍼"
+      ],
       "height": 140,
       "weight": 40.6
     },
@@ -1042,7 +1313,9 @@
       "id": "125",
       "name": "에레브",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/125.png",
-      "types": ["전기"],
+      "types": [
+        "전기"
+      ],
       "height": 110,
       "weight": 30
     },
@@ -1050,7 +1323,9 @@
       "id": "126",
       "name": "마그마",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png",
-      "types": ["불꽃"],
+      "types": [
+        "불꽃"
+      ],
       "height": 130,
       "weight": 44.5
     },
@@ -1058,7 +1333,9 @@
       "id": "127",
       "name": "쁘사이저",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/127.png",
-      "types": ["벌레"],
+      "types": [
+        "벌레"
+      ],
       "height": 150,
       "weight": 55
     },
@@ -1066,7 +1343,9 @@
       "id": "128",
       "name": "켄타로스",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 140,
       "weight": 88.4
     },
@@ -1074,7 +1353,9 @@
       "id": "129",
       "name": "잉어킹",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 90,
       "weight": 10
     },
@@ -1082,7 +1363,10 @@
       "id": "130",
       "name": "갸라도스",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png",
-      "types": ["물", "비행"],
+      "types": [
+        "물",
+        "비행"
+      ],
       "height": 650,
       "weight": 235
     },
@@ -1090,7 +1374,10 @@
       "id": "131",
       "name": "라프라스",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png",
-      "types": ["물", "얼음"],
+      "types": [
+        "물",
+        "얼음"
+      ],
       "height": 250,
       "weight": 220
     },
@@ -1098,7 +1385,9 @@
       "id": "132",
       "name": "메타몽",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 30,
       "weight": 4
     },
@@ -1106,7 +1395,9 @@
       "id": "133",
       "name": "이브이",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 30,
       "weight": 6.5
     },
@@ -1114,7 +1405,9 @@
       "id": "134",
       "name": "샤미드",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/134.png",
-      "types": ["물"],
+      "types": [
+        "물"
+      ],
       "height": 100,
       "weight": 29
     },
@@ -1122,7 +1415,9 @@
       "id": "135",
       "name": "쥬피썬더",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png",
-      "types": ["전기"],
+      "types": [
+        "전기"
+      ],
       "height": 80,
       "weight": 24.5
     },
@@ -1130,7 +1425,9 @@
       "id": "136",
       "name": "부스터",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/136.png",
-      "types": ["불꽃"],
+      "types": [
+        "불꽃"
+      ],
       "height": 90,
       "weight": 25
     },
@@ -1138,7 +1435,9 @@
       "id": "137",
       "name": "폴리곤",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 80,
       "weight": 36.5
     },
@@ -1146,7 +1445,10 @@
       "id": "138",
       "name": "암나이트",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/138.png",
-      "types": ["바위", "물"],
+      "types": [
+        "바위",
+        "물"
+      ],
       "height": 40,
       "weight": 7.5
     },
@@ -1154,7 +1456,10 @@
       "id": "139",
       "name": "암스타",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/139.png",
-      "types": ["바위", "물"],
+      "types": [
+        "바위",
+        "물"
+      ],
       "height": 100,
       "weight": 35
     },
@@ -1162,7 +1467,10 @@
       "id": "140",
       "name": "투구",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/140.png",
-      "types": ["바위", "물"],
+      "types": [
+        "바위",
+        "물"
+      ],
       "height": 50,
       "weight": 11.5
     },
@@ -1170,7 +1478,10 @@
       "id": "141",
       "name": "투구푸스",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png",
-      "types": ["바위", "물"],
+      "types": [
+        "바위",
+        "물"
+      ],
       "height": 130,
       "weight": 40.5
     },
@@ -1178,7 +1489,10 @@
       "id": "142",
       "name": "프테라",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png",
-      "types": ["바위", "비행"],
+      "types": [
+        "바위",
+        "비행"
+      ],
       "height": 180,
       "weight": 59
     },
@@ -1186,7 +1500,9 @@
       "id": "143",
       "name": "잠만보",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png",
-      "types": ["노말"],
+      "types": [
+        "노말"
+      ],
       "height": 210,
       "weight": 460
     },
@@ -1194,7 +1510,10 @@
       "id": "144",
       "name": "프리져",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png",
-      "types": ["얼음", "비행"],
+      "types": [
+        "얼음",
+        "비행"
+      ],
       "height": 170,
       "weight": 55.4
     },
@@ -1202,7 +1521,10 @@
       "id": "145",
       "name": "썬더",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png",
-      "types": ["전기", "비행"],
+      "types": [
+        "전기",
+        "비행"
+      ],
       "height": 160,
       "weight": 52.6
     },
@@ -1210,7 +1532,10 @@
       "id": "146",
       "name": "파이어",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png",
-      "types": ["불꽃", "비행"],
+      "types": [
+        "불꽃",
+        "비행"
+      ],
       "height": 200,
       "weight": 60
     },
@@ -1218,7 +1543,9 @@
       "id": "147",
       "name": "미뇽",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png",
-      "types": ["드래곤"],
+      "types": [
+        "드래곤"
+      ],
       "height": 180,
       "weight": 3.3
     },
@@ -1226,7 +1553,9 @@
       "id": "148",
       "name": "신뇽",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/148.png",
-      "types": ["드래곤"],
+      "types": [
+        "드래곤"
+      ],
       "height": 400,
       "weight": 16.5
     },
@@ -1234,7 +1563,10 @@
       "id": "149",
       "name": "망나뇽",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png",
-      "types": ["드래곤", "비행"],
+      "types": [
+        "드래곤",
+        "비행"
+      ],
       "height": 220,
       "weight": 210
     },
@@ -1242,7 +1574,9 @@
       "id": "150",
       "name": "뮤츠",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png",
-      "types": ["에스퍼"],
+      "types": [
+        "에스퍼"
+      ],
       "height": 200,
       "weight": 122
     },
@@ -1250,7 +1584,9 @@
       "id": "151",
       "name": "뮤",
       "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
-      "types": ["에스퍼"],
+      "types": [
+        "에스퍼"
+      ],
       "height": 40,
       "weight": 4
     }
@@ -1259,7 +1595,12 @@
     {
       "id": "1",
       "question": "우리가 물건을 살 때 내는 돈은 무엇일까요?",
-      "options": ["용돈", "가격", "지갑", "저금통"],
+      "options": [
+        "용돈",
+        "가격",
+        "지갑",
+        "저금통"
+      ],
       "answer": "가격",
       "answer_index": 1,
       "explanation": "가격은 물건을 살 때 내는 돈이에요. 가격을 보고 살지 말지를 결정할 수 있어요."

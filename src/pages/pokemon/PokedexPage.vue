@@ -1,7 +1,5 @@
 <template>
-  <div class="main-container">
     <Pokedex></Pokedex>
-  </div>
 </template>
 <script setup>
 import { useRoute } from 'vue-router';

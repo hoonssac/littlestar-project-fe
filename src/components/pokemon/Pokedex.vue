@@ -87,8 +87,10 @@ import { RouterLink, RouterView } from 'vue-router';
 import CustomModal from '@/components/common/CustomModal.vue';
 import CustomButton from '@/components/common/CustomButton.vue';
 import monsterBallImage from '@/assets/images/monster-ball.png';
+import { useAuthStore } from '@/stores/authStore';
 
 const pokedexStore = usePokedexStore();
+const authStore = useAuthStore();
 
 const user = pokedexStore.user;
 const pokedex = computed(() => pokedexStore.pokedex);
@@ -107,6 +109,7 @@ const isOwned = computed(() => {
 const setMainPokemon = pokedexStore.setMainPokemon;
 const openModal = pokedexStore.openModal;
 const closeModal = pokedexStore.closeModal;
+const fetchMileageData = pokedexStore.fetchMileageData;
 
 onMounted(async () => {
   await fetchUser();
@@ -114,6 +117,7 @@ onMounted(async () => {
   await fetchPokedex();
   console.log('🧪 fetchPokedex 후 pokedex:', pokedex);
   pokedexStore.calculateMainPokemon();
+  await fetchMileageData();
   console.log('onMounted 실행됨!');
 });
 </script>
@@ -200,7 +204,7 @@ onMounted(async () => {
 .gacha-button {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 100px;
   background: none;
   border: none;
   cursor: pointer;
@@ -208,6 +212,14 @@ onMounted(async () => {
   justify-content: center;
   align-items: center;
   z-index: 1000; /* 다른 요소 위에 떠 있도록 */
+}
+
+/* 노트북 & 태블릿 가로 (해상도 768px ~)*/
+@media all and (min-width: 768px) {
+  .gacha-button {
+    right: 50%;
+    transform: translateX(365px);
+  }
 }
 
 .gacha-button img {
