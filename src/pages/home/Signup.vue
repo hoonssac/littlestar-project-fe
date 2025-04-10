@@ -50,6 +50,7 @@
 </template>
 
 <script setup>
+import { isUsernameTaken } from '@/apis/users';
 import CustomButton from '@/components/common/CustomButton.vue';
 import TeamRocketAlert from '@/components/common/TeamRocketAlert.vue';
 import { useSignupStore } from '@/stores/signupStore';
@@ -62,11 +63,11 @@ const router = useRouter();
 
 const username = ref();
 const password = ref();
-const age = ref();
+const age = ref('');
 const showAlert = ref(false);
 const alertMessage = ref('');
 
-const handleNavigate = (routeName) => {
+const handleNavigate = async (routeName) => {
   if (
     username.value === undefined ||
     username.value.length < 2 ||
@@ -74,6 +75,14 @@ const handleNavigate = (routeName) => {
     !age.value
   ) {
     showTemporaryAlert('입력값을 다시 확인해주세요.');
+    return;
+  }
+
+  const isDuplicated = await isUsernameTaken(username.value);
+  console.log('hihi');
+  if (isDuplicated) {
+    console.log('hellohello');
+    showTemporaryAlert('이미 존재하는 별명입니다.');
     return;
   }
 
