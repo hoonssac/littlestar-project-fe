@@ -5,6 +5,7 @@ import axios from 'axios';
 import monsterBallImage from '@/assets/images/monster-ball.png';
 import { useAuthStore } from './authStore';
 import { getUserInfo } from '@/apis/users';
+import TeamRocketAlert from '@/components/common/TeamRocketAlert.vue';
 
 export const usePokedexStore = defineStore('pokedex', () => {
   const pokedex = ref([]);
@@ -40,6 +41,10 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const route = useRoute(); // 현재 라우트 정보 가져오기
   const router = useRouter(); // 라우터 인스턴스
   const pokemon = ref({});
+
+  // 로켓단 alert
+  const isAlertVisible = ref(false);
+  const alertMessage = ref('');
 
   const fetchUser = async () => {
     try {
@@ -141,8 +146,8 @@ export const usePokedexStore = defineStore('pokedex', () => {
     console.log('🔍 user.pokemon_ids:', user.pokemon_ids);
     console.log('🔍 pokemonId 타입:', typeof pokemonId, '값:', pokemonId);
 
-    if (!user || !user.pokemon_ids) {
-      console.log('❌ 유저 정보 없음 → false 반환');
+    if (!user || !user.pokemon_ids || pokemonId == undefined) {
+      console.log('false 반환');
       return false;
     }
 
@@ -152,8 +157,10 @@ export const usePokedexStore = defineStore('pokedex', () => {
   };
 
   const setMainPokemon = async (pokemonId) => {
-    if (!isOwnedPokemon(pokemonId)) {
-      alert('미지의 포켓몬은 대표 포켓몬으로 설정할 수 없어요!');
+    console.log('보윺 미보유?', isOwnedPokemon(pokemonId));
+    if (isOwnedPokemon(pokemonId) == false) {
+      console.log('alert창 떠야댐');
+      showAlert(`미지의 포켓몬은\n대표 포켓몬으로 설정할 수 없다옹!`);
       return;
     }
     const numericPokemonId = Number(pokemonId);
@@ -185,7 +192,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
   const closeGachaModal = () => {
     isModalVisible.value = false;
-  
+
     // ✅ 다른 페이지로 이동 후 다시 가챠 페이지로 이동 (라우터 트릭 사용)
     router.replace('/temp'); // 1️⃣ 임시 페이지로 이동
     setTimeout(() => {
@@ -199,7 +206,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const drawPokemon = async () => {
     console.log('뽑기 직전 pokedex: ', pokedex);
     if (user.mileage < 5000) {
-      alert(`마일리지가 부족해요! 필요한 마일리지: ${5000 - user.mileage}`);
+      showAlert(`${5000 - user.mileage}마일리지가 더 필요하다옹!`);
       return;
     }
 
@@ -209,7 +216,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     );
 
     if (notOwnedPokemon.length === 0) {
-      alert('모든 포켓몬을 보유하고 있어요!');
+      showAlert('모든 포켓몬을 보유하고 있어요!');
       return;
     }
 
@@ -332,6 +339,24 @@ export const usePokedexStore = defineStore('pokedex', () => {
     );
   };
 
+  // 로켓단 alert
+
+  const showAlert = (message) => {
+    console.log('🚨 showAlert 실행됨! 메시지:', message);
+    alertMessage.value = message;
+    isAlertVisible.value = true;
+    console.log(isAlertVisible.value);
+
+    // 3초 후 자동으로 알림 닫기
+    setTimeout(() => {
+      isAlertVisible.value = false;
+    }, 3000);
+  };
+
+  const backToPokedex = () => {
+    router.replace('/pokedex');
+  };
+
   return {
     user,
     pokedex,
@@ -354,5 +379,8 @@ export const usePokedexStore = defineStore('pokedex', () => {
     isDrawing,
     userMileageDegree,
     fetchMileageData,
+    isAlertVisible,
+    alertMessage,
+    backToPokedex
   };
 });
