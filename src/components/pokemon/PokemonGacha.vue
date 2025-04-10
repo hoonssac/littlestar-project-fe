@@ -1,16 +1,27 @@
 <template>
   <div class="container">
     <div class="gacha-container">
-      <img
-        src="@/assets/images/pokemon-gacha.png"
-        class="pokemon-gacha-image" />
-      <div class="available-ticket">
+      <div
+        class="gacha-button"
+        @click="handleGacha">
+        <img
+          src="@/assets/images/pokemon-gacha.png"
+          class="pokemon-gacha-image" />
+        <h1 class="gacha-5000mileage">5000<IconMileage></IconMileage></h1>
+      </div>
+      <div class="my-mileage">
         <!-- 사용 가능한 뽑기권 표시 -->
-        <p v-if="user.ticket_count > 0">
-          🎟 사용 가능한 뽑기권: {{ user.ticket_count }}개
-        </p>
-        <p v-else>❌ 사용 가능한 뽑기권이 없어요!</p>
-        <p>다음 뽑기권까지 필요한 마일리지</p>
+        <h4>나의 마일리지</h4>
+        <div class="my-mileage-amount">
+          <h4>0</h4>
+          <h4>5000</h4>
+        </div>
+        <div class="progress-wrapper">
+          <ProgressBar
+            :degree="progressDegree"
+            class="gacha-progress-bar"></ProgressBar>
+          <p>현재 진행률: {{ progressDegree }}%</p>
+        </div>
       </div>
 
       <div class="button-container">
@@ -84,6 +95,8 @@ import { usePokedexStore } from '@/stores/pokedex';
 import CustomButton from '../common/CustomButton.vue';
 import CustomModal from '../common/CustomModal.vue';
 import pokemonGachaImage from '@/assets/images/pokemon-gacha.png';
+import IconMileage from '../common/icons/IconMileage.vue';
+import ProgressBar from '../common/ProgressBar.vue';
 
 const pokedexStore = usePokedexStore();
 const user = pokedexStore.user;
@@ -95,6 +108,8 @@ const isDrawing = computed(() => pokedexStore.isDrawing);
 const selectedPokemon = computed(() => pokedexStore.selectedPokemon);
 const isModalVisible = computed(() => pokedexStore.isModalVisible);
 const closeModal = pokedexStore.closeModal;
+const maxMileage = pokedexStore.maxMileage;
+const progressDegree = pokedex.progressDegree;
 
 onMounted(async () => {
   await fetchUser();
@@ -103,6 +118,7 @@ onMounted(async () => {
   console.log('가챠 페이지 - fetchPokedex 완료!', pokedex);
   pokedexStore.calculateMainPokemon();
   console.log('onMounted 실행됨!');
+  user.value = { ...user.value };
 });
 </script>
 <style scoped>
@@ -112,8 +128,9 @@ onMounted(async () => {
   align-items: center;
 }
 .pokemon-gacha-image {
-  width: 40%;
-  margin-top: 80px;
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .pokemon-gacha-modal-image {
@@ -122,14 +139,65 @@ onMounted(async () => {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.available-ticket {
-  font-size: 24px;
-  margin: 12px;
+
+.gacha-button {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  background-color: #fffdf3; /* 🌟 아주 연한 노란색 */
+  border-radius: 32px; /* 둥근 모서리 */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+  align-items: center; /* 가운데 정렬 */
+  justify-content: center; /* 내부 요소 중앙 정렬 */
+  cursor: pointer; /* 클릭 가능하도록 변경 */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  max-width: 320px; /* 🛠️ 최대 너비 제한 */
+  height: 400px;
+  color: #fab809;
+}
+
+.gacha-button:hover {
+  transform: scale(1.05); /* 마우스 올리면 살짝 커지게 */
+  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3); /* hover 시 그림자 강화 */
+}
+
+.gacha-5000mileage {
+  white-space: nowrap; /* 줄바꿈 방지 */
+  display: inline-flex; /* 요소가 한 줄에 유지되도록 설정 */
+  align-items: center; /* 아이콘과 텍스트 정렬 */
+}
+
+.my-mileage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
+  max-width: 410px;
+}
+
+.my-mileage-amount {
+  display: flex;
+  justify-content: space-between;
+  width: 410px;
+  color: #fab809;
+}
+
+.progress-wrapper {
+  max-width: 410px; /* ✅ 부모 요소에 너비 고정 */
+  width: 100%;
+  margin: 0 auto; /* ✅ 가운데 정렬 */
+}
+
+.gacha-progress-bar {
+  padding: 0;
+  width: 100%;
+  margin: 20px auto; /* ✅ 가운데 정렬 */
 }
 
 .button-container {
   display: flex;
   justify-content: space-evenly;
+  max-width: 410px;
   gap: 10px;
 }
 

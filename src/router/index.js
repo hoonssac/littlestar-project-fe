@@ -8,7 +8,6 @@ import QuizReward from '@/pages/quiz/QuizReward.vue';
 import MoneyTrackPage from '@/pages/money-tracker/MoneyTrackPage.vue';
 import IncomeCategoryPage from '@/pages/money-tracker/IncomeCategory.vue';
 import ExpenseCategoryPage from '@/pages/money-tracker/ExpenseCategory.vue';
-import RecordListPage from '@/pages/money-tracker/TransactionListPage.vue';
 import PokedexPage from '@/pages/pokemon/PokedexPage.vue';
 import Home from '@/pages/home/Home.vue';
 import AddTransactionPage from '@/pages/money-tracker/AddTransactionPage.vue';
@@ -70,26 +69,6 @@ const router = createRouter({
           component: ExpenseCategoryPage,
         },
       ],
-    },
-    {
-      path: '/money-tracker/income/:categoryId',
-      name: 'money-tracker-income-category',
-      component: TransactionListPage,
-    },
-    {
-      path: '/money-tracker/expense/:categoryId',
-      name: 'money-tracker-expense-category',
-      component: TransactionListPage,
-    },
-    {
-      path: '/money-tracker/:categoryId/add',
-      name: 'money-tracker-category-add',
-      component: AddTransactionPage,
-    },
-    {
-      path: '/money-tracker/:categoryId/edit/:transactionId',
-      name: 'money-tracker-category-edit-transactionId',
-      component: EditTransactionPage,
     },
     {
       path: '/statistics',
