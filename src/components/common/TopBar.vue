@@ -2,7 +2,7 @@
   <div class="top-container">
     <img class="logo" src="@/assets/images/logo.png" alt="" />
     <div class="mileage-container">
-      <p class="mileage-text">10</p>
+      <p class="mileage-text">{{ userMileage }}</p>
       <IconMileage color="#FAB809" size="27" />
     </div>
   </div>
@@ -10,6 +10,16 @@
 
 <script setup>
 import { IconMileage } from './icons';
+import { useAuthStore } from '@/stores/authStore';
+import { computed } from 'vue';
+
+const authStore = useAuthStore();
+
+const userMileage = computed(() => {
+  if (authStore.user) {
+    return authStore.user.mileage;
+  }
+});
 </script>
 
 <style scoped>

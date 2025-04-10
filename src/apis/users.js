@@ -38,4 +38,21 @@ const login = async (username, password) => {
   }
 };
 
-export { signup, login };
+const getUserInfo = async (id) => {
+  const authStore = useAuthStore();
+  try {
+    const response = await axios.get(`${BASEURI}/${id}`);
+
+    if (response.data) {
+      const user = response.data;
+      authStore.login(user);
+      return response.data;
+    }
+
+    return response.data;
+  } catch (err) {
+    console.log('users get 에러!!', err);
+  }
+};
+
+export { signup, login, getUserInfo };

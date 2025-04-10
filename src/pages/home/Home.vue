@@ -1,8 +1,8 @@
 <template>
   <div class="home-container">
-    <ProgressBar :degree="10" />
+    <ProgressBar :degree="userMileageDegree" />
     <div class="mileage-container">
-      <p class="mileage-text">500 / 5000</p>
+      <p class="mileage-text">{{ userMileage }} / 5000</p>
       <IconMileage color="#FAB809" size="20" />
     </div>
 
@@ -37,16 +37,35 @@ import CustomButton from '@/components/common/CustomButton.vue';
 import { IconMileage } from '@/components/common/icons';
 import ProgressBar from '@/components/common/ProgressBar.vue';
 import { useAuthStore } from '@/stores/authStore';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 const authStore = useAuthStore();
 const pokedex = ref(null);
+const userMileage = ref(0);
 
-onMounted(async () => {
+const fetchHomeData = async () => {
   if (authStore.user) {
     const data = await getPokedex(authStore.user.main_pokemon_id);
     pokedex.value = data;
+    userMileage.value = authStore.user.mileage;
   }
+};
+
+onMounted(fetchHomeData);
+
+watch(
+  () => route.path,
+  (newPath) => {
+    if (newPath === '/home') {
+      fetchPokedexData();
+    }
+  }
+);
+
+const userMileageDegree = computed(() => {
+  return Math.min((userMileage.value / 5000) * 100, 100);
 });
 </script>
 
