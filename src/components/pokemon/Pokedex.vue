@@ -87,8 +87,10 @@ import { RouterLink, RouterView } from 'vue-router';
 import CustomModal from '@/components/common/CustomModal.vue';
 import CustomButton from '@/components/common/CustomButton.vue';
 import monsterBallImage from '@/assets/images/monster-ball.png';
+import { useAuthStore } from '@/stores/authStore';
 
 const pokedexStore = usePokedexStore();
+const authStore = useAuthStore();
 
 const user = pokedexStore.user;
 const pokedex = computed(() => pokedexStore.pokedex);
@@ -107,6 +109,7 @@ const isOwned = computed(() => {
 const setMainPokemon = pokedexStore.setMainPokemon;
 const openModal = pokedexStore.openModal;
 const closeModal = pokedexStore.closeModal;
+const fetchMileageData = pokedexStore.fetchMileageData;
 
 onMounted(async () => {
   await fetchUser();
@@ -114,6 +117,7 @@ onMounted(async () => {
   await fetchPokedex();
   console.log('🧪 fetchPokedex 후 pokedex:', pokedex);
   pokedexStore.calculateMainPokemon();
+  await fetchMileageData();
   console.log('onMounted 실행됨!');
 });
 </script>

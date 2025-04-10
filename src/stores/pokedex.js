@@ -11,6 +11,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const isLoading = ref(false);
   const mainPokemon = ref(null);
   const authStore = useAuthStore();
+  const userMileage = ref(0);
 
   // 마일리지
   // const { mileage } = toRefs(user);
@@ -241,11 +242,30 @@ export const usePokedexStore = defineStore('pokedex', () => {
     }
   };
 
-  const progressDegree = computed(() => {
-    console.log('🟡 progressDegree 실행됨!', user.mileage);
-    const maxMileage = 5000;
-    return Math.min(((user.mileage % maxMileage) / maxMileage) * 100, 100);
+  const fetchMileageData = async () => {
+    if (authStore.user) {
+      userMileage.value = authStore.user.mileage;
+      console.log('fetchMileageData 실행됨, userMileage: ', userMileage.value);
+    }
+  };
+
+  // ✅ ProgressBar 적용할 값 계산 (0~100%)
+  const userMileageDegree = computed(() => {
+    return authStore.user && authStore.user.mileage !== undefined
+      ? Math.min((userMileage.value / 5000) * 100, 100)
+      : 0.5; // ✅ 안전한 기본값 설정
   });
+  // ✅ authStore.user가 변경될 때 콘솔 확인
+  watch(
+    () => authStore.user,
+    (newUser) => {
+      if (newUser) {
+        console.log('🟢 유저 정보 업데이트됨!', newUser);
+        console.log('🔄 최신 userMileageDegree:', userMileageDegree.value);
+      }
+    },
+    { immediate: true } // ⭐ `immediate: true`로 처음에도 실행되도록 함
+  );
 
   return {
     user,
@@ -266,6 +286,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     drawPokemon,
     handleGacha,
     isDrawing,
-    progressDegree,
+    userMileageDegree,
+    fetchMileageData,
   };
 });
