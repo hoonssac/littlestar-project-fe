@@ -76,6 +76,7 @@ import { useAuthStore } from '@/stores/authStore';
 import { getUserInfo } from '@/apis/users';
 import GetMileageSound from '@/assets/sounds/GetMileage.mp3';
 import QuizWrongSound from '@/assets/sounds/QuizWrong.mp3';
+import SelectSound from '@/assets/sounds/ButtonSound.mp3';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -98,7 +99,16 @@ const buttonCategory = computed(() => {
   return 'secondary';
 });
 
+function playClickSound() {
+  const audio = new Audio(SelectSound);
+  audio.volume = 1.0; // 🎵 소리 크기 최대로
+  audio.play().catch((err) => {
+    console.warn('효과음 재생 실패:', err);
+  });
+}
+
 function handleButtonClick() {
+  playClickSound();
   if (isCorrect) {
     router.push('/pokedex');
   } else if (!showExplanation.value) {

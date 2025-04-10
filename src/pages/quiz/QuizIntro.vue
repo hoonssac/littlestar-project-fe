@@ -26,6 +26,8 @@ import { useRouter } from 'vue-router';
 import QuizProfessorTalk from '@/components/quiz/QuizProfessorTalk.vue';
 import QuizStartPrompt from '@/components/quiz/QuizStartPrompt.vue';
 import quizBgm from '@/assets/sounds/QuizIntroBgm.mp3'; // 💡 상대 경로에 맞게 수정!
+import SelectSound from '@/assets/sounds/ButtonSound.mp3';
+
 let audio = null;
 
 const router = useRouter();
@@ -61,6 +63,16 @@ onUnmounted(() => {
 
 const nextDialog = () => {
   if (!isLast.value) {
+    // 🎵 효과음 재생
+    const clickSound = new Audio(SelectSound);
+    clickSound.cloneNode().play();
+    clickSound.volume = 1.0; // 최대 볼륨
+
+    clickSound.play().catch((err) => {
+      console.warn('효과음 재생 실패:', err);
+    });
+
+    // 다음 대사로 진행
     currentIndex.value++;
     currentText.value = dialogList[currentIndex.value];
   }

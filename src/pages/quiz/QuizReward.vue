@@ -42,6 +42,7 @@ import MileageCounter from '@/components/quiz/MileageCounter.vue';
 import { useAuthStore } from '@/stores/authStore';
 import { getUserInfo } from '@/apis/users';
 import GetMileageSound from '@/assets/sounds/GetMileage.mp3';
+import SelectSound from '@/assets/sounds/ButtonSound.mp3';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -55,6 +56,14 @@ const authStore = useAuthStore();
 function getTodayDateString() {
   const today = new Date();
   return today.toISOString().split('T')[0];
+}
+
+function playClickSound() {
+  const audio = new Audio(SelectSound);
+  audio.volume = 1.0; // 🎵 소리 크기 최대로
+  audio.play().catch((err) => {
+    console.warn('효과음 재생 실패:', err);
+  });
 }
 
 onMounted(async () => {
@@ -93,6 +102,7 @@ onMounted(async () => {
 });
 
 function goToPokedex() {
+  playClickSound();
   router.push('/pokedex');
 }
 </script>
