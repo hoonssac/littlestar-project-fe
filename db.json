@@ -7,16 +7,16 @@
       "last_answered_date": "2025-04-09",
       "pokemon_ids": [
         1,
-        4,
-        9
+        9,
+        39
       ],
-      "main_pokemon_id": 4,
+      "main_pokemon_id": 39,
       "question_ids": [
         1,
         7
       ],
-      "mileage": 34050,
-      "ticket_count": 1
+      "mileage": 35050,
+      "ticket_count": 0
     }
   ],
   "pokedex": [
