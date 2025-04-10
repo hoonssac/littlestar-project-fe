@@ -2,7 +2,8 @@
   <div>
     <div class="modal-overlay">
       <div class="modal-container">
-        <h3>지출 카테고리 만들기</h3>
+        <h3 v-if="isIncome">수입 카테고리 만들기</h3>
+        <h3 v-else>지출 카테고리 만들기</h3>
         <p>새롭게 만들고 싶은</p>
         <p>카테고리 이름을 입력하세요</p>
         <input

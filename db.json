@@ -53,8 +53,11 @@
         7
       ],
       "main_pokemon_id": 7,
-      "question_ids": [],
-      "mileage": 0,
+      "question_ids": [
+        1,
+        7
+      ],
+      "mileage": 35550,
       "ticket_count": 0
     },
     {
@@ -67,7 +70,7 @@
       ],
       "main_pokemon_id": 4,
       "question_ids": [],
-      "mileage": 0,
+      "mileage": 1500,
       "ticket_count": 0
     }
   ],
@@ -2219,6 +2222,33 @@
       "amount": "3000",
       "memo": "2",
       "category_id": "626c"
+    },
+    {
+      "id": "380a",
+      "user_id": "33f8",
+      "date": "2025-04-10",
+      "is_income": true,
+      "amount": "9000",
+      "memo": "1",
+      "category_id": "0d87"
+    },
+    {
+      "id": "56c1",
+      "user_id": "33f8",
+      "date": "2025-04-17",
+      "is_income": true,
+      "amount": "9000",
+      "memo": "7",
+      "category_id": "0d87"
+    },
+    {
+      "id": "f4a2",
+      "user_id": "33f8",
+      "date": "2025-04-12",
+      "is_income": true,
+      "amount": "2000",
+      "memo": "4",
+      "category_id": "0d87"
     }
   ],
   "categories": [
@@ -2291,6 +2321,20 @@
       "transaction_ids": [],
       "is_income": false,
       "user_id": "14d4"
+    },
+    {
+      "id": "0d87",
+      "name": "세연수입1",
+      "transaction_ids": [],
+      "is_income": true,
+      "user_id": "33f8"
+    },
+    {
+      "id": "3fc7",
+      "name": "세연수입2",
+      "transaction_ids": [],
+      "is_income": true,
+      "user_id": "33f8"
     }
   ]
 }

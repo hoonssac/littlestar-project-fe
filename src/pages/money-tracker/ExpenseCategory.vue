@@ -5,6 +5,7 @@
         아직 카테고리가 없습니다.
       </div>
       <div
+        v-else
         class="list-group-item"
         :style="{
           backgroundColor: colors[index % colors.length],
@@ -55,8 +56,9 @@ const store = useMoneyTrackerStore();
 const router = useRouter();
 
 const colors = ['#1C2B59', '#3365A6', '#F2B807', '#BF920A'];
-onMounted(() => {
-  store.fetchCategories();
+onMounted(async () => {
+  await store.fetchCategories();
+  console.log(store.expenseCategories.length);
 });
 
 const getHeightPercentage = (categoryId) => {
