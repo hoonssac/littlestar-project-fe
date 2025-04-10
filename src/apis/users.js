@@ -55,4 +55,13 @@ const getUserInfo = async (id) => {
   }
 };
 
-export { signup, login, getUserInfo };
+const isUsernameTaken = async (username) => {
+  try {
+    const response = await axios.get(`${BASEURI}?username=${username}`);
+    return response.data.length > 0;
+  } catch (err) {
+    console.log('users get 에러!!', err);
+  }
+};
+
+export { signup, login, getUserInfo, isUsernameTaken };
