@@ -3,12 +3,15 @@ import { useRoute, useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import monsterBallImage from '@/assets/images/monster-ball.png';
+import { useAuthStore } from './authStore';
 
 export const usePokedexStore = defineStore('pokedex', () => {
   const pokedex = ref([]);
   const user = reactive({});
   const isLoading = ref(false);
   const mainPokemon = ref(null);
+  const authStore = useAuthStore();
+
   // 마일리지
   // const { mileage } = toRefs(user);
   // const progressDegree = ref(0);
@@ -38,7 +41,8 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get('/api/users/1');
+      const response = await axios.get(`/api/users/${authStore.user.id}`);
+      const users = response.data;
 
       // 전체 객체를 바꾸지 않고 내부 속성만 덮어씀
       Object.assign(user, response.data);
@@ -152,7 +156,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     }
     const numericPokemonId = Number(pokemonId);
     try {
-      await axios.patch(`/api/users/1`, {
+      await axios.patch(`/api/users/${authStore.user.id}`, {
         main_pokemon_id: numericPokemonId,
       });
 
@@ -207,7 +211,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
     // 서버에 업데이트
     try {
-      await axios.patch(`/api/users/1`, {
+      await axios.patch(`/api/users/${authStore.user.id}`, {
         pokemon_ids: user.pokemon_ids,
         mileage: user.mileage,
       });
@@ -238,7 +242,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
   };
 
   const progressDegree = computed(() => {
-    console.log('🟡 progressDegree 실행됨!', user.mileage); 
+    console.log('🟡 progressDegree 실행됨!', user.mileage);
     const maxMileage = 5000;
     return Math.min(((user.mileage % maxMileage) / maxMileage) * 100, 100);
   });

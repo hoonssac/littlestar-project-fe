@@ -4,18 +4,32 @@
       "id": "1",
       "username": "피카츄777",
       "password": "pikachu777",
-      "last_answered_date": "2025-04-06",
+      "last_answered_date": "2025-04-10",
       "pokemon_ids": [
         1,
-        4,
-        9
+        39
       ],
-      "main_pokemon_id": 4,
+      "main_pokemon_id": 39,
       "question_ids": [
         1,
         7
       ],
-      "mileage": 560,
+      "mileage": 1,
+      "ticket_count": 0
+    },
+    {
+      "id": "d80f",
+      "username": "저웅",
+      "password": "1234",
+      "lase_answered_date": null,
+      "pokemon_ids": [
+        1,
+        123,
+        3
+      ],
+      "main_pokemon_id": 3,
+      "question_ids": [],
+      "mileage": 3,
       "ticket_count": 0
     }
   ],
