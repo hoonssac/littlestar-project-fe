@@ -6,6 +6,7 @@ import monsterBallImage from '@/assets/images/monster-ball.png';
 import { useAuthStore } from './authStore';
 import { getUserInfo } from '@/apis/users';
 import TeamRocketAlert from '@/components/common/TeamRocketAlert.vue';
+import SelectSound from '@/assets/sounds/GetMileage.mp3';
 
 export const usePokedexStore = defineStore('pokedex', () => {
   const pokedex = ref([]);
@@ -45,6 +46,14 @@ export const usePokedexStore = defineStore('pokedex', () => {
   // 로켓단 alert
   const isAlertVisible = ref(false);
   const alertMessage = ref('');
+
+  function playClickSound() {
+    const audio = new Audio(SelectSound);
+    audio.volume = 0.6;
+    audio.play().catch((err) => {
+      console.warn('효과음 재생 실패:', err);
+    });
+  }
 
   const fetchUser = async () => {
     try {
@@ -192,7 +201,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
   const closeGachaModal = () => {
     isModalVisible.value = false;
-
+  
     // ✅ 다른 페이지로 이동 후 다시 가챠 페이지로 이동 (라우터 트릭 사용)
     router.replace('/temp'); // 1️⃣ 임시 페이지로 이동
     setTimeout(() => {
@@ -273,6 +282,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
       setTimeout(() => {
         selectedPokemon.value = newPokemon; // 2초 후 결과 표시
         isDrawing.value = false; // 뽑기 완료
+        playClickSound();
       }, 2000);
     } else {
       isModalVisible.value = false; // 뽑기 실패 시 모달 닫기
