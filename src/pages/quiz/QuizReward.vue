@@ -14,7 +14,7 @@
         />
 
         <p class="result-text fade-up delay-3">그래도 잘했어요!</p>
-        <p class="sub-text fade-up delay-4">500마일리지 획득</p>
+        <p class="sub-text fade-up delay-4">500 마일리지 획득</p>
       </div>
     </div>
 
