@@ -1542,7 +1542,7 @@
   "transactions": [
     {
       "id": "6110",
-      "user_id": 1,
+      "user_id": "1",
       "date": "2025-04-01",
       "is_income": true,
       "amount": "9000",
@@ -1550,8 +1550,17 @@
       "category_id": "67cb"
     },
     {
+      "id": "6111",
+      "user_id": "fa8a",
+      "date": "2025-04-01",
+      "is_income": false,
+      "amount": "9000",
+      "memo": "하하하",
+      "category_id": "8d53"
+    },
+    {
       "id": "a4f9",
-      "user_id": 1,
+      "user_id": "1",
       "date": "2025-04-18",
       "is_income": true,
       "amount": "9000",
@@ -1560,7 +1569,7 @@
     },
     {
       "id": "e616",
-      "user_id": 1,
+      "user_id": "1",
       "date": "2025-04-02",
       "is_income": true,
       "amount": "9000",
@@ -1569,7 +1578,7 @@
     },
     {
       "id": "03bc",
-      "user_id": 1,
+      "user_id": "1",
       "date": "2025-04-18",
       "is_income": true,
       "amount": "9000",
@@ -1578,7 +1587,7 @@
     },
     {
       "id": "aa23",
-      "user_id": 1,
+      "user_id": "1",
       "date": "2025-04-10",
       "is_income": false,
       "amount": "9000",
@@ -1587,7 +1596,7 @@
     },
     {
       "id": "92cc",
-      "user_id": 1,
+      "user_id": "1",
       "date": "2025-04-17",
       "is_income": false,
       "amount": "2000",
@@ -1647,6 +1656,12 @@
     {
       "id": "8d51",
       "name": "55",
+      "transaction_ids": [],
+      "is_income": false
+    },
+    {
+      "id": "8d53",
+      "name": "교통비",
       "transaction_ids": [],
       "is_income": false
     }
