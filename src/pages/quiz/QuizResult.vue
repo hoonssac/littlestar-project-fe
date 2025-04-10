@@ -29,7 +29,10 @@
           class="mileage fade-up delay-2"
         />
 
-        <p class="result-text fade-up delay-3">
+        <p
+          class="result-text fade-up delay-3"
+          :style="{ color: isCorrect ? '#000' : '#AE0000' }"
+        >
           {{ isCorrect ? '정답이에요!' : '틀렸어요!' }}
         </p>
 
@@ -76,6 +79,7 @@ const router = useRouter();
 const isCorrect = quizResult.isCorrect;
 const mileage = quizResult.mileage;
 const explanation = quizResult.explanation;
+const date = quizResult.date;
 
 const showExplanation = ref(false);
 
@@ -100,6 +104,11 @@ function handleButtonClick() {
   }
 }
 
+function getTodayDateString() {
+  const today = new Date();
+  return today.toISOString().split('T')[0];
+}
+
 onMounted(async () => {
   if (!isCorrect) return; // ❌ 오답일 경우 종료
 
@@ -109,6 +118,7 @@ onMounted(async () => {
 
     await axios.patch(`/api/users/1`, {
       mileage: currentMileage + 1000,
+      last_answered_date: getTodayDateString(),
     });
 
     console.log('정답 보상 1000 마일리지 지급 완료!');

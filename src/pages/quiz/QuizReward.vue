@@ -14,7 +14,7 @@
         />
 
         <p class="result-text fade-up delay-3">그래도 잘했어요!</p>
-        <p class="sub-text fade-up delay-4">500마일리지 획득</p>
+        <p class="sub-text fade-up delay-4">500 마일리지 획득</p>
       </div>
     </div>
 
@@ -46,6 +46,12 @@ const router = useRouter();
 const isCorrect = quizResult.isCorrect;
 const mileage = quizResult.mileage;
 const explanation = quizResult.explanation;
+const last_answered_date = quizResult.last_answered_date;
+
+function getTodayDateString() {
+  const today = new Date();
+  return today.toISOString().split('T')[0];
+}
 
 onMounted(async () => {
   try {
@@ -56,6 +62,7 @@ onMounted(async () => {
     // 마일리지 500 추가해서 PATCH 요청 보내기
     await axios.patch('/api/users/1', {
       mileage: currentMileage + 500,
+      last_answered_date: getTodayDateString(),
     });
 
     console.log('마일리지 지급 완료!');

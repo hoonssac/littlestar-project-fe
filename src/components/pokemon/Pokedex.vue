@@ -18,22 +18,32 @@
       <div v-else>
         <p>대표 포켓몬을 불러오는 중이에요...</p>
       </div>
+      <div class="pokedex-container">
+        <!-- 도감 시작 -->
+        <ul class="pokemon-list">
+          <li
+            class="pokemon-container"
+            v-for="pokemon in displayPokedex"
+            :key="pokemon.id + pokemon.name"
+            @click="openModal(pokemon)">
+            No. {{ pokemon.id }}
+            <img
+              :src="pokemon.isOwned ? pokemon.image_url : monsterBallImage"
+              alt="Pokemon Image"
+              :class="pokemon.isOwned ? 'pokemon-image' : 'pokeball-image'" />
+            {{ pokemon.name }}
+          </li>
+        </ul>
 
-      <!-- 도감 시작 -->
-      <ul class="pokemon-list">
-        <li
-          class="pokemon-container"
-          v-for="pokemon in displayPokedex"
-          :key="pokemon.id + pokemon.name"
-          @click="openModal(pokemon)">
-          No. {{ pokemon.id }}
+        <router-link
+          to="/gacha"
+          class="gacha-button">
           <img
-            :src="pokemon.image_url"
-            alt="Pokemon Image"
-            :class="pokemon.isOwned ? 'pokemon-image' : 'pokeball-image'" />
-          {{ pokemon.name }}
-        </li>
-      </ul>
+            src="@/assets/images/gacha.png"
+            alt="pokemon gacha" />
+        </router-link>
+        <router-view></router-view>
+      </div>
 
       <!-- 포켓몬 모달 -->
       <CustomModal
@@ -73,6 +83,7 @@
 <script setup>
 import { usePokedexStore } from '@/stores/pokedex';
 import { computed, onMounted, watchEffect } from 'vue';
+import { RouterLink, RouterView } from 'vue-router';
 import CustomModal from '@/components/common/CustomModal.vue';
 import CustomButton from '@/components/common/CustomButton.vue';
 import monsterBallImage from '@/assets/images/monster-ball.png';
@@ -128,7 +139,9 @@ onMounted(async () => {
   padding: 0;
   list-style: none;
 }
+
 .pokemon-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -181,5 +194,24 @@ onMounted(async () => {
 .modal-button-container {
   display: flex;
   justify-content: space-evenly;
+}
+
+/* ✅ 가챠 버튼 (container 내부에서 고정 위치) */
+.gacha-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 다른 요소 위에 떠 있도록 */
+}
+
+.gacha-button img {
+  width: 100px; /* 원하는 크기로 조절 */
+  height: auto;
 }
 </style>
