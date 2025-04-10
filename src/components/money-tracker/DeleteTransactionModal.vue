@@ -20,12 +20,14 @@
         </div>
       </div>
     </div>
+    <SuccessAlert :show="showAlert" :message="alertMessage" />
   </div>
 </template>
 <script setup>
 import CustomButton from '../common/CustomButton.vue';
 import { useMoneyTrackerStore } from '@/stores/moneyTrackerStore';
-
+import SuccessAlert from './SuccessAlert.vue';
+import { ref } from 'vue';
 const store = useMoneyTrackerStore();
 
 const props = defineProps({
@@ -35,11 +37,28 @@ const props = defineProps({
   },
 });
 
+const showAlert = ref(false);
+const alertMessage = ref('');
+
+const showTemporaryAlert = (message) => {
+  alertMessage.value = message;
+  showAlert.value = true;
+  setTimeout(() => {
+    showAlert.value = false;
+  }, 2000);
+};
+
 const deleteTransaction = async () => {
-  console.log(props.transactionId);
   await store.deleteTransaction(props.transactionId);
   await store.fetchTransactions();
-  store.closeDeleteTransactionModal();
+
+  showTemporaryAlert('삭제 완료!');
+
+  setTimeout(() => {
+    store.closeDeleteTransactionModal();
+  }, 2000);
+
+  // store.closeDeleteTransactionModal();
 };
 </script>
 <style scoped>

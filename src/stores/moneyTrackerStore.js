@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import axios from 'axios';
+import { useAuthStore } from './authStore';
 
 export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
+  const authStore = useAuthStore();
   const categories = ref([]);
   const incomeCategories = ref([]);
   const expenseCategories = ref([]);
@@ -14,8 +16,7 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
   //   1. 전체 카테고리 가져오기
   const fetchCategories = async () => {
     try {
-      const url = '/api/categories';
-      //   const url = 'http://localhost:3000/categories';
+      const url = `/api/categories?user_id=${authStore.user.id}`;
       const response = await axios.get(url);
       categories.value = response.data;
       // 수입/지출 카테고리 분리
@@ -29,8 +30,7 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
   //   2. 거래 내역 전체 가져오기
   const fetchTransactions = async () => {
     try {
-      //   const url = 'http://localhost:3000/transactions';
-      const url = '/api/transactions';
+      const url = `/api/transactions?user_id=${authStore.user.id}`;
       const response = await axios.get(url);
       transactions.value = response.data;
     } catch (error) {
@@ -45,8 +45,8 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
         name: categoryName,
         transaction_ids: [],
         is_income: isIncome,
+        user_id: authStore.user.id,
       };
-      //   const url = 'http://localhost:3000/categories';
       const url = '/api/categories';
       const response = await axios.post(url, data);
       categories.value.push(response.data);
@@ -70,27 +70,19 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
   };
 
   //   5. 트랜잭션 추가
-  const addTransaction = async (
-    userId,
-    date,
-    isIncome,
-    amount,
-    memo,
-    categoryId
-  ) => {
+  const addTransaction = async (date, isIncome, amount, memo, categoryId) => {
     try {
       let data = {
-        user_id: userId,
+        user_id: authStore.user.id,
         date: date,
         is_income: isIncome,
         amount: amount,
         memo: memo,
         category_id: categoryId,
       };
-      //   const url = 'http://localhost:3000/transactions';
       const url = '/api/transactions';
-      const response = await axios.post(url, data);
-      transactions.value.push(response.data);
+      await axios.post(url, data);
+      await fetchTransactions();
     } catch (error) {
       console.log(error);
     }
@@ -98,7 +90,6 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
 
   const editTransaction = async (transactionId, data) => {
     try {
-      //   const url = 'http://localhost:3000/transactions';
       const url = '/api/transactions';
       const response = await axios.put(url + `/${transactionId}`, data);
       const index = transactions.value.findIndex(

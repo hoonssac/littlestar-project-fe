@@ -71,8 +71,8 @@ import { onMounted, computed, ref } from 'vue';
 import { useMoneyTrackerStore } from '@/stores/moneyTrackerStore';
 import { useRouter } from 'vue-router';
 import CustomButton from '@/components/common/CustomButton.vue';
-import EditIcon from '@/assets/images/edit.png';
-import trashIcon from '@/assets/images/trash.png';
+import EditIcon from '@/assets/images/pencil.png';
+import trashIcon from '@/assets/images/bin.png';
 import DeleteTransactionModal from '@/components/money-tracker/DeleteTransactionModal.vue';
 const store = useMoneyTrackerStore();
 const currentRoute = useRoute();
@@ -86,8 +86,8 @@ const categoryName = computed(() => {
 
 const route = useRoute();
 
-onMounted(() => {
-  store.fetchTransactions();
+onMounted(async () => {
+  await store.fetchTransactions();
 });
 const filteredTransactions = computed(() => {
   return store
