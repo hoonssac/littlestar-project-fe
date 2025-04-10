@@ -47,13 +47,15 @@
           </button>
         </div>
 
-        <p class="transaction">
+        <p class="transaction" style="font-size: 1.2rem">
           {{ transaction.date }}
         </p>
-        <p class="transaction" style="font-size: 1.2rem">
+        <p class="transaction" style="font-size: 1.5rem">
           + {{ transaction.amount }}원
         </p>
-        <p class="transaction">{{ transaction.memo }}</p>
+        <p class="transaction" style="font-size: 1.3rem">
+          {{ transaction.memo }}
+        </p>
       </div>
     </div>
 
@@ -88,7 +90,12 @@ onMounted(() => {
   store.fetchTransactions();
 });
 const filteredTransactions = computed(() => {
-  return store.getTransactionsByCategoryId(id);
+  return store
+    .getTransactionsByCategoryId(id)
+    .slice()
+    .sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
 });
 
 const whichTransaction = ref(null);
@@ -110,7 +117,7 @@ const deleteHandler = (transactionId) => {
   margin: 1rem auto;
   border-radius: 25px;
   background-color: #dcebfd;
-  padding: 1rem;
+  padding: 0.3rem 1rem;
 
   border-style: solid;
   border-color: #4a483f;
@@ -157,7 +164,7 @@ const deleteHandler = (transactionId) => {
 .button-group {
   position: absolute;
   top: 10px;
-  right: 5px;
+  right: 10px;
   display: flex;
   gap: 4px;
 }

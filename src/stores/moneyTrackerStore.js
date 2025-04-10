@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import axios from 'axios';
 
 export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
@@ -99,7 +99,7 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
   const editTransaction = async (transactionId, data) => {
     try {
       //   const url = 'http://localhost:3000/transactions';
-      const url = 'http://localhost:3001/transactions';
+      const url = '/api/transactions';
       const response = await axios.put(url + `/${transactionId}`, data);
       const index = transactions.value.findIndex(
         (t) => t.id === Number(transactionId)
@@ -125,6 +125,64 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
       console.error('거래 삭제 오류', error);
     }
   };
+  const isCurrentMonth = (dateString) => {
+    const date = new Date(dateString);
+    const today = new Date();
+
+    return (
+      date.getFullYear() === today.getFullYear() &&
+      date.getMonth() === today.getMonth()
+    );
+  };
+
+  const incomeCategorySums = computed(() => {
+    const sums = {};
+
+    incomeCategories.value.forEach((category) => {
+      const categoryTransactions = transactions.value.filter(
+        (t) =>
+          String(t.category_id) === String(category.id) &&
+          isCurrentMonth(t.date)
+      );
+      sums[category.id] = categoryTransactions.reduce(
+        (acc, t) => (acc += Number(t.amount)),
+        0
+      );
+    });
+    return sums;
+  });
+
+  const expenseCategorySums = computed(() => {
+    const sums = {};
+
+    expenseCategories.value.forEach((category) => {
+      const categoryTransactions = transactions.value.filter(
+        (t) =>
+          String(t.category_id) === String(category.id) &&
+          isCurrentMonth(t.date)
+      );
+      sums[category.id] = categoryTransactions.reduce(
+        (acc, t) => (acc += Number(t.amount)),
+        0
+      );
+    });
+
+    return sums;
+  });
+
+  const totalIncome = computed(() => {
+    return Object.values(incomeCategorySums.value).reduce(
+      (acc, sum) => (acc += sum),
+      0
+    );
+  });
+
+  const totalExpense = computed(() => {
+    return Object.values(expenseCategorySums.value).reduce(
+      (acc, sum) => (acc += sum),
+      0
+    );
+  });
 
   const openAddCategoryModal = () => {
     isAddCategoryModalOpen.value = true;
@@ -158,5 +216,10 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
     openDeleteTransactionModal,
     closeDeleteTransactionModal,
     deleteTransaction,
+
+    incomeCategorySums,
+    expenseCategorySums,
+    totalIncome,
+    totalExpense,
   };
 });
