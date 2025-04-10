@@ -62,19 +62,32 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 import TodayLimitModal from '@/components/quiz/TodayLimitModal.vue'; // 모달 컴포넌트
 import CustomButton from '@/components/common/CustomButton.vue';
+import { useAuthStore } from '@/stores/authStore';
+import SelectSound from '@/assets/sounds/ButtonSound.mp3';
 
 const router = useRouter();
 const showButton = ref(false);
 const showModal = ref(false);
+const authStore = useAuthStore();
 
 function getTodayDateString() {
   const today = new Date();
   return today.toISOString().split('T')[0];
 }
 
+function playClickSound() {
+  const audio = new Audio(SelectSound);
+  audio.volume = 1.0; // 🎵 소리 크기 최대로
+  audio.play().catch((err) => {
+    console.warn('효과음 재생 실패:', err);
+  });
+}
+
 const goToQuiz = async () => {
+  playClickSound();
   try {
-    const res = await axios.get('/api/users/1'); // 임시 사용자
+    const userId = authStore.user.id;
+    const res = await axios.get(`/api/users/${userId}`); // 임시 사용자
     const lastAnswered = res.data.last_answered_date;
     const today = getTodayDateString();
 
@@ -96,7 +109,7 @@ onMounted(() => {
 <style scoped>
 .quiz-intro {
   height: 100%;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -177,7 +190,7 @@ onMounted(() => {
   transition: transform 0.2s;
   width: 80%;
   max-width: 400px;
-  transition: all 0.8s ease; /* opacity까지 부드럽게 */
+  transition: 0.8s;
 }
 
 .start-button:hover {

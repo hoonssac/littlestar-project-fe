@@ -5,7 +5,14 @@
       <p class="mileage-text">{{ userMileage }} / 5000</p>
       <IconMileage color="#FAB809" size="20" />
     </div>
-    <CustomButton @click="showModal = true">사용 방법</CustomButton>
+    <IconHowto
+      class="info-btn"
+      size="30"
+      color="gray"
+      @click="showModal = true"
+    >
+      사용 방법
+    </IconHowto>
     <Help :show="showModal" @close="showModal = false" />
 
     <div v-if="pokedex !== null" class="info-container" size="small">
@@ -42,6 +49,7 @@ import { useAuthStore } from '@/stores/authStore';
 import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Help from '@/components/home/Help.vue';
+import IconHowto from '@/components/common/icons/IconInfo.vue';
 
 const showModal = ref(false);
 const route = useRoute();
@@ -90,6 +98,12 @@ const userMileageDegree = computed(() => {
   font-size: 20px;
 }
 
+.info-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 90px;
+  left: 35px;
+}
 .info-container {
   background-color: white;
   color: #4a483f;

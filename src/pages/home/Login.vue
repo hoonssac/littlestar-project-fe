@@ -32,11 +32,13 @@
       </CustomButton>
     </div>
   </div>
+  <TeamRocketAlert :show="showAlert" :message="alertMessage" />
 </template>
 
 <script setup>
 import { login } from '@/apis/users';
 import CustomButton from '@/components/common/CustomButton.vue';
+import TeamRocketAlert from '@/components/common/TeamRocketAlert.vue';
 import { useAuthStore } from '@/stores/authStore';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -44,6 +46,8 @@ import { useRouter } from 'vue-router';
 const username = ref();
 const password = ref();
 const router = useRouter();
+const showAlert = ref(false);
+const alertMessage = ref('');
 
 const handleNavigate = (routeName) => {
   router.push({ name: routeName });
@@ -52,19 +56,27 @@ const handleNavigate = (routeName) => {
 const handleLogin = async () => {
   // TODO: 로그인 api 구현!!!
   if (!username.value || !password.value) {
-    alert('아이디와 비밀번호를 다시 확인하세요!');
+    showTemporaryAlert('아이디와 비밀번호를 다시 확인하세요!');
     return;
   }
   const user = await login(username.value, password.value);
 
   if (!user) {
-    alert('일치하는 사용자가 없습니다!');
+    showTemporaryAlert('일치하는 사용자가 없습니다!');
     return;
   }
 
   const authStore = useAuthStore();
   console.log(authStore);
   handleNavigate('home');
+};
+
+const showTemporaryAlert = (message) => {
+  alertMessage.value = message;
+  showAlert.value = true;
+  setTimeout(() => {
+    showAlert.value = false;
+  }, 2000);
 };
 </script>
 

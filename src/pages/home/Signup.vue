@@ -46,10 +46,13 @@
       </CustomButton>
     </div>
   </div>
+  <TeamRocketAlert :show="showAlert" :message="alertMessage" />
 </template>
 
 <script setup>
+import { isUsernameTaken } from '@/apis/users';
 import CustomButton from '@/components/common/CustomButton.vue';
+import TeamRocketAlert from '@/components/common/TeamRocketAlert.vue';
 import { useSignupStore } from '@/stores/signupStore';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -60,16 +63,26 @@ const router = useRouter();
 
 const username = ref();
 const password = ref();
-const age = ref();
+const age = ref('');
+const showAlert = ref(false);
+const alertMessage = ref('');
 
-const handleNavigate = (routeName) => {
+const handleNavigate = async (routeName) => {
   if (
     username.value === undefined ||
     username.value.length < 2 ||
     password.value < 4 ||
     !age.value
   ) {
-    alert('입력값을 다시 확인해주세요.');
+    showTemporaryAlert('입력값을 다시 확인해주세요.');
+    return;
+  }
+
+  const isDuplicated = await isUsernameTaken(username.value);
+  console.log('hihi');
+  if (isDuplicated) {
+    console.log('hellohello');
+    showTemporaryAlert('이미 존재하는 별명입니다.');
     return;
   }
 
@@ -77,6 +90,14 @@ const handleNavigate = (routeName) => {
   signupStore.password = password.value;
 
   router.push({ name: routeName });
+};
+
+const showTemporaryAlert = (message) => {
+  alertMessage.value = message;
+  showAlert.value = true;
+  setTimeout(() => {
+    showAlert.value = false;
+  }, 2000);
 };
 </script>
 

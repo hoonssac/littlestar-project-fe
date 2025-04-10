@@ -23,18 +23,20 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import QuizProfessorTalk from '@/components/quiz/QuizProfessorTalk.vue';
 import QuizOptionPrompt from '@/components/quiz/QuizOptionPrompt.vue';
 import { useQuizResultStore } from '@/stores/quizResult';
+import quizBgm from '@/assets/sounds/QuizQuestionBgm.mp3';
 
 const quizResult = useQuizResultStore();
 const questionText = ref('');
 const pickedQuestion = ref(null);
 const showOptions = ref(false);
 const router = useRouter();
+let audio = null;
 
 onMounted(async () => {
   const res = await axios.get('/api/questions');
@@ -42,6 +44,21 @@ onMounted(async () => {
   const randomIndex = Math.floor(Math.random() * questions.length);
   pickedQuestion.value = questions[randomIndex];
   questionText.value = pickedQuestion.value.question;
+
+  audio = new Audio(quizBgm);
+  audio.loop = true;
+  audio.volume = 0.4; // 🎵 볼륨 조절 (0~1)
+  audio.play().catch((err) => {
+    console.warn('오디오 자동 재생 실패:', err);
+  });
+});
+
+onUnmounted(() => {
+  if (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+    audio = null;
+  }
 });
 
 const onTypingEnd = () => {
@@ -75,7 +92,7 @@ function handleSelect(index) {
 .quiz-question {
   position: relative;
   height: 100%;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;

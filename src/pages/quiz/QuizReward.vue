@@ -39,6 +39,10 @@ import CustomButton from '@/components/common/CustomButton.vue';
 import axios from 'axios';
 import MileageDisplay from '@/components/quiz/MileageDisplay.vue';
 import MileageCounter from '@/components/quiz/MileageCounter.vue';
+import { useAuthStore } from '@/stores/authStore';
+import { getUserInfo } from '@/apis/users';
+import GetMileageSound from '@/assets/sounds/GetMileage.mp3';
+import SelectSound from '@/assets/sounds/ButtonSound.mp3';
 
 const quizResult = useQuizResultStore();
 const route = useRoute();
@@ -47,23 +51,48 @@ const isCorrect = quizResult.isCorrect;
 const mileage = quizResult.mileage;
 const explanation = quizResult.explanation;
 const last_answered_date = quizResult.last_answered_date;
+const authStore = useAuthStore();
 
 function getTodayDateString() {
   const today = new Date();
   return today.toISOString().split('T')[0];
 }
 
+function playClickSound() {
+  const audio = new Audio(SelectSound);
+  audio.volume = 1.0; // 🎵 소리 크기 최대로
+  audio.play().catch((err) => {
+    console.warn('효과음 재생 실패:', err);
+  });
+}
+
 onMounted(async () => {
+  // 🎵 효과음 재생
+  const audio = new Audio(GetMileageSound);
+  audio.volume = 0.6;
+
+  audio.play().catch((err) => {
+    console.warn('🔇 효과음 자동재생 실패:', err);
+  });
   try {
     // 먼저 기존 유저 정보 가져오기
-    const res = await axios.get('/api/users/1');
+    const userId = authStore.user.id;
+    const res = await axios.get(`/api/users/${userId}`);
     const currentMileage = res.data.mileage;
 
     // 마일리지 500 추가해서 PATCH 요청 보내기
-    await axios.patch('/api/users/1', {
+    await axios.patch(`/api/users/${userId}`, {
       mileage: currentMileage + 500,
       last_answered_date: getTodayDateString(),
     });
+
+    const fetchUser = async () => {
+      if (authStore.user) {
+        await getUserInfo(authStore.user.id);
+      }
+    };
+
+    await fetchUser();
 
     console.log('마일리지 지급 완료!');
     console.log(currentMileage);
@@ -73,6 +102,7 @@ onMounted(async () => {
 });
 
 function goToPokedex() {
+  playClickSound();
   router.push('/pokedex');
 }
 </script>
@@ -110,6 +140,12 @@ function goToPokedex() {
 
 .mileage {
   font-size: 40px;
+
+  font-family: 'Pretendard Variable', Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  font-weight: bold;
   color: #fab809;
 }
 

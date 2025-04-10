@@ -31,7 +31,7 @@ defineProps({
   transform: translateX(-50%);
   background-color: #ff4d4f;
   color: white;
-  padding: 12px 20px;
+  padding: 12px 100px 12px 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   display: flex;
