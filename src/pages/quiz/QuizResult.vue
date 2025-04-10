@@ -29,7 +29,10 @@
           class="mileage fade-up delay-2"
         />
 
-        <p class="result-text fade-up delay-3">
+        <p
+          class="result-text fade-up delay-3"
+          :style="{ color: isCorrect ? '#000' : '#AE0000' }"
+        >
           {{ isCorrect ? '정답이에요!' : '틀렸어요!' }}
         </p>
 

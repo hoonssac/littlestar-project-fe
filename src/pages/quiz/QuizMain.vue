@@ -21,7 +21,7 @@
 
       <transition name="fade-up" appear>
         <p class="quiz-desc-2" style="transition-delay: 1s">
-          퀴즈는 하루에 한 번만 도전 가능해요!
+          퀴즈는 하루에 한 번만 도전 가능해요
         </p>
       </transition>
     </div>
