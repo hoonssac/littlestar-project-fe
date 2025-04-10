@@ -56,12 +56,14 @@
       </CustomButton>
     </div>
   </div>
+  <TeamRocketAlert :show="showAlert" :message="alertMessage" />
 </template>
 
 <script setup>
 import { getPokedex } from '@/apis/pokedex';
 import { signup } from '@/apis/users';
 import CustomButton from '@/components/common/CustomButton.vue';
+import TeamRocketAlert from '@/components/common/TeamRocketAlert.vue';
 import { useSignupStore } from '@/stores/signupStore';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -71,6 +73,8 @@ const selectedId = ref(null);
 const content = ref('');
 const isConfirmed = ref(false);
 const signupStore = useSignupStore();
+const showAlert = ref(false);
+const alertMessage = ref('');
 
 const selectContent = '어떤 포켓몬을 선택할까요?';
 
@@ -86,7 +90,7 @@ const selectPokemon = (id) => {
 
 const submit = () => {
   if (!selectedId.value) {
-    alert('포켓몬을 선택해주세요!');
+    showTemporaryAlert('포켓몬을 선택해주세요!');
     return;
   }
 
@@ -159,6 +163,14 @@ function typeText(full, targetRef, speed = 30, delay = 0) {
     }, speed);
   }, delay);
 }
+
+const showTemporaryAlert = (message) => {
+  alertMessage.value = message;
+  showAlert.value = true;
+  setTimeout(() => {
+    showAlert.value = false;
+  }, 2000);
+};
 </script>
 
 <style scoped>
