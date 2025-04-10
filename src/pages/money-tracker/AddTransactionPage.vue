@@ -50,7 +50,7 @@ import { useMoneyTrackerStore } from '@/stores/moneyTrackerStore';
 import { useRoute, useRouter } from 'vue-router';
 import { computed, ref } from 'vue';
 import CustomButton from '@/components/common/CustomButton.vue';
-import TeamRocketAlert from '@/components/money-tracker/TeamRocketAlert.vue';
+import TeamRocketAlert from '@/components/common/TeamRocketAlert.vue';
 
 const currentRoute = useRoute();
 const router = useRouter();
@@ -101,7 +101,10 @@ const addTransaction = async () => {
     id
   );
 
-  router.go(-1);
+  router.push({
+    name: 'money-tracker-category-mileage',
+    params: { categoryId: id },
+  });
 };
 </script>
 <style scoped>
