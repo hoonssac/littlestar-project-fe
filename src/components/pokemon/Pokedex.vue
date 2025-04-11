@@ -5,15 +5,14 @@
     <div v-else>
       <!-- 대표 포켓몬 -->
 
-      <div
-        v-if="mainPokemon"
-        class="main-pokemon-container">
+      <div v-if="mainPokemon" class="main-pokemon-container">
         <h4>나의 대표 포켓몬</h4>
         <h2>{{ mainPokemon.name }}</h2>
         <img
           :src="mainPokemon.image_url"
           alt="Main Pokemon"
-          class="main-pokemon-image" />
+          class="main-pokemon-image"
+        />
       </div>
       <div v-else>
         <p>대표 포켓몬을 불러오는 중이에요...</p>
@@ -25,22 +24,20 @@
             class="pokemon-container"
             v-for="pokemon in displayPokedex"
             :key="pokemon.id + pokemon.name"
-            @click="openModal(pokemon)">
+            @click="openModal(pokemon)"
+          >
             No. {{ pokemon.id }}
             <img
               :src="pokemon.isOwned ? pokemon.image_url : monsterBallImage"
               alt="Pokemon Image"
-              :class="pokemon.isOwned ? 'pokemon-image' : 'pokeball-image'" />
+              :class="pokemon.isOwned ? 'pokemon-image' : 'pokeball-image'"
+            />
             {{ pokemon.name }}
           </li>
         </ul>
 
-        <router-link
-          to="/gacha"
-          class="gacha-button">
-          <img
-            src="@/assets/images/gacha.png"
-            alt="pokemon gacha" />
+        <router-link to="/gacha" class="gacha-button">
+          <img src="@/assets/images/gacha.png" alt="pokemon gacha" />
         </router-link>
         <router-view></router-view>
       </div>
@@ -62,7 +59,8 @@
             : '미지의 포켓몬'
         "
         :img="isOwned ? selectedPokemon?.image_url : monsterBallImage"
-        :class="{ 'small-monsterball': !isOwned, 'owned-modal': isOwned }">
+        :class="{ 'small-monsterball': !isOwned, 'owned-modal': isOwned }"
+      >
         <div class="modal-button-container">
           <CustomButton
             category="secondary"
@@ -70,9 +68,7 @@
             @click="closeModal"
             >취소</CustomButton
           >
-          <CustomButton
-            class="fixed-modal-button"
-            @click="setMainPokemon(selectedPokemon.id)"
+          <CustomButton class="fixed-modal-button" @click="handleSetMain"
             >대표 설정</CustomButton
           >
         </div>
@@ -82,7 +78,8 @@
         v-if="isAlertVisible"
         :show="isAlertVisible"
         :message="alertMessage"
-        class="custom-alert" />
+        class="custom-alert"
+      />
     </div>
   </div>
 </template>
@@ -95,6 +92,7 @@ import CustomButton from '@/components/common/CustomButton.vue';
 import monsterBallImage from '@/assets/images/monster-ball.png';
 import { useAuthStore } from '@/stores/authStore';
 import TeamRocketAlert from '../common/TeamRocketAlert.vue';
+import { getUserInfo } from '@/apis/users';
 
 const pokedexStore = usePokedexStore();
 const authStore = useAuthStore();
@@ -130,6 +128,11 @@ onMounted(async () => {
   await fetchMileageData();
   console.log('onMounted 실행됨!');
 });
+
+const handleSetMain = async () => {
+  await setMainPokemon(selectedPokemon.value.id);
+  await getUserInfo(authStore.user.id);
+};
 </script>
 
 <style scoped>

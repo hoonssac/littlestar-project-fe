@@ -41,10 +41,10 @@
       "username": "asdf",
       "password": "1234",
       "last_answered_date": null,
-      "pokemon_ids": [7],
-      "main_pokemon_id": 7,
+      "pokemon_ids": [7, 121],
+      "main_pokemon_id": 121,
       "question_ids": [1, 7],
-      "mileage": 35550,
+      "mileage": 30550,
       "ticket_count": 0
     },
     {
@@ -1602,13 +1602,13 @@
       "category_id": "67cb"
     },
     {
-      "id": "6111",
       "user_id": "14d4",
       "date": "2025-04-01",
       "is_income": false,
       "amount": "9000",
-      "memo": "하하하",
-      "category_id": "8d53"
+      "memo": "택시비 ㅠㅠ",
+      "category_id": "8d53",
+      "id": "6111"
     },
     {
       "id": "a4f9",
