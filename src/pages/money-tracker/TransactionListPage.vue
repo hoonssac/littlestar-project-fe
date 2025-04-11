@@ -136,6 +136,7 @@ const deleteHandler = (transactionId) => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 .header {
   background-color: #1c2b59;
