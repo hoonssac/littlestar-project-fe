@@ -19,9 +19,7 @@
       "username": "지우",
       "password": "1234",
       "last_answered_date": "2025-04-09",
-      "pokemon_ids": [
-        7
-      ],
+      "pokemon_ids": [7],
       "main_pokemon_id": 7,
       "question_ids": [],
       "mileage": 14001,
@@ -32,9 +30,7 @@
       "username": "하이",
       "password": "1234",
       "last_answered_date": "2025-04-10",
-      "pokemon_ids": [
-        4
-      ],
+      "pokemon_ids": [4],
       "main_pokemon_id": 4,
       "question_ids": [],
       "mileage": 11500,
@@ -45,15 +41,10 @@
       "username": "asdf",
       "password": "1234",
       "last_answered_date": null,
-      "pokemon_ids": [
-        7
-      ],
-      "main_pokemon_id": 7,
-      "question_ids": [
-        1,
-        7
-      ],
-      "mileage": 35550,
+      "pokemon_ids": [7, 121],
+      "main_pokemon_id": 121,
+      "question_ids": [1, 7],
+      "mileage": 30550,
       "ticket_count": 0
     },
     {
@@ -61,9 +52,7 @@
       "username": "욘세",
       "password": "1111",
       "last_answered_date": null,
-      "pokemon_ids": [
-        4
-      ],
+      "pokemon_ids": [4],
       "main_pokemon_id": 4,
       "question_ids": [],
       "mileage": 1500,
@@ -1292,12 +1281,7 @@
     {
       "id": "2",
       "question": "돈을 모아서 나중에 쓰는 것을 뭐라고 할까요?",
-      "options": [
-        "소비",
-        "절약",
-        "통장",
-        "저축"
-      ],
+      "options": ["소비", "절약", "통장", "저축"],
       "answer": "저축",
       "answer_index": 3,
       "explanation": "저축은 지금 돈을 쓰지 않고 모아두는 거예요. 나중에 필요한 걸 살 때 쓸 수 있어요."
@@ -1305,12 +1289,7 @@
     {
       "id": "3",
       "question": "물건을 만들기 위해 꼭 필요한 것은 무엇일까요?",
-      "options": [
-        "공기",
-        "친구",
-        "자원",
-        "숙제"
-      ],
+      "options": ["공기", "친구", "자원", "숙제"],
       "answer": "자원",
       "answer_index": 2,
       "explanation": "자원은 물건을 만드는 데 필요한 재료예요. 나무, 물, 금속 같은 것들이 자원이죠."
@@ -1318,12 +1297,7 @@
     {
       "id": "4",
       "question": "사람들이 물건이나 서비스를 사고팔 때 모이는 장소는?",
-      "options": [
-        "놀이터",
-        "시장",
-        "학교",
-        "집"
-      ],
+      "options": ["놀이터", "시장", "학교", "집"],
       "answer": "시장",
       "answer_index": 1,
       "explanation": "시장은 물건을 사고파는 장소예요. 요즘은 인터넷 시장도 있어요!"
@@ -1331,12 +1305,7 @@
     {
       "id": "5",
       "question": "용돈을 받은 후, 전부 다 쓰지 않고 일부를 남겨두는 행동은?",
-      "options": [
-        "빌리기",
-        "쓰기",
-        "저축하기",
-        "나누기"
-      ],
+      "options": ["빌리기", "쓰기", "저축하기", "나누기"],
       "answer": "저축하기",
       "answer_index": 2,
       "explanation": "저축을 하면 나중에 사고 싶은 더 큰 물건을 살 수 있어요."
@@ -1344,12 +1313,7 @@
     {
       "id": "6",
       "question": "돈이 없을 때 다른 사람에게 잠시 돈을 빌리는 것을 뭐라고 할까요?",
-      "options": [
-        "대출",
-        "절약",
-        "투자",
-        "수입"
-      ],
+      "options": ["대출", "절약", "투자", "수입"],
       "answer": "대출",
       "answer_index": 0,
       "explanation": "대출은 돈이 부족할 때 잠깐 빌리는 거예요. 나중에 꼭 갚아야 해요!"
@@ -1357,12 +1321,7 @@
     {
       "id": "7",
       "question": "우리가 물건을 만들거나 팔아서 벌어들이는 돈은 무엇일까요?",
-      "options": [
-        "지출",
-        "수입",
-        "저금",
-        "장난감"
-      ],
+      "options": ["지출", "수입", "저금", "장난감"],
       "answer": "수입",
       "answer_index": 1,
       "explanation": "수입은 돈이 들어오는 거예요. 예를 들어 물건을 팔면 수입이 생겨요."
@@ -1370,12 +1329,7 @@
     {
       "id": "8",
       "question": "돈을 모아서 더 많은 돈을 벌기 위해 사용하는 방법은?",
-      "options": [
-        "숨기기",
-        "낭비",
-        "투자",
-        "복사"
-      ],
+      "options": ["숨기기", "낭비", "투자", "복사"],
       "answer": "투자",
       "answer_index": 2,
       "explanation": "투자는 돈을 똑똑하게 써서 나중에 더 많은 돈을 벌 수 있는 방법이에요."
@@ -1383,12 +1337,7 @@
     {
       "id": "9",
       "question": "물건을 사는 행동을 무엇이라고 하나요?",
-      "options": [
-        "저축",
-        "소비",
-        "판매",
-        "생산"
-      ],
+      "options": ["저축", "소비", "판매", "생산"],
       "answer": "소비",
       "answer_index": 1,
       "explanation": "소비는 돈을 써서 물건이나 서비스를 사는 것을 말해요."
@@ -1396,12 +1345,7 @@
     {
       "id": "10",
       "question": "아껴 쓰고 낭비하지 않는 것을 무엇이라고 할까요?",
-      "options": [
-        "낭비",
-        "저축",
-        "절약",
-        "투자"
-      ],
+      "options": ["낭비", "저축", "절약", "투자"],
       "answer": "절약",
       "answer_index": 2,
       "explanation": "절약은 돈이나 물건을 아끼는 행동이에요. 필요할 때 더 잘 쓸 수 있어요."
@@ -1658,13 +1602,13 @@
       "category_id": "67cb"
     },
     {
-      "id": "6111",
       "user_id": "14d4",
       "date": "2025-04-01",
       "is_income": false,
       "amount": "9000",
-      "memo": "하하하",
-      "category_id": "8d53"
+      "memo": "택시비 ㅠㅠ",
+      "category_id": "8d53",
+      "id": "6111"
     },
     {
       "id": "a4f9",
