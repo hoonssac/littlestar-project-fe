@@ -77,6 +77,12 @@
           >
         </div>
       </CustomModal>
+      <!-- 팀 로켓 알림 -->
+      <TeamRocketAlert
+        v-if="isAlertVisible"
+        :show="isAlertVisible"
+        :message="alertMessage"
+        class="custom-alert" />
     </div>
   </div>
 </template>
@@ -88,6 +94,7 @@ import CustomModal from '@/components/common/CustomModal.vue';
 import CustomButton from '@/components/common/CustomButton.vue';
 import monsterBallImage from '@/assets/images/monster-ball.png';
 import { useAuthStore } from '@/stores/authStore';
+import TeamRocketAlert from '../common/TeamRocketAlert.vue';
 
 const pokedexStore = usePokedexStore();
 const authStore = useAuthStore();
@@ -110,6 +117,9 @@ const setMainPokemon = pokedexStore.setMainPokemon;
 const openModal = pokedexStore.openModal;
 const closeModal = pokedexStore.closeModal;
 const fetchMileageData = pokedexStore.fetchMileageData;
+
+const isAlertVisible = computed(() => pokedexStore.isAlertVisible);
+const alertMessage = computed(() => pokedexStore.alertMessage);
 
 onMounted(async () => {
   await fetchUser();
@@ -142,6 +152,12 @@ onMounted(async () => {
   gap: 16px;
   padding: 0;
   list-style: none;
+}
+
+@media (max-width: 400px) {
+  .pokemon-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .pokemon-container {
@@ -223,7 +239,20 @@ onMounted(async () => {
 }
 
 .gacha-button img {
-  width: 100px; /* 원하는 크기로 조절 */
+  width: 112px; /* 원하는 크기로 조절 */
   height: auto;
+}
+
+.alert-message {
+  max-width: 400px;
+  white-space: pre-line !important;
+}
+
+.custom-alert {
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 9999;
+  color: white;
+  padding: 16px;
 }
 </style>

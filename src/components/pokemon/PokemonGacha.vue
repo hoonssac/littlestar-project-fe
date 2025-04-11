@@ -7,14 +7,16 @@
         <img
           src="@/assets/images/pokemon-gacha.png"
           class="pokemon-gacha-image" />
-        <h1 class="gacha-5000mileage">5000<IconMileage></IconMileage></h1>
+        <h1 class="gacha-5000mileage mileage-text">
+          5000<IconMileage></IconMileage>
+        </h1>
       </div>
       <div class="my-mileage">
         <!-- 사용 가능한 뽑기권 표시 -->
         <h4>나의 마일리지</h4>
-        <div class="my-mileage-amount">
-          <h4>0</h4>
-          <h4>5000</h4>
+        <div class="my-mileage-amount mileage-text">
+          <h3>0</h3>
+          <h3>5000</h3>
         </div>
         <div class="progress-wrapper">
           <ProgressBar
@@ -26,14 +28,9 @@
       <div class="button-container">
         <CustomButton
           category="secondary"
-          class="fixed-modal-button">
-          <!-- @click="backToPokedex"추가 필요 -->
-          도감 확인</CustomButton
-        >
-        <CustomButton
           class="fixed-modal-button"
-          @click="handleGacha()">
-          뽑기</CustomButton
+          @click="backToPokedex">
+          도감으로 돌아가기</CustomButton
         >
       </div>
       <div class="result-modal-container">
@@ -84,6 +81,11 @@
             </Transition>
           </div>
         </CustomModal>
+        <!-- 팀 로켓 알림 -->
+        <TeamRocketAlert
+          :show="isAlertVisible"
+          :message="alertMessage"
+          class="alert-message" />
       </div>
     </div>
   </div>
@@ -97,6 +99,7 @@ import CustomModal from '../common/CustomModal.vue';
 import pokemonGachaImage from '@/assets/images/pokemon-gacha.png';
 import IconMileage from '../common/icons/IconMileage.vue';
 import ProgressBar from '../common/ProgressBar.vue';
+import TeamRocketAlert from '@/components/common/TeamRocketAlert.vue';
 
 const pokedexStore = usePokedexStore();
 const authStore = useAuthStore();
@@ -113,6 +116,9 @@ const maxMileage = pokedexStore.maxMileage;
 const userMileage = pokedexStore.userMileage;
 const userMileageDegree = pokedexStore.userMileageDegree;
 const fetchMileageData = pokedexStore.fetchMileageData;
+const isAlertVisible = computed(() => pokedexStore.isAlertVisible);
+const alertMessage = computed(() => pokedexStore.alertMessage);
+const backToPokedex = pokedexStore.backToPokedex
 
 onMounted(async () => {
   await fetchUser();
@@ -178,7 +184,7 @@ onMounted(async () => {
   flex-direction: column;
   align-items: center;
   margin-top: 32px;
-  max-width: 410px;
+  max-width: 80%;
 }
 
 .my-mileage-amount {
@@ -186,6 +192,7 @@ onMounted(async () => {
   justify-content: space-between;
   width: 410px;
   color: #fab809;
+  max-width: 100%;
 }
 
 .progress-wrapper {
@@ -196,14 +203,16 @@ onMounted(async () => {
 
 .gacha-progress-bar {
   padding: 0;
-  margin: 20px auto; /* ✅ 가운데 정렬 */
+  margin-top: 4px;
+  margin-bottom: 24px; /* ✅ 가운데 정렬 */
 }
 
 .button-container {
   display: flex;
-  justify-content: space-evenly;
-  max-width: 410px;
+  justify-content: center;
+  max-width: 80%;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .result-modal-container {
@@ -235,8 +244,8 @@ onMounted(async () => {
 }
 
 .fixed-modal-button {
-  width: 200px; /* 원하는 고정된 너비 */
-  height: 48px;
+  width: 410px; /* 원하는 고정된 너비 */
+  height: 52px;
   font-size: 18px;
   white-space: nowrap; /* 줄바꿈 방지 */
   margin: auto;
@@ -261,5 +270,10 @@ onMounted(async () => {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.alert-message {
+  width: 420px;
+  white-space: pre-line !important;
 }
 </style>
