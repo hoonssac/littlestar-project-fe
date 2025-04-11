@@ -201,7 +201,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
   const closeGachaModal = () => {
     isModalVisible.value = false;
-  
+
     // ✅ 다른 페이지로 이동 후 다시 가챠 페이지로 이동 (라우터 트릭 사용)
     router.replace('/temp'); // 1️⃣ 임시 페이지로 이동
     setTimeout(() => {
@@ -391,6 +391,6 @@ export const usePokedexStore = defineStore('pokedex', () => {
     fetchMileageData,
     isAlertVisible,
     alertMessage,
-    backToPokedex
+    backToPokedex,
   };
 });
