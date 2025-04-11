@@ -113,7 +113,7 @@ const deleteHandler = (transactionId) => {
   align-items: center;
 }
 .card {
-  width: 50%;
+  width: 70%;
   margin: 1rem auto;
   border-radius: 25px;
   background-color: #dcebfd;

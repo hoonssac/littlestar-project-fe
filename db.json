@@ -51,11 +51,11 @@
       "id": "33f8",
       "username": "욘세",
       "password": "1111",
-      "last_answered_date": null,
-      "pokemon_ids": [4],
-      "main_pokemon_id": 4,
+      "last_answered_date": "2025-04-11",
+      "pokemon_ids": [4, 72],
+      "main_pokemon_id": 72,
       "question_ids": [],
-      "mileage": 1500,
+      "mileage": 1000,
       "ticket_count": 0
     }
   ],
@@ -1770,31 +1770,58 @@
       "category_id": "626c"
     },
     {
-      "id": "380a",
+      "id": "f919",
       "user_id": "33f8",
       "date": "2025-04-10",
       "is_income": true,
-      "amount": "9000",
-      "memo": "1",
+      "amount": "50000",
+      "memo": "ㅎㅎ",
       "category_id": "0d87"
     },
     {
-      "id": "56c1",
+      "id": "734c",
       "user_id": "33f8",
-      "date": "2025-04-17",
+      "date": "2025-04-11",
       "is_income": true,
-      "amount": "9000",
-      "memo": "7",
-      "category_id": "0d87"
+      "amount": "40000",
+      "memo": "ㅋㅋ",
+      "category_id": "3fc7"
     },
     {
-      "id": "f4a2",
+      "user_id": "33f8",
+      "date": "2025-04-08",
+      "is_income": false,
+      "amount": "1500",
+      "memo": "아몬드브리즈으으",
+      "category_id": "d06b",
+      "id": "c9a7"
+    },
+    {
+      "id": "7943",
+      "user_id": "33f8",
+      "date": "2025-04-15",
+      "is_income": false,
+      "amount": "7000",
+      "memo": "와우!",
+      "category_id": "d125"
+    },
+    {
+      "id": "d914",
+      "user_id": "33f8",
+      "date": "2025-04-11",
+      "is_income": false,
+      "amount": "2000",
+      "memo": "99",
+      "category_id": "d125"
+    },
+    {
+      "id": "1f6f",
       "user_id": "33f8",
       "date": "2025-04-12",
-      "is_income": true,
+      "is_income": false,
       "amount": "2000",
-      "memo": "4",
-      "category_id": "0d87"
+      "memo": "10",
+      "category_id": "dd1d"
     }
   ],
   "categories": [
@@ -1880,6 +1907,27 @@
       "name": "세연수입2",
       "transaction_ids": [],
       "is_income": true,
+      "user_id": "33f8"
+    },
+    {
+      "id": "d06b",
+      "name": "세연지출1",
+      "transaction_ids": [],
+      "is_income": false,
+      "user_id": "33f8"
+    },
+    {
+      "id": "d125",
+      "name": "세연지출2",
+      "transaction_ids": [],
+      "is_income": false,
+      "user_id": "33f8"
+    },
+    {
+      "id": "dd1d",
+      "name": "세연지출3",
+      "transaction_ids": [],
+      "is_income": false,
       "user_id": "33f8"
     }
   ]
