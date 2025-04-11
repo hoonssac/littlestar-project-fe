@@ -232,6 +232,20 @@ img {
   z-index: 10;
 }
 
+/* 모바일 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
+  .start-prompt {
+    bottom: 3rem;
+  }
+}
+
+/* 모바일 가로 & 태블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  .start-prompt {
+    bottom: 5rem;
+  }
+}
+
 .prompt-box {
   position: relative;
   width: 100%;
