@@ -15,7 +15,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'https://laced-thread-brother.glitch.me',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
