@@ -19,6 +19,7 @@ export const useMoneyTrackerStore = defineStore('moneyTracker', () => {
       const url = `/api/categories?user_id=${authStore.user.id}`;
       const response = await axios.get(url);
       categories.value = response.data;
+
       // 수입/지출 카테고리 분리
       incomeCategories.value = categories.value.filter((c) => c.is_income);
       expenseCategories.value = categories.value.filter((c) => !c.is_income);

@@ -6,7 +6,7 @@
 
     <div class="mileage-container">
       <MileageDisplay :size="120" color="#FAB809" />
-      <MileageCounter :amount="500" :duration="1200" />
+      <MileageCounter class="mileage-text" :amount="500" :duration="1200" />
       <br />
       <br />
       <h2>기록 완료!</h2>

@@ -57,8 +57,9 @@ const router = useRouter();
 
 const colors = ['#1C2B59', '#3365A6', '#F2B807', '#BF920A'];
 
-onMounted(() => {
-  store.fetchCategories();
+onMounted(async () => {
+  await store.fetchCategories();
+  console.log(store.incomeCategories.length);
 });
 
 const getHeightPercentage = (categoryId) => {
@@ -101,6 +102,7 @@ button {
 .list-group {
   width: 100%;
   margin: 3rem auto;
+  border-radius: 0;
 }
 .list-group-item {
   border: none;
