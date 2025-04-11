@@ -32,9 +32,10 @@
     </div>
 
     <div class="add-button-container">
-      <CustomButton class="add-button" size="large">
-        <p class="plus-text">+</p>
-        <p>빠른 추가</p>
+      <CustomButton class="add-button" size="large" @click="showModal = true">
+        <!-- <p class="plus-text">+</p> -->
+        <!-- <p>빠른 추가</p> -->
+        <p>사용 방법</p>
       </CustomButton>
     </div>
   </div>
