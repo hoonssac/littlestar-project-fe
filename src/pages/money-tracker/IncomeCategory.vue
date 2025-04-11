@@ -8,7 +8,7 @@
         class="list-group-item"
         :style="{
           backgroundColor: colors[index % colors.length],
-          height: getHeight(category.id) * 0.3 + 'vh',
+          minHeight: getHeight(category.id) * 0.3 + 'vh',
         }"
         v-for="(category, index) in store.incomeCategories"
         :key="index"
