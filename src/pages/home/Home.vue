@@ -5,14 +5,14 @@
       <p class="mileage-text">{{ userMileage }} / 5000</p>
       <IconMileage color="#FAB809" size="20" />
     </div>
-    <IconHowto
+    <!-- <IconHowto
       class="info-btn"
       size="35"
       color="gray"
       @click="showModal = true"
     >
       사용 방법
-    </IconHowto>
+    </IconHowto> -->
     <Help :show="showModal" @close="showModal = false" />
 
     <div v-if="pokedex !== null" class="info-container" size="small">
