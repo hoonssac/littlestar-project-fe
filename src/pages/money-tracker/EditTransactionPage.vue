@@ -83,7 +83,7 @@ onMounted(async () => {
     date.value = transaction.date;
     amount.value = transaction.amount;
     memo.value = transaction.memo;
-    isIncome.value = transaction.isIncome;
+    isIncome.value = transaction.is_income;
   } else {
     alert('거래 정보를 찾을 수 없습니다');
     router.back();
@@ -127,7 +127,7 @@ const editTransaction = async () => {
     user_id: authStore.user.id,
     date: date.value,
     is_income: isIncome.value,
-    amount: Number(amount.value),
+    amount: amount.value,
     memo: memo.value,
     category_id: id,
   };
