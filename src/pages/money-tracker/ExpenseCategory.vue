@@ -9,7 +9,7 @@
         class="list-group-item"
         :style="{
           backgroundColor: colors[index % colors.length],
-          height: getHeight(category.id) * 0.3 + 'vh',
+          minHeight: getHeight(category.id) * 0.3 + 'vh',
         }"
         v-for="(category, index) in store.expenseCategories"
         :key="index"
@@ -84,19 +84,22 @@ const getHeight = (categoryId) => {
   align-items: center;
 }
 button {
-  width: 187px;
+  /* width: 187px; */
   height: 58px;
   font-size: 24px;
   background-color: white;
   border-radius: 13px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
 
   border-style: solid;
   border-color: #4a483f;
 
-  border-top-width: 0px;
+  border-top-width: 1px;
   border-right-width: 3px;
   border-bottom-width: 3px;
-  border-left-width: 0px;
+  border-left-width: 1px;
 }
 
 .list-group {

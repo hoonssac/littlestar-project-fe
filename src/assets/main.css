@@ -47,3 +47,10 @@ p {
   font-weight: bold;
   color: #fab809;
 }
+
+button,
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-appearance: none;
+}
