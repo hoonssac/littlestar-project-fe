@@ -109,11 +109,11 @@ npm run build
 - 일정 마일리지로 포켓몬을 뽑을 수 있습니다.
 
 ## 💾 데이터 구조 설계
-<img width="991" alt="image" src="https://github.com/user-attachments/assets/e2f57c0f-356f-4cdd-9862-e68e2011f352" />
+<img width="975" alt="image" src="https://github.com/user-attachments/assets/5b2a5f47-b7c5-41f8-a511-a3ed8b37c13d" />
 
 
 ## 🖥️ 화면 설계
-<img width="592" alt="image" src="https://github.com/user-attachments/assets/b4b65d79-2155-42f8-bc1e-f81b4e24336d" />
+<img width="594" alt="image" src="https://github.com/user-attachments/assets/4ab0e15d-9529-4f49-b2b7-eb9ea4f793ab" />
 
 
 
