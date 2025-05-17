@@ -8,8 +8,6 @@ export const useSignupStore = defineStore('signup', {
     lastAnsweredDate: null,
     pokemonIds: [],
     mainPokemonId: null,
-    question_ids: [],
     mileage: 0,
-    ticket_count: 0,
   }),
 });
