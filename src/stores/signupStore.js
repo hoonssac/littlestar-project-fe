@@ -6,7 +6,6 @@ export const useSignupStore = defineStore('signup', {
     password: '',
     age: '',
     lastAnsweredDate: null,
-    pokemonIds: [],
     mainPokemonId: null,
     mileage: 0,
   }),

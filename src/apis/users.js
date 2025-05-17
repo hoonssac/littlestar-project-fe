@@ -48,21 +48,6 @@ const logout = async () => {
   }
 };
 
-// const getUserInfo = async () => {
-//   try {
-//     const response = await axios.get('/api/users/me', {
-//       withCredentials: true,
-//     });
-
-//     const authStore = useAuthStore();
-//     authStore.login(response.data);
-//     return response.data;
-//   } catch (err) {
-//     console.log('유저 정보 가져오기 실패:', err);
-//     return null;
-//   }
-// };
-
 const getUserInfo = async () => {
   try {
     const response = await axios.get('/api/auth/me', {

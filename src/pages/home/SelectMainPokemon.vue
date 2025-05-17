@@ -115,7 +115,6 @@ const resetSelection = () => {
 
 const confirmSelection = async () => {
   signupStore.mainPokemonId = Number(selectedId.value);
-  signupStore.pokemonIds = [Number(selectedId.value)];
 
   const user = { ...signupStore.$state };
   const response = await signup(user);
