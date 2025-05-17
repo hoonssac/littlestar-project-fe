@@ -17,7 +17,10 @@
 
     <div v-if="pokedex !== null" class="info-container" size="small">
       <p>No.{{ pokedex.id }} {{ pokedex.name }}</p>
-      <p>타입: {{ pokedex.types?.join(', ') }}</p>
+      <p>
+        타입:
+        {{ pokedex.types }}
+      </p>
       <p>크기: {{ pokedex.height }}cm</p>
       <p>무게: {{ pokedex.weight }}kg</p>
     </div>

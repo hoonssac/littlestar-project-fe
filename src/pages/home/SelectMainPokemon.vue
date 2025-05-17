@@ -93,6 +93,7 @@ const submit = () => {
     showTemporaryAlert('포켓몬을 선택해주세요!');
     return;
   }
+  console.log(startingPokemons.value);
 
   const selectedPokemon = startingPokemons.value.find(
     (p) => p.id === selectedId.value
@@ -113,30 +114,31 @@ const resetSelection = () => {
 };
 
 const confirmSelection = async () => {
-  // TODO: 메인포켓몬 설정 api 로직 추가
-
-  // pinia 저장
-  signupStore.main_pokemon_id = Number(selectedId.value);
-  signupStore.pokemon_ids = [Number(selectedId.value)];
+  signupStore.mainPokemonId = Number(selectedId.value);
+  signupStore.pokemonIds = [Number(selectedId.value)];
 
   const user = { ...signupStore.$state };
-
   const response = await signup(user);
-
+  console.log(response);
   handleNavigate('home');
-  console.log('최종 선택 포켓몬:', selectedId.value);
 };
 
 onMounted(async () => {
   const startingIds = [1, 4, 7];
   const responses = await Promise.all(startingIds.map(getPokedex));
 
-  startingPokemons.value = responses.filter(Boolean).map((pokemon) => ({
-    id: pokemon.id,
-    name: pokemon.name,
-    image: pokemon.image_url,
-    types: pokemon.types,
-  }));
+  startingPokemons.value = responses.filter(Boolean).map((pokemon) => {
+    console.log('✅ 포켓몬 응답:', pokemon); // ← 여기 확인해보기!
+    return {
+      id: pokemon.id,
+      name: pokemon.name,
+      image: pokemon.image_url,
+      types:
+        typeof pokemon.types === 'string'
+          ? JSON.parse(pokemon.types)
+          : pokemon.types, // <-- 요기!
+    };
+  });
 });
 
 onMounted(() => {

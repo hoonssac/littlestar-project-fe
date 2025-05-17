@@ -88,6 +88,7 @@ const handleNavigate = async (routeName) => {
 
   signupStore.username = username.value;
   signupStore.password = password.value;
+  signupStore.age = age.value;
 
   router.push({ name: routeName });
 };

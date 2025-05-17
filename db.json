@@ -24,7 +24,8 @@
         117,
         96,
         107,
-        134
+        134,
+        151
       ],
       "main_pokemon_id": 9,
       "question_ids": [],
@@ -98,6 +99,25 @@
       "main_pokemon_id": 64,
       "question_ids": [],
       "mileage": 3500,
+      "ticket_count": 0
+    },
+    {
+      "id": "c589",
+      "username": "올휘",
+      "password": "1234",
+      "last_answered_date": "2025-04-19",
+      "pokemon_ids": [
+        4,
+        50,
+        107,
+        27,
+        141,
+        139,
+        151
+      ],
+      "main_pokemon_id": 151,
+      "question_ids": [],
+      "mileage": 175000,
       "ticket_count": 0
     }
   ],
@@ -2505,6 +2525,24 @@
       "memo": "4",
       "category_id": "41fe",
       "id": "ad87"
+    },
+    {
+      "id": "0aac",
+      "user_id": "c589",
+      "date": "2025-04-15",
+      "is_income": true,
+      "amount": "500000",
+      "memo": "주급",
+      "category_id": "2552"
+    },
+    {
+      "id": "c7e9",
+      "user_id": "c589",
+      "date": "2025-04-20",
+      "is_income": false,
+      "amount": "30000",
+      "memo": "피자 2판 구매",
+      "category_id": "85e3"
     }
   ],
   "categories": [
@@ -2647,6 +2685,20 @@
       "transaction_ids": [],
       "is_income": false,
       "user_id": "f2fa"
+    },
+    {
+      "id": "2552",
+      "name": "주급",
+      "transaction_ids": [],
+      "is_income": true,
+      "user_id": "c589"
+    },
+    {
+      "id": "85e3",
+      "name": "먹방",
+      "transaction_ids": [],
+      "is_income": false,
+      "user_id": "c589"
     }
   ]
 }

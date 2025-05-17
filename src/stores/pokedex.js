@@ -57,22 +57,25 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`/api/users/${authStore.user.id}`);
-      const users = response.data;
+      const response = await axios.get('/api/auth/me', {
+        withCredentials: true,
+      });
 
-      // 전체 객체를 바꾸지 않고 내부 속성만 덮어씀
-      Object.assign(user, response.data);
-      console.log('📦 fetchUser 내부 response:', response.data);
-      console.log('유저 정보 불러오기 성공!', user);
-      console.log(
-        '🧩 response.data.main_pokemon_id:',
-        response.data.main_pokemon_id
-      );
+      const data = response.data;
+
+      // 반응형 객체에 하나씩 대입
+      user.id = data.id;
+      user.username = data.username;
+      user.age = data.age;
+      user.pokemon_ids = data.pokemon_ids;
+      user.main_pokemon_id = data.main_pokemon_id;
+      user.mileage = data.mileage;
+      user.ticketCount = data.ticket_count;
+
+      console.log('✅ 세션 기반 사용자 정보 불러옴:', user);
     } catch (e) {
-      console.log('유저 정보를 불러오는 중 에러 발생:', e);
-    } finally {
+      console.log('❌ 유저 정보 가져오기 실패:', e);
     }
-    return;
   };
 
   const fetchPokedex = async () => {
@@ -100,18 +103,15 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const displayPokedex = computed(() => {
     const ownedIds = user.pokemon_ids || [];
 
-    // 기존 포켓몬 데이터 순서를 유지하면서 보유 여부 추가
     return pokedex.value.map((p) => {
       const isOwned = ownedIds.includes(Number(p.id));
 
-      return isOwned
-        ? { ...p, isOwned: true } // 보유한 포켓몬은 원래 데이터 유지
-        : {
-            id: '?', // 미보유 포켓몬은 ID 숨김
-            name: '???', // 이름 숨김
-            image_url: monsterBallImage, // 포켓볼 이미지 적용
-            isOwned: false, // 미보유 상태 추가
-          };
+      return {
+        ...p,
+        isOwned,
+        name: isOwned ? p.name : '???',
+        image_url: isOwned ? p.image_url : monsterBallImage,
+      };
     });
   });
 
@@ -166,7 +166,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
   };
 
   const setMainPokemon = async (pokemonId) => {
-    console.log('보윺 미보유?', isOwnedPokemon(pokemonId));
+    console.log('보유 미보유?', isOwnedPokemon(pokemonId));
     if (isOwnedPokemon(pokemonId) == false) {
       console.log('alert창 떠야댐');
       showAlert(`미지의 포켓몬은\n대표 포켓몬으로 설정할 수 없다옹!`);
@@ -174,9 +174,15 @@ export const usePokedexStore = defineStore('pokedex', () => {
     }
     const numericPokemonId = Number(pokemonId);
     try {
-      await axios.patch(`/api/users/${authStore.user.id}`, {
-        main_pokemon_id: numericPokemonId,
-      });
+      await axios.patch(
+        '/api/users/main-pokemon',
+        {
+          main_pokemon_id: numericPokemonId,
+        },
+        {
+          withCredentials: true, // ✅ 세션 쿠키 전송 필수!
+        }
+      );
 
       user.main_pokemon_id = pokemonId; // 상태 업데이트
       calculateMainPokemon(); // 대표 포켓몬 다시 계산

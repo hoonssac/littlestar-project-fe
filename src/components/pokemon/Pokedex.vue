@@ -53,9 +53,7 @@
         "
         :description="
           isOwned
-            ? `타입: ${selectedPokemon?.types.join(', ')}\n키: ${
-                selectedPokemon?.height
-              }cm\n몸무게: ${selectedPokemon?.weight}kg`
+            ? `타입: ${selectedPokemon.types}\n키: ${selectedPokemon?.height}cm\n몸무게: ${selectedPokemon?.weight}kg`
             : '미지의 포켓몬'
         "
         :img="isOwned ? selectedPokemon?.image_url : monsterBallImage"
