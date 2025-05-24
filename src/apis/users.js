@@ -6,11 +6,12 @@ const BASEURI = '/api/auth';
 const signup = async (user) => {
   try {
     const response = await axios.post(`${BASEURI}/signup`, user, {
-      withCredentials: true, // 세션 쿠키를 보내기 위해 필요
+      withCredentials: true, // ✅ 세션 쿠키 저장
     });
 
     const authStore = useAuthStore();
-    authStore.login(response.data); // 서버에서 회원가입 후 로그인 상태 유지
+    authStore.login(response.data); // Pinia에 유저 정보 저장
+
     return response.data;
   } catch (err) {
     console.log('회원가입 실패:', err);
@@ -48,10 +49,10 @@ const logout = async () => {
   }
 };
 
-const getUserInfo = async () => {
+export const getUserInfo = async () => {
   try {
     const response = await axios.get('/api/auth/me', {
-      withCredentials: true, // 세션 쿠키 전달
+      withCredentials: true, // ✅ 세션 쿠키 전송 필수
     });
     return response.data;
   } catch (err) {
@@ -72,4 +73,17 @@ const isUsernameTaken = async (username) => {
   }
 };
 
-export { signup, login, logout, getUserInfo, isUsernameTaken };
+// apis/users.js
+export const getSessionUser = async () => {
+  try {
+    const response = await axios.get('/api/auth/me', {
+      withCredentials: true, // ✅ 세션 쿠키 포함
+    });
+    return response.data;
+  } catch (err) {
+    console.error('세션 사용자 정보 가져오기 실패:', err);
+    return null;
+  }
+};
+
+export { signup, login, logout, isUsernameTaken };

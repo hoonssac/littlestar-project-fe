@@ -5,14 +5,6 @@
       <p class="mileage-text">{{ userMileage }} / 5000</p>
       <IconMileage color="#FAB809" size="20" />
     </div>
-    <!-- <IconHowto
-      class="info-btn"
-      size="35"
-      color="gray"
-      @click="showModal = true"
-    >
-      사용 방법
-    </IconHowto> -->
     <Help :show="showModal" @close="showModal = false" />
 
     <div v-if="pokedex !== null" class="info-container" size="small">
@@ -35,9 +27,8 @@
     </div>
 
     <div class="add-button-container">
-      <CustomButton class="add-button" size="large" @click="showModal = true">
-        <!-- <p class="plus-text">+</p> -->
-        <!-- <p>빠른 추가</p> -->
+      <CustomButton class="add-button" size="large" @click="showModal = true"
+        >>
         <p>사용 방법</p>
       </CustomButton>
     </div>
@@ -54,7 +45,7 @@ import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Help from '@/components/home/Help.vue';
 import IconHowto from '@/components/common/icons/IconInfo.vue';
-import { getUserInfo } from '@/apis/users';
+import { getSessionUser, getUserInfo } from '@/apis/users';
 
 const showModal = ref(false);
 const route = useRoute();
@@ -63,12 +54,36 @@ const pokedex = ref(null);
 const userMileage = ref(0);
 
 const fetchHomeData = async () => {
-  if (authStore.user) {
-    const data = await getPokedex(authStore.user.main_pokemon_id);
-    pokedex.value = data;
-    userMileage.value = authStore.user.mileage;
+  const userData = await getSessionUser();
+  if (!userData) {
+    console.warn('로그인된 사용자 정보 없음!');
+    return;
   }
+
+  authStore.login(userData);
+
+  if (userData.main_pokemon_id) {
+    try {
+      const data = await getPokedex(userData.main_pokemon_id);
+      pokedex.value = data;
+    } catch (e) {
+      console.error('대표 포켓몬 데이터 불러오기 실패:', e);
+    }
+  }
+
+  userMileage.value = userData.mileage ?? 0;
 };
+
+onMounted(fetchHomeData);
+
+watch(
+  () => route.path,
+  (newPath) => {
+    if (newPath === '/home') {
+      fetchHomeData();
+    }
+  }
+);
 
 onMounted(fetchHomeData);
 
@@ -141,14 +156,13 @@ const userMileageDegree = computed(() => {
   overflow: hidden;
 
   display: flex;
-  justify-content: center; /* 수평 가운데 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center;
+  align-items: center;
 }
 .main-pokemon-img {
   position: relative;
   z-index: 10;
   width: 400px;
-  /* transform: scale(1.4); */
 }
 
 .add-button-container {
@@ -171,7 +185,6 @@ const userMileageDegree = computed(() => {
   line-height: 0.8;
 }
 
-/* 배경 몬스터볼 */
 .home-container::before {
   content: '';
   position: absolute;
