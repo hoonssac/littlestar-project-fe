@@ -14,7 +14,7 @@ import BottomBar from './components/common/BottomBar.vue';
 import TopBar from './components/common/TopBar.vue';
 import { computed, onMounted, watch } from 'vue';
 import { useAuthStore } from './stores/authStore';
-import { getUserInfo } from './apis/users';
+import { getSessionUser } from './apis/users'; // ✅ 수정: getSessionUser로 변경
 
 const route = useRoute();
 const router = useRouter();
@@ -24,15 +24,20 @@ const isAuthPage = computed(() => {
   return ['/login', '/signup', '/select-main-pokemon'].includes(route.path);
 });
 
-onMounted(() => {
+onMounted(async () => {
   if (!authStore.user && !isAuthPage.value) {
-    router.push('/login');
+    const user = await getSessionUser();
+    if (user) {
+      authStore.login(user); // ✅ Pinia 상태 복구
+    } else {
+      router.push('/login');
+    }
   }
 });
 
 const fetchUser = async () => {
   if (authStore.user) {
-    await getUserInfo(authStore.user.id);
+    await getSessionUser(); // 필요시 세션 최신화
   }
 };
 
