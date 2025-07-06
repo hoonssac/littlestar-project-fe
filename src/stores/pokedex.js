@@ -177,7 +177,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
       await axios.patch(
         '/api/users/main-pokemon',
         {
-          main_pokemon_id: numericPokemonId,
+          mainPokemonId: numericPokemonId,
         },
         {
           withCredentials: true, // ✅ 세션 쿠키 전송 필수!
