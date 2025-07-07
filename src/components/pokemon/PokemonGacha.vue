@@ -70,7 +70,7 @@
                 <div class="drawn-pokemon-detail">
                   <h4>키: {{ selectedPokemon.height }}cm</h4>
                   <h4>몸무게: {{ selectedPokemon.weight }}kg</h4>
-                  <h4>타입: {{ selectedPokemon.types.join(', ') }}</h4>
+                  <h4>타입: {{ Array.isArray(selectedPokemon.types) ? selectedPokemon.types.join(', ') : selectedPokemon.types }}</h4>
                 </div>
                 <CustomButton
                   class="result-check-button"

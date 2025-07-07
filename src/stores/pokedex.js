@@ -260,9 +260,8 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
     // 서버에 업데이트
     try {
-      await axios.patch(`/api/users/${authStore.user.id}`, {
-        pokemon_ids: user.pokemon_ids,
-        mileage: user.mileage,
+      await axios.post('/api/users/gatcha', {
+        newPokemonId: newPokemon.id,
       });
       isModalVisible.value = true;
       console.log(`🎉 ${newPokemon.name} 획득!`);
