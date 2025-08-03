@@ -87,6 +87,7 @@ const categoryName = computed(() => {
 const route = useRoute();
 
 onMounted(async () => {
+  await store.fetchCategories();
   await store.fetchTransactions();
 });
 const filteredTransactions = computed(() => {
